@@ -9,16 +9,16 @@ cualquierCosa = {};
 cualquierCosa = [];
 console.log(cualquierCosa);*/
 const arregloTodo = [true, 1, 1.2, "Adrian", undefined, null, {}, [1, 2, true, "A"]];
-let a = [1,2,3];
-const b = Object.assign([],a);
+let a = [1, 2, 3];
+const b = Object.assign([], a);
 
 // for of
-for (let numero of arreglo){ // VALORES
+for (let numero of arreglo) { // VALORES
     console.log('numero', numero);
 }
 
 // for in
-for (let indice in arreglo){ // INDICES
+for (let indice in arreglo) { // INDICES
     arreglo[indice];
     console.log('indice', indice);
 }
@@ -32,12 +32,12 @@ console.log(arreglo);
 arreglo.unshift(6); // Añadir al principio del rreglo
 console.log(arreglo);
 // [6, 1, 2, 3, 4, 5, 8, 9, 10]
-arreglo.splice(0,1);
+arreglo.splice(0, 1);
 console.log(arreglo);
-arreglo.splice(0,0,3,4,5);
+arreglo.splice(0, 0, 3, 4, 5);
 console.log(arreglo);
 
 const indice = arreglo.indexOf(9);
 console.log('indice', indice); // 6
-arreglo.splice(arreglo.indexOf(9),1);
+arreglo.splice(arreglo.indexOf(9), 1);
 console.log(arreglo);
