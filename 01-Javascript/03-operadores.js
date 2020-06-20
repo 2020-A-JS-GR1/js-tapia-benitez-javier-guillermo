@@ -126,5 +126,3 @@ const respuestaFilter = arreglo
         }
     );
 console.log('respuestaFilter', respuestaFilter);
-
-const respuestaDeber = arreglo
