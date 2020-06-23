@@ -2,7 +2,7 @@ const arreglo = [
     {
         id: 1,
         nombre: 'Adrian',
-        nota: 5
+        nota: 9
     },
     {
         id: 2,
@@ -47,7 +47,7 @@ const arreglo = [
     {
         id: 10,
         nombre: 'Hugo',
-        nota: 2
+        nota: 9
     },
 ];
 
@@ -126,3 +126,46 @@ const respuestaFilter = arreglo
         }
     );
 console.log('respuestaFilter', respuestaFilter);
+
+// SOME -> expresion
+// DEVUELVE BOOLEANO
+// Hay ALGUNA notas menor a nueve? SI NO
+// OR
+const respuestaSome = arreglo
+    .some(
+        (valorActual, indiceActual, arregloCompleto) => {
+            return valorActual.nota < 10;
+        }
+    );
+console.log('respuestaSome', respuestaSome);
+
+// EVERY -> expresion
+// DEVUELVE BOOLEANO
+// TODAS las notas son mayores a nueve? SI NO
+// AND
+const respuestaEvery = arreglo
+    .every(
+        (valorActual, indiceActual, arregloCompleto) => {
+            return valorActual.nota > 14;
+        }
+    );
+console.log('respuestaEvery', respuestaEvery);
+
+// reduce izq -> der
+// reduceRight der -> izq
+const respuestaReduce = arreglo
+    .reduce(
+        (valorAcumulado, valorActual, indiceActual, arregloCompleto) => {
+            return valorAcumulado + valorActual.nota;
+        },
+        0 // Acumulador
+    );
+console.log('respuestaReduce', respuestaReduce);
+
+const arregloEstudiantesMenoresANueve = arreglo
+    .map((v) => v.nota * 1.3) // anadiendo el 30%
+    .filter((nota) => nota < 14); // busco a los < 14
+const totalPuntosEstudiantes = arregloEstudiantesMenoresANueve
+    .reduce((acumulado, actual) => acumulado + actual, 0); // total
+const notaPromedio = totalPuntosEstudiantes / arregloEstudiantesMenoresANueve.length;
+console.log('notaPromedio', notaPromedio);
