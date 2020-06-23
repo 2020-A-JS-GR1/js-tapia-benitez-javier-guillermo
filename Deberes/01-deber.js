@@ -53,23 +53,23 @@ const arreglo = [
 
 const respuestaDeber = arreglo
     .map(
-        (valorActual, indiceActual, arregloCompleto) => {
-            return{
+        (valorActual) => {
+            return {
                 id: valorActual.id,
                 nombre: valorActual.nombre,
-                nota: valorActual.nota + (0.1*(valorActual.nombre.match(/[aeiou]/gi).length)),
+                nota: valorActual.nota + (0.1 * (valorActual.nombre.match(/[aeiou]/gi).length)),
             };
         }
     ).map(
-        (valorActual, indiceActual, arregloCompleto) => {
-            return{
+        (valorActual) => {
+            return {
                 id: valorActual.id,
                 nombre: valorActual.nombre,
-                nota: valorActual.nota + (0.05*(valorActual.nombre.match(/[bcdfghjklmnpqrstvwxys]/gi).length)),
+                nota: valorActual.nota + (0.05 * (valorActual.nombre.match(/[bcdfghjklmnpqrstvwxys]/gi).length)),
             };
         }
     ).filter(
-        (valorActual, indiceActual, arregloCompleto) => {
+        (valorActual) => {
             return valorActual.nota >= 14;
         }
     );
