@@ -7,13 +7,14 @@ fs.readFile( // ASINCRONA
     'utf-8',
     (error, contenido)=>{ // CALLBACK (readFile)
         console.log('Segundo');
-        if (error){
+        if (error) {
             console.error('Hubo error', error);
-        }else {
+        } else {
             console.log(contenido);
         }
     }
 );
+
 // EJEMPLO CODIGO MODO SINCRONO (NO EXISTE EN JS ESTE TIPO DE CODIGO PARA ESTA FUNCION)
 // const respuesta = fs.readFile( // SINCRONA
 //     './06-ejemplo.txt',
@@ -22,3 +23,4 @@ fs.readFile( // ASINCRONA
 const suma = 5 + 3; // SINCRONA
 console.log('Final'); // SINCRONA
 console.log('Suma', suma) // SINCRONA
+
