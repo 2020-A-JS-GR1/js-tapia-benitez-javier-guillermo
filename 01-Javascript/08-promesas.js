@@ -34,6 +34,19 @@ promesaEsPar(2)
     .then(
         (numeroParAlCuadrado) => {
             console.log('Numero par al cuadrado: ', numeroParAlCuadrado);
+            return promesaElevarAlCuadrado(numeroParAlCuadrado);
+        }
+    )
+    .then(
+        (numeroParAlCuadrado) => {
+            console.log('Numero par al cuadrado: ', numeroParAlCuadrado);
+            return promesaElevarAlCuadrado(numeroParAlCuadrado)
+        }
+    )
+    .then(
+        (numeroParAlCuadrado) => {
+            console.log('Numero par al cuadrado: ', numeroParAlCuadrado);
+            return promesaElevarAlCuadrado(numeroParAlCuadrado)
         }
     )
     .catch( // catch
