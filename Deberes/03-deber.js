@@ -58,4 +58,4 @@ async function ejercicio(path, contenidoNuevo) {
     }
 }
 
-ejercicio('./03-ejemplo.txt', 'Buenas noches');
+const respuestaDeber = ejercicio('./03-ejemplo.txt', 'Nueva prueba');
