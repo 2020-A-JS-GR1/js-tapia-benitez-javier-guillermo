@@ -1,4 +1,0 @@
-{"category":"Rifle de asalto","gun":"M4"}
-{"category":"Francotirador","gun":"Locus"}
-{"category":"Francotirador","gun":"Artic0.5"}
-{"category":"Ametralladora ligera","gun":"M91"}

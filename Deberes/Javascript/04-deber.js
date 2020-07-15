@@ -35,10 +35,38 @@ const promesaListarArmas = () => {
     return inquirer
         .prompt({
             type: 'list',
-            name: 'categoryList',
+            name: 'category',
             message: 'Categoria',
             choices: ['Todas', 'Rifle de asalto', 'Francotirador', 'Subfusil', 'Ametralladora ligera', 'Escopeta', 'Pistola'],
         });
+}
+
+const promesaSeleccionarArma = (armas) => {
+    return inquirer
+        .prompt({
+            type: 'list',
+            name: 'updateGun',
+            message: 'Seleccione un arma',
+            choices: armas,
+        });
+}
+
+const promesaActualizarArma = (arma) => {
+    return inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'category',
+                message: 'Que tipo de arma es?',
+                choices: ['Rifle de asalto', 'Francotirador', 'Subfusil', 'Ametralladora ligera', 'Escopeta', 'Pistola'],
+            },
+            {
+                type: 'input',
+                name: 'gun',
+                message: 'Cual es el nombre del arma?',
+                default: arma,
+            }
+        ]);
 }
 
 const promesaLeerArmas = () => {
@@ -82,20 +110,30 @@ async function sistemaArmasCRUD() {
     try {
         while (validadorSalida) {
             const respuestaLeerArmas = await promesaLeerArmas();
-            const listaArmas = respuestaLeerArmas.split('\n').map(
-                (valorActual) => {
-                    return JSON.parse(valorActual);
-                }
-            );
+            let listaArmas = [];
+            if (respuestaLeerArmas !== '') {
+                listaArmas = respuestaLeerArmas.split('\n').map(
+                    valorActual => {
+                        return JSON.parse(valorActual);
+                    }
+                );
+            }
             const respuestaOpcion = await promesaOpcionCRUD();
             switch (respuestaOpcion.option) {
                 case 'Agregar un arma':
+                    // Agregar mas atributos al arma
                     const respuestaIngresarArma = await promesaIngresarArma();
-                    await promesaEscribirArma(respuestaLeerArmas + '\n' + JSON.stringify(respuestaIngresarArma));
+                    if (respuestaLeerArmas !== '') {
+                        await promesaEscribirArma(respuestaLeerArmas + '\n' + JSON.stringify(respuestaIngresarArma));
+                    } else {
+                        await promesaEscribirArma(JSON.stringify(respuestaIngresarArma));
+                    }
                     break;
                 case 'Listar armas':
+                    // Controlar si no hay armas registradas
+                    // Controlar si no hay armas registradas en una categoria
                     const respuestaListarArmas = await promesaListarArmas();
-                    switch (respuestaListarArmas.categoryList) {
+                    switch (respuestaListarArmas.category) {
                         case 'Todas':
                             console.log(listaArmas);
                             break;
@@ -156,8 +194,55 @@ async function sistemaArmasCRUD() {
                     }
                     break;
                 case 'Actualizar datos de un arma':
+                    // Controlar si no armas para actualizar
+                    const respuestaSelecActualizar = await promesaSeleccionarArma(listaArmas.map(
+                        valorActual => {
+                            return valorActual.gun;
+                        }
+                    ));
+                    const respuestaActualizarArma = await promesaActualizarArma(respuestaSelecActualizar.updateGun);
+                    listaArmas[listaArmas.findIndex(
+                        valorActual => {
+                            return valorActual.gun === respuestaSelecActualizar.updateGun;
+                        }
+                    )] = respuestaActualizarArma;
+                    let listaActualizada = '';
+                    listaArmas.map(
+                        (valorActual, indiceActual) => {
+                            if (indiceActual < listaArmas.length - 1) {
+                                listaActualizada = listaActualizada + JSON.stringify(valorActual) + '\n';
+                            } else {
+                                listaActualizada = listaActualizada + JSON.stringify(valorActual);
+                            }
+
+                        }
+                    );
+                    await promesaEscribirArma(listaActualizada);
                     break;
                 case 'Borrar un arma':
+                    // Controlar si no armas para borrar
+                    const respuestaSelecBorrar = await promesaSeleccionarArma(listaArmas.map(
+                        valorActual => {
+                            return valorActual.gun;
+                        }
+                    ));
+                    listaArmas.splice(listaArmas.findIndex(
+                        valorActual => {
+                            return valorActual.gun === respuestaSelecBorrar.updateGun;
+                        }
+                    ),1);
+                    let listaBorrado = '';
+                    listaArmas.map(
+                        (valorActual, indiceActual) => {
+                            if (indiceActual < listaArmas.length - 1) {
+                                listaBorrado = listaBorrado + JSON.stringify(valorActual) + '\n';
+                            } else {
+                                listaBorrado = listaBorrado + JSON.stringify(valorActual);
+                            }
+
+                        }
+                    );
+                    await promesaEscribirArma(listaBorrado);
                     break;
                 case 'Salir':
                     validadorSalida = false;
