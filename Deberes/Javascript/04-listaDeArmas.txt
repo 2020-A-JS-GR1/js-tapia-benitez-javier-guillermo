@@ -1,0 +1,3 @@
+{"category":"Rifle de asalto","gun":"M4"}
+{"category":"Ametralladora ligera","gun":"M249 SAW"}
+{"category":"Pistola","gun":"Colt .45"}
