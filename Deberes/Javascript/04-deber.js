@@ -7,26 +7,27 @@ let validadorSalida = true;
 const promesaOpcionCRUD = () => {
     return inquirer
         .prompt({
-            type: 'list',
+            type: 'rawlist',
             name: 'option',
-            message: 'Escoga una opcion:',
+            message: 'Bienvenido al sistema de armas. Escoja una opcion:',
             choices: ['Agregar un arma', 'Listar armas', 'Actualizar datos de un arma', 'Borrar un arma', 'Salir'],
         });
 }
 
-const promesaIngresarArma = () => {
+const promesaIngresarArma = (arma) => {
     return inquirer
         .prompt([
             {
                 type: 'list',
                 name: 'category',
-                message: 'Que tipo de arma es?',
+                message: '¿Cual es la categoria del arma?:',
                 choices: ['Rifle de asalto', 'Francotirador', 'Subfusil', 'Ametralladora ligera', 'Escopeta', 'Pistola'],
             },
             {
                 type: 'input',
                 name: 'gun',
-                message: 'Cual es el nombre del arma?',
+                message: '¿Cual es el nombre del arma?:',
+                default: arma,
             }
         ]);
 }
@@ -36,7 +37,7 @@ const promesaListarArmas = () => {
         .prompt({
             type: 'list',
             name: 'category',
-            message: 'Categoria',
+            message: 'Categorias de armas:',
             choices: ['Todas', 'Rifle de asalto', 'Francotirador', 'Subfusil', 'Ametralladora ligera', 'Escopeta', 'Pistola'],
         });
 }
@@ -46,27 +47,9 @@ const promesaSeleccionarArma = (armas) => {
         .prompt({
             type: 'list',
             name: 'updateGun',
-            message: 'Seleccione un arma',
+            message: 'Seleccione un arma:',
             choices: armas,
         });
-}
-
-const promesaActualizarArma = (arma) => {
-    return inquirer
-        .prompt([
-            {
-                type: 'list',
-                name: 'category',
-                message: 'Que tipo de arma es?',
-                choices: ['Rifle de asalto', 'Francotirador', 'Subfusil', 'Ametralladora ligera', 'Escopeta', 'Pistola'],
-            },
-            {
-                type: 'input',
-                name: 'gun',
-                message: 'Cual es el nombre del arma?',
-                default: arma,
-            }
-        ]);
 }
 
 const promesaLeerArmas = () => {
@@ -106,6 +89,48 @@ const promesaEscribirArma = (data) => {
     );
 }
 
+function actualizarArchivo(lista) {
+    let listaActualizada = '';
+    lista.map(
+        (valorActual, indiceActual) => {
+            if (indiceActual < lista.length - 1) {
+                listaActualizada = listaActualizada + JSON.stringify(valorActual) + '\n';
+            } else {
+                listaActualizada = listaActualizada + JSON.stringify(valorActual);
+            }
+
+        }
+    );
+    return listaActualizada;
+}
+
+function filtrarArmas(lista, categoria) {
+    if (lista.length === 0) {
+        return 'No hay armas registradas';
+    } else {
+        if (categoria === 'Todas') {
+            return (lista);
+        } else {
+            if (lista
+                .some(
+                    valorActual => {
+                        return valorActual.category === categoria;
+                    }
+                )) {
+                return (lista
+                        .filter(
+                            (valorActual) => {
+                                return valorActual.category === categoria;
+                            }
+                        )
+                );
+            } else {
+                return 'No se a registrado ' + categoria;
+            }
+        }
+    }
+}
+
 async function sistemaArmasCRUD() {
     try {
         while (validadorSalida) {
@@ -121,136 +146,62 @@ async function sistemaArmasCRUD() {
             const respuestaOpcion = await promesaOpcionCRUD();
             switch (respuestaOpcion.option) {
                 case 'Agregar un arma':
-                    // Agregar mas atributos al arma
                     const respuestaIngresarArma = await promesaIngresarArma();
                     if (respuestaLeerArmas !== '') {
                         await promesaEscribirArma(respuestaLeerArmas + '\n' + JSON.stringify(respuestaIngresarArma));
                     } else {
                         await promesaEscribirArma(JSON.stringify(respuestaIngresarArma));
                     }
+                    console.log('------Arma registrada con exito------');
                     break;
                 case 'Listar armas':
-                    // Controlar si no hay armas registradas
-                    // Controlar si no hay armas registradas en una categoria
                     const respuestaListarArmas = await promesaListarArmas();
-                    switch (respuestaListarArmas.category) {
-                        case 'Todas':
-                            console.log(listaArmas);
-                            break;
-                        case 'Rifle de asalto':
-                            console.log(listaArmas
-                                .filter(
-                                    (valorActual) => {
-                                        return valorActual.category === 'Rifle de asalto';
-                                    }
-                                )
-                            );
-                            break;
-                        case 'Francotirador':
-                            console.log(listaArmas
-                                .filter(
-                                    (valorActual) => {
-                                        return valorActual.category === 'Francotirador';
-                                    }
-                                )
-                            );
-                            break;
-                        case 'Subfusil':
-                            console.log(listaArmas
-                                .filter(
-                                    (valorActual) => {
-                                        return valorActual.category === 'Subfusil';
-                                    }
-                                )
-                            );
-                            break;
-                        case 'Ametralladora ligera':
-                            console.log(listaArmas
-                                .filter(
-                                    (valorActual) => {
-                                        return valorActual.category === 'Ametralladora ligera';
-                                    }
-                                )
-                            );
-                            break;
-                        case 'Escopeta':
-                            console.log(listaArmas
-                                .filter(
-                                    (valorActual) => {
-                                        return valorActual.category === 'Escopeta';
-                                    }
-                                )
-                            );
-                            break;
-                        case 'Pistola':
-                            console.log(listaArmas
-                                .filter(
-                                    (valorActual) => {
-                                        return valorActual.category === 'Pistola';
-                                    }
-                                )
-                            );
-                            break;
-                    }
+                    console.table(filtrarArmas(listaArmas, respuestaListarArmas.category));
                     break;
                 case 'Actualizar datos de un arma':
-                    // Controlar si no armas para actualizar
-                    const respuestaSelecActualizar = await promesaSeleccionarArma(listaArmas.map(
-                        valorActual => {
-                            return valorActual.gun;
-                        }
-                    ));
-                    const respuestaActualizarArma = await promesaActualizarArma(respuestaSelecActualizar.updateGun);
-                    listaArmas[listaArmas.findIndex(
-                        valorActual => {
-                            return valorActual.gun === respuestaSelecActualizar.updateGun;
-                        }
-                    )] = respuestaActualizarArma;
-                    let listaActualizada = '';
-                    listaArmas.map(
-                        (valorActual, indiceActual) => {
-                            if (indiceActual < listaArmas.length - 1) {
-                                listaActualizada = listaActualizada + JSON.stringify(valorActual) + '\n';
-                            } else {
-                                listaActualizada = listaActualizada + JSON.stringify(valorActual);
+                    if (listaArmas.length === 0) {
+                        console.log('No hay armas registradas');
+                    } else {
+                        const respuestaSelecActualizar = await promesaSeleccionarArma(listaArmas.map(
+                            valorActual => {
+                                return valorActual.gun;
                             }
-
-                        }
-                    );
-                    await promesaEscribirArma(listaActualizada);
+                        ));
+                        listaArmas[listaArmas.findIndex(
+                            valorActual => {
+                                return valorActual.gun === respuestaSelecActualizar.updateGun;
+                            }
+                        )] = await promesaIngresarArma(respuestaSelecActualizar.updateGun);
+                        await promesaEscribirArma(actualizarArchivo(listaArmas));
+                    }
+                    console.log('------Datos del arma actualizados con exito------');
                     break;
                 case 'Borrar un arma':
-                    // Controlar si no armas para borrar
-                    const respuestaSelecBorrar = await promesaSeleccionarArma(listaArmas.map(
-                        valorActual => {
-                            return valorActual.gun;
-                        }
-                    ));
-                    listaArmas.splice(listaArmas.findIndex(
-                        valorActual => {
-                            return valorActual.gun === respuestaSelecBorrar.updateGun;
-                        }
-                    ),1);
-                    let listaBorrado = '';
-                    listaArmas.map(
-                        (valorActual, indiceActual) => {
-                            if (indiceActual < listaArmas.length - 1) {
-                                listaBorrado = listaBorrado + JSON.stringify(valorActual) + '\n';
-                            } else {
-                                listaBorrado = listaBorrado + JSON.stringify(valorActual);
+                    if (listaArmas.length === 0) {
+                        console.log('No hay armas registradas');
+                    } else {
+                        const respuestaSelecBorrar = await promesaSeleccionarArma(listaArmas.map(
+                            valorActual => {
+                                return valorActual.gun;
                             }
-
-                        }
-                    );
-                    await promesaEscribirArma(listaBorrado);
+                        ));
+                        listaArmas.splice(listaArmas.findIndex(
+                            valorActual => {
+                                return valorActual.gun === respuestaSelecBorrar.updateGun;
+                            }
+                        ), 1);
+                        await promesaEscribirArma(actualizarArchivo(listaArmas));
+                    }
+                    console.log('------Arma borrada con exito------');
                     break;
                 case 'Salir':
                     validadorSalida = false;
+                    console.log('------Hasta la proxima------');
                     break;
             }
         }
     } catch (error) {
-        console.error('Se produjo un error: ', error);
+        console.error('Se produjo un error:\n', error);
     }
 }
 
