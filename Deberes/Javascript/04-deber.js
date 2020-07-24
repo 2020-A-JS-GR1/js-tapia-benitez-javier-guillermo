@@ -91,14 +91,13 @@ const promesaEscribirArma = (data) => {
 
 function actualizarArchivo(lista) {
     let listaActualizada = '';
-    lista.map(
+    lista.forEach(
         (valorActual, indiceActual) => {
             if (indiceActual < lista.length - 1) {
                 listaActualizada = listaActualizada + JSON.stringify(valorActual) + '\n';
             } else {
                 listaActualizada = listaActualizada + JSON.stringify(valorActual);
             }
-
         }
     );
     return listaActualizada;
@@ -109,7 +108,7 @@ function filtrarArmas(lista, categoria) {
         return 'No hay armas registradas';
     } else {
         if (categoria === 'Todas') {
-            return (lista);
+            return lista;
         } else {
             if (lista
                 .some(
@@ -125,7 +124,7 @@ function filtrarArmas(lista, categoria) {
                         )
                 );
             } else {
-                return 'No se a registrado ' + categoria;
+                return 'No se a registrado arma en ' + categoria;
             }
         }
     }
