@@ -1,3 +1,0 @@
-{"category":"Ametralladora ligera","gun":"M249 SAW"}
-{"category":"Pistola","gun":"Colt .45"}
-{"category":"Escopeta","gun":"M40"}

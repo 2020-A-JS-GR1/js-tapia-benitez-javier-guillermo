@@ -1,0 +1,3 @@
+{"nombre":"Escopeta","descripcion":"Arma de canon largo y municion que dispara perdigones"}
+{"nombre":"Ametralladora Ligera","descripcion":"Arma pesada con gran capacidad de municion."}
+{"nombre":"Lanza Cohetes","descripcion":"Arma que dispara cohetes o misiles"}
