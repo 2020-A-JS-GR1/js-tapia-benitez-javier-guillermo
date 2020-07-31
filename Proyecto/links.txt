@@ -1,0 +1,8 @@
+Modelo entidad-relacion (LucidChart):
+https://app.lucidchart.com/invitations/accept/0ec197c4-9632-4b8e-8a8a-5860d7ba92bd
+
+Historias de Usuario (Azure DevOps):
+https://dev.azure.com/javiertapia0606/AdoptameEC
+
+Mockups y prototyping (Figma):
+https://www.figma.com/file/2QTCkGWTRJfLUBaxd4Qlr4/Adoptame-EC?node-id=0%3A1
