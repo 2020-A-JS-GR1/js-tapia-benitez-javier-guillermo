@@ -81,14 +81,6 @@ const promesaAgregarArma = (listaCategorias, categoria, nombre, mira, balas, ski
         ]);
 }
 
-async function agregarRegistro(promesa, archivo, path) {
-    if (archivo !== '') {
-        await promesaEscribirArchivo(path, archivo + '\n' + JSON.stringify(promesa));
-    } else {
-        await promesaEscribirArchivo(path, JSON.stringify(promesa));
-    }
-}
-
 const promesaListar = (listaCategorias) => {
     return inquirer
         .prompt({
@@ -107,6 +99,51 @@ const promesaActualizar = (lista) => {
             message: 'Seleccione una opcion:',
             choices: lista,
         });
+}
+
+const promesaLeerArchivo = (path) => {
+    return new Promise(
+        (resolve, reject) => {
+            fs.readFile(
+                path,
+                'utf-8',
+                (error, contenido) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(contenido);
+                    }
+                }
+            );
+        }
+    );
+}
+
+const promesaEscribirArchivo = (path, data) => {
+    return new Promise(
+        (resolve, reject) => {
+            fs.writeFile(
+                path,
+                data,
+                'utf-8',
+                (error) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve();
+                    }
+                }
+            );
+        }
+    );
+}
+
+async function agregarRegistro(promesa, archivo, path) {
+    if (archivo !== '') {
+        await promesaEscribirArchivo(path, archivo + '\n' + JSON.stringify(promesa));
+    } else {
+        await promesaEscribirArchivo(path, JSON.stringify(promesa));
+    }
 }
 
 async function actualizarRegistro(lista, opcion, path, listaPadre) {
@@ -159,43 +196,6 @@ async function borrarRegistro(lista, path) {
         await promesaEscribirArchivo(path, actualizarArchivo(lista));
         console.log('------Registro borrado con exito------');
     }
-}
-
-const promesaLeerArchivo = (path) => {
-    return new Promise(
-        (resolve, reject) => {
-            fs.readFile(
-                path,
-                'utf-8',
-                (error, contenido) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(contenido);
-                    }
-                }
-            );
-        }
-    );
-}
-
-const promesaEscribirArchivo = (path, data) => {
-    return new Promise(
-        (resolve, reject) => {
-            fs.writeFile(
-                path,
-                data,
-                'utf-8',
-                (error) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve();
-                    }
-                }
-            );
-        }
-    );
 }
 
 function actualizarArchivo(lista) {

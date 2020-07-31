@@ -1,2 +1,3 @@
 {"categoria":"Ametralladora Ligera","nombre":"Bruen MK9","mira":"No","balas":75,"skin":"Si"}
-{"categoria":"Lanza Cohetes","nombre":"FHJ-18","mira":"Si","balas":1,"skin":"No"}
+{"categoria":"Escopeta","nombre":"PWD-9","mira":"Si","balas":10,"skin":"No"}
+{"categoria":"LanzaCohete","nombre":"FHG-T","mira":"No","balas":1,"skin":"Si"}
