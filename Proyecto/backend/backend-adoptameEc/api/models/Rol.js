@@ -14,6 +14,12 @@ module.exports = {
       required: true,
       columnName: 'nombre_rol',
       unique: true,
+    },
+    // RELACIONES
+    // Rol -> RolUsuario 
+    usuarios: {
+      collection: 'RolUsuario',
+      via: 'id_rol',
     }
   },
 

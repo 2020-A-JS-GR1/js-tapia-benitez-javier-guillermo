@@ -49,6 +49,27 @@ module.exports = {
       type: 'number',
       defaultsTo: 0,
       columnName: 'num_mascotas_usuario',
+    },
+    // RELACIONES
+    // Usuario -> RolUsuario
+    roles: {
+      collection: 'RolUsuario',
+      via: 'id_usuario',
+    },
+    // Usuario -> Tarjeta
+    tarjetas: {
+      collection: 'Tarjeta',
+      via: 'id_usuario',
+    },
+    // Usuario <- Provincia
+    id_provincia: {
+      model: 'Provincia',
+      required: true,
+    },
+    // Usuario -> Adopcion
+    adopciones: {
+      collection: 'Adopcion',
+      via: 'id_usuario',
     }
   },
 

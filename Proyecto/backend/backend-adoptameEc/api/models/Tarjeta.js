@@ -30,6 +30,17 @@ module.exports = {
       columnName: 'cvv_tarjeta',
       minLength: 3,
       maxLength: 4,
+    },
+    // RELACIONES
+    // Tarjeta <- Usuario
+    id_usuario: {
+      model: 'Usuario',
+      required: true,
+    },
+    // Tarjeta -> Donacion
+    donaciones: {
+      collection: 'Donacion',
+      via: 'id_tarjeta',
     }
   },
 
