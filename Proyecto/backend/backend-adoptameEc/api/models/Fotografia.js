@@ -6,23 +6,21 @@
  */
 
 module.exports = {
-
+  datastore: 'adoptameEcDatabase',
+  tableName: 'fotografia',
   attributes: {
-
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
-
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
-
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
+    url: {
+      type: 'string',
+      required: true,
+      columnName: 'url_fotografia',
+      isURL: true,
+    },
+    // RELACIONES
+    // Fotografia -> FotografiaMascota
+    mascotas: {
+      collection: 'FotografiaMascota',
+      via: 'id_fotografia',
+    }
   },
 
 };
