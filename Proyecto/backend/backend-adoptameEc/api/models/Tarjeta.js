@@ -14,8 +14,8 @@ module.exports = {
       required: true,
       columnName: 'numero_tarjeta',
       unique: true,
-      minLength: 16,
-      maxLength: 19,
+      minLength: 14,
+      maxLength: 16,
       isCreditCard: true,
     },
     fechaCaducidad: {
