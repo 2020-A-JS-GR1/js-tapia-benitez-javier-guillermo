@@ -1,12 +1,12 @@
 <!-- Property Binding -->
 <!-- Settear valores  propiedades de una etiqueta -->
-<img [src]="urlEjemploImagen" alt="">
+<img [src]="urlImagen" alt="" (click)="ejecutarEventoDioClicImagen()">
 
 <!-- Interpolacion -->
-<!-- Texto muestra interzar -->
+<!-- Texto muestra interfaz -->
 <a [href]="linkTextoEjemplo">
-    <p>{{textoEjemplo}}</p>
+    <p>{{descripcion}}</p>
 </a>
 
 <!-- Event Binding -->
-<button (click)="ejemploFuncion()" (blur)="eventoOnBlur()">{{textoEjemplo}}</button>
+<button (click)="ejecutarEventoDioClic()" (blur)="eventoOnBlur()">{{nombreBoton}}</button>
