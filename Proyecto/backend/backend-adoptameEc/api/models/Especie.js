@@ -20,11 +20,6 @@ module.exports = {
     razas: {
       collection: 'Raza',
       via: 'id_especie',
-    },
-    // Especie -> Mascota
-    mascotas: {
-      collection: 'Mascota',
-      via: 'id_especie',
     }
   },
 

@@ -22,7 +22,7 @@ module.exports = {
       type: 'string',
       required: true,
       columnName: 'fecha_caducidad_tarjeta',
-      maxLength: 5,
+      maxLength: 7,
     },
     cvv: {
       type: 'string',
