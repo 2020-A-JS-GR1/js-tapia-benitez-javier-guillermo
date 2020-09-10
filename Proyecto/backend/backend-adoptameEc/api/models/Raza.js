@@ -26,6 +26,11 @@ module.exports = {
     id_especie: {
       model: 'Especie',
       required: true,
+    },
+    // Raza -> Mascota
+    mascotas: {
+      collection: 'Mascota',
+      via: 'id_raza',
     }
   },
 
