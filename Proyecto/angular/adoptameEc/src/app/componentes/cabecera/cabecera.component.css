@@ -1,0 +1,29 @@
+#cabecera {
+  background: #ffffff;
+}
+#logo {
+  position: relative;
+  left: 90px;
+}
+#logo-img {
+  width: 200px;
+  height: 80px;
+  margin: 10px 0px;
+}
+#botones {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+#boton {
+  margin: 5px;
+  background: #223c75;
+  border-radius: 35px;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-family: 'Spectral SC', serif;
+  font-size: 12px;
+  text-align: center;
+  color: #ffffff;
+}
