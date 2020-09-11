@@ -18,10 +18,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
+import { TopMenuComponent } from './componentes/top-menu/top-menu.component';
+import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CabeceraComponent,
+    TopMenuComponent,
+    PiePaginaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,80 @@
+#contenedor {
+  background: #3864c2;
+  display: flex;
+}
+.columna {
+  float: left;
+  width: 33.33%;
+}
+#izquierda {
+  padding: 30px 0px;
+}
+#logo-img {
+  width: 200px;
+  height: 80px;
+  margin: 0px 50px;
+}
+#contacto {
+  margin: 0px 60px;
+}
+#info {
+  font-family: "Spectral", serif;
+  font-size: 14px;
+  color: #ffffff;
+}
+#centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#pie-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 100px;
+}
+#derecha {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#map-site {
+  margin: 0px 60px;
+  text-align: right;
+}
+#title {
+  font-family: "Spectral SC", serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #223c75;
+  margin: 5px 0px;
+}
+#site-map-list {
+  list-style: none;
+}
+#link {
+  font-family: "Spectral", serif;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ffffff;
+}
+#contenedor-pie {
+  background: #223c75;
+  display: flex;
+}
+.columna-pie {
+  float: left;
+  width: 50%;
+}
+#copyright {
+  margin: 5px 30px;
+}
+#social-networks {
+  display: flex;
+  justify-content: flex-end;
+  margin: 15px 30px;
+}
+#icono {
+  width: 30px;
+  height: 30px;
+  margin: 0px 15px;
+}

@@ -1,0 +1,17 @@
+#fondo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: #223c75;
+}
+#paginas {
+  padding: 20px;
+}
+#link {
+  margin: 0px 50px;
+  font-family: "Spectral SC", serif;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+}
