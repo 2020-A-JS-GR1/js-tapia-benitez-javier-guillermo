@@ -1,0 +1,35 @@
+
+#crop{
+    overflow: hidden;
+}
+#img-banner{
+    width: 100%;
+    margin: -270px 0px -280px 0px;
+    display: flex;
+}
+#estadisticas{
+    margin: 40px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#fila{
+    float: left;
+    height: 50%;
+}
+#estadistica{
+    margin: 0px 100px;
+}
+#campo{
+    font-family: 'Spectral SC', serif;
+    font-size: 24px;
+    text-align: center;
+    color: #000000;
+}
+#valor{
+    margin: 0px 0px;
+    font-family: 'Spectral SC', serif;
+    font-size: 50px;
+    text-align: center;
+    color: #000000;
+}

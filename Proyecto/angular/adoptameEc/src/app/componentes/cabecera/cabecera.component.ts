@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cabecera',
@@ -7,11 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
+  @Input()
+  sesion: boolean;
+  
   urlLogo = '../../../assets/img/Logo.png';
-  textoBoton1 = 'Registrarse';
-  textoBoton2 = 'Iniciar Sesion';
 
-  constructor() { }
+  constructor(
+    private readonly _router: Router
+  ) { }
+
+  irARegistro() {
+    const ruta = ['/registro'];
+    this._router.navigate(ruta);
+  }
+
+  irALogin() {
+    const ruta = ['/login'];
+    this._router.navigate(ruta);
+  }
 
   ngOnInit(): void {
   }

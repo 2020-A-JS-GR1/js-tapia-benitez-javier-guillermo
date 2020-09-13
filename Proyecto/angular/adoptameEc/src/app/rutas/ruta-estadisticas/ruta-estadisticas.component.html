@@ -1,0 +1,25 @@
+<div id="crop">
+    <img [src]="urlBanner" id="img-banner">
+</div>
+<div id="estadisticas">
+    <div id="fila">
+        <div id="estadistica">
+            <p id="campo">Peticiones Pendientes</p>
+            <p id="valor">{{pendientes}}</p>
+        </div>
+        <div id="estadistica">
+            <p id="campo">Usuarios Registrados</p>
+            <p id="valor">{{usuarios}}</p>
+        </div>
+    </div>
+    <div id="fila">
+        <div id="estadistica">
+            <p id="campo">Mascotas Registradas</p>
+            <p id="valor">{{mascotas}}</p>
+        </div>
+        <div id="estadistica">
+            <p id="campo">Total Donaciones</p>
+            <p id="valor">${{total}}</p>
+        </div>
+    </div>
+</div>

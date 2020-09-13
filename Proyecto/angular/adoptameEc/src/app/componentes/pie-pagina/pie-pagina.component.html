@@ -17,21 +17,9 @@
     <div id="derecha" class="columna">
         <div id="map-site">
             <p id="title">Menu Principal</p>
-            <ul id="site-map-list">
+            <ul id="site-map-list" *ngFor="let ruta of rutas">
                 <li>
-                    <a href="#" id="link">Inicio</a>
-                </li>
-                <li>
-                    <a href="#" id="link">Nosotros</a>
-                </li>
-                <li>
-                    <a href="#" id="link">Adoptar</a>
-                </li>
-                <li>
-                    <a href="#" id="link">Donar</a>
-                </li>
-                <li>
-                    <a href="#" id="link">Contacto</a>
+                    <a [routerLink]="[ruta.ruta]" id="link">{{ruta.etiqueta}}</a>
                 </li>
             </ul>
         </div>
@@ -42,10 +30,20 @@
         <p id="info">©2020 AdoptameEc.com</p>
     </div>
     <div id="social-networks" class="columna-pie">
-        <img [src]="urlInstagram" id="icono">
-        <img [src]="urlTwitter" id="icono">
-        <img [src]="urlFacebook" id="icono">
-        <img [src]="urlYoutube" id="icono">
-        <img [src]="urlGithub" id="icono">
+        <a [href]="urlInstagramPage" target="_blank">
+            <img [src]="urlInstagram" id="icono">
+        </a>
+        <a [href]="urlTwitterPage" target="_blank">
+            <img [src]="urlTwitter" id="icono">
+        </a>
+        <a [href]="urlFacebookPage" target="_blank">
+            <img [src]="urlFacebook" id="icono">
+        </a>
+        <a [href]="urlYoutubePage" target="_blank">
+            <img [src]="urlYoutube" id="icono">
+        </a>
+        <a [href]="urlGithubPage" target="_blank">
+            <img [src]="urlGithub" id="icono">
+        </a>
     </div>
 </div>

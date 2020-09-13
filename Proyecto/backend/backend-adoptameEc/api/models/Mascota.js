@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  datastore: 'adoptameEcDatabase',
-  tableName: 'mascota',
+  // datastore: 'adoptameEcDatabase',
+  // tableName: 'mascota',
   attributes: {
     nombre: {
       type: 'string',

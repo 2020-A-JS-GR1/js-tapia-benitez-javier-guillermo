@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  datastore: 'adoptameEcDatabase',
-  tableName: 'fotografia_mascota',
+  // datastore: 'adoptameEcDatabase',
+  // tableName: 'fotografia_mascota',
   attributes: {
     // RELACIONES
     // FotografiaMascota <- Fotografia
