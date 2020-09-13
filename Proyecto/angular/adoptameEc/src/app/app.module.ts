@@ -21,13 +21,29 @@ import { AppComponent } from './app.component';
 import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { TopMenuComponent } from './componentes/top-menu/top-menu.component';
 import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.component';
+import { RutaEstadisticasComponent } from './rutas/ruta-estadisticas/ruta-estadisticas.component';
+import { RutaUsuariosComponent } from './rutas/ruta-usuarios/ruta-usuarios.component';
+import { RutaMascotasComponent } from './rutas/ruta-mascotas/ruta-mascotas.component';
+import { RutaPeticionesComponent } from './rutas/ruta-peticiones/ruta-peticiones.component';
+import { RutaRefugiosComponent } from './rutas/ruta-refugios/ruta-refugios.component';
+import { RutaRolesComponent } from './rutas/ruta-roles/ruta-roles.component';
+import { RutaRegistroComponent } from './rutas/ruta-registro/ruta-registro.component';
+import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CabeceraComponent,
     TopMenuComponent,
-    PiePaginaComponent
+    PiePaginaComponent,
+    RutaEstadisticasComponent,
+    RutaUsuariosComponent,
+    RutaMascotasComponent,
+    RutaPeticionesComponent,
+    RutaRefugiosComponent,
+    RutaRolesComponent,
+    RutaRegistroComponent,
+    RutaLoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,5 @@
-<div id="fondo">
-    <div id="paginas">
-        <a href="#" id="link">Inicio</a>
-        <a href="#" id="link">Nosotros</a>
-        <a href="#" id="link">Adoptar</a>
-        <a href="#" id="link">Donar</a>
-        <a href="#" id="link">Contacto</a>
+<div class="fondo" style="background: #223c75;" [style]="backgroundColor">
+    <div id="paginas" *ngFor="let ruta of rutas">
+        <a [routerLink]="[ruta.ruta]" id="link">{{ruta.etiqueta}}</a>
     </div>
 </div>

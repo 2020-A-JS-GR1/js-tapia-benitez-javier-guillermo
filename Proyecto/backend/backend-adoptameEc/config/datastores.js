@@ -32,9 +32,9 @@ module.exports.datastores = {
   *                                                                          *
   ***************************************************************************/
 
-  adoptameEcDatabase: {
+  /* adoptameEcDatabase: {
     adapter: 'sails-mysql',
-    url: 'mysql://javier:lobocsg@localhost:32773/adoptameec',
-  },
+    url: 'mysql://javier:lobocsg@localhost:32771/adoptameec',
+  }, */
 
 };

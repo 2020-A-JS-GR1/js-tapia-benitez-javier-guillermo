@@ -3,7 +3,7 @@
         <img id="logo-img" [src]="urlLogo">
     </div>
     <div id="botones">
-        <button id="boton">{{textoBoton1}}</button>
-        <button id="boton">{{textoBoton2}}</button>
+        <button id="boton" *ngIf="!sesion" (click)="irARegistro()">Registrarse</button>
+        <button id="boton" (click)="irALogin()">{{!sesion ? 'Iniciar Sesion' : 'Cerrar Sesion'}}</button>
     </div>
 </div>

@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  datastore: 'adoptameEcDatabase',
-  tableName: 'rol_usuario',
+  // datastore: 'adoptameEcDatabase',
+  // tableName: 'rol_usuario',
   attributes: {
     // RELACIONES
     // RolUsuario <- Rol
