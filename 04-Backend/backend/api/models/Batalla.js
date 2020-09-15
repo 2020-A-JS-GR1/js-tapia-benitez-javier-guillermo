@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  datastore: 'default', // nombre conexion
-  tableName: 'batalla', // nombre tabla
+  // datastore: 'default', // nombre conexion
+  // tableName: 'batalla', // nombre tabla
   attributes: {
     nombre: {
       type: 'string',

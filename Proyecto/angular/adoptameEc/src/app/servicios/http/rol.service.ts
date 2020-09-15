@@ -1,3 +1,4 @@
+import { Rol } from './../../modelos/rol';
 import { HttpClient } from '@angular/common/http';
 import { Global } from './../global';
 import { Injectable } from '@angular/core';
@@ -12,5 +13,17 @@ export class RolService {
 
   getRoles() {
     return this._httpClient.get(this.url + '/Rol');
+  }
+
+  getRol(idRol: number) {
+    return this._httpClient.get(this.url + '/Rol/' + idRol);
+  }
+
+  createRol(rol: Rol) {
+    return this._httpClient.post(this.url + '/Rol', rol);
+  }
+
+  deleteRol(idRol: number) {
+    return this._httpClient.delete(this.url + '/Rol/' + idRol);
   }
 }

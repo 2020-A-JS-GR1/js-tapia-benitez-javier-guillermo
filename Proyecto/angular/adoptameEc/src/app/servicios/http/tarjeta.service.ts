@@ -1,6 +1,7 @@
 import { Global } from './../global';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Tarjeta } from 'src/app/modelos/tarjeta';
 
 @Injectable()
 export class TarjetaService {
@@ -12,5 +13,17 @@ export class TarjetaService {
 
   getTarjetas() {
     return this._httpClient.get(this.url + '/Tarjeta');
+  }
+
+  getTarjeta(idTarjeta: number) {
+    return this._httpClient.get(this.url + '/Tarjeta/' + idTarjeta);
+  }
+
+  createTarjeta(tarjeta: Tarjeta) {
+    return this._httpClient.post(this.url + '/Tarjeta', tarjeta);
+  }
+
+  deleteTarjeta(idTarjeta: number) {
+    return this._httpClient.delete(this.url + '/Tarjeta/' + idTarjeta);
   }
 }
