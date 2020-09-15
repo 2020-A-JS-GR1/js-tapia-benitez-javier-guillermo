@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  datastore: 'default', // nombre conexion
-  tableName: 'epn_usuario', // nombre tabla
+  // datastore: 'default', // nombre conexion
+  // tableName: 'epn_usuario', // nombre tabla
   attributes: {
     cedula:{
       type: 'string',
