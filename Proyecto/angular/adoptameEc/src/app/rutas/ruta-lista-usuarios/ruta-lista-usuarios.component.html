@@ -1,0 +1,21 @@
+<table id="lista">
+    <tr>
+        <th>Nombre</th>
+        <th>Correo electronico</th>
+        <th>Provincia</th>
+        <th># Mascotas</th>
+        <th># Niños</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let usuario of arregloUsuarios">
+        <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{obtenerProvinciaUsuario(usuario.id_provincia.id)}}</td>
+        <td>{{usuario.perros + usuario.gatos}}</td>
+        <td>{{usuario.ninos}}</td>
+        <td>
+            <button>Editar</button>
+            <button>Eliminar</button>
+        </td>
+    </tr>
+</table>

@@ -45,10 +45,10 @@ module.exports = {
       defaultsTo: 0,
       columnName: 'num_gatos_usuario',
     },
-    mascotas: {
+    ninos: {
       type: 'number',
       defaultsTo: 0,
-      columnName: 'num_mascotas_usuario',
+      columnName: 'num_ninos_usuario',
     },
     // RELACIONES
     // Usuario -> RolUsuario

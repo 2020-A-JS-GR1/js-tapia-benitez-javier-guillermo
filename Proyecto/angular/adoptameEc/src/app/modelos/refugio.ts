@@ -1,6 +1,7 @@
+import { Provincia } from './provincia';
 export class Refugio {
     id: number;
     nombre: string;
     direccion: string;
-    idProvincia: number;
+    id_provincia: Provincia;
 }

@@ -1,0 +1,19 @@
+<table id="lista">
+    <tr>
+        <th>Usuario</th>
+        <th>Mascota</th>
+        <th>Calificación</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let adopcion of filtrarPendientes()">
+        <td>{{obtenerUsuarioAdopcion(adopcion.id_usuario.id)}}</td>
+        <td>{{obtenerMascotaAdopcion(adopcion.id_mascota.id)}}</td>
+        <td>{{adopcion.calificacion}}</td>
+        <td>{{adopcion.fecha}}</td>
+        <td>
+            <button>Aceptar</button>
+            <button>Rechazar</button>
+        </td>
+    </tr>
+</table>

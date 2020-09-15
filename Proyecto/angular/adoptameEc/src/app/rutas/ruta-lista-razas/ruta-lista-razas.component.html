@@ -1,0 +1,17 @@
+<table id="lista">
+    <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Especie</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let raza of arregloRazas">
+        <td>{{raza.nombre}}</td>
+        <td>{{raza.descripcion}}</td>
+        <td>{{obtenerEspecieRaza(raza.id_especie.id)}}</td>
+        <td>
+            <button>Editar</button>
+            <button>Eliminar</button>
+        </td>
+    </tr>
+</table>

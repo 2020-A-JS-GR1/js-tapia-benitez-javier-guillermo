@@ -1,3 +1,5 @@
+import { Provincia } from './provincia';
+
 export class Usuario {
     id: number;
     nombre: string;
@@ -6,6 +8,6 @@ export class Usuario {
     contrasena: string;
     perros: number;
     gatos: number;
-    mascotas: number;
-    idProvincia: number;
+    ninos: number;
+    id_provincia: Provincia;
 }

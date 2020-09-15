@@ -1,5 +1,8 @@
+import { Mascota } from './mascota';
+import { Fotografia } from './fotografia';
+
 export class FotografiaMascota {
     id: number;
-    idFotografia: number;
-    idMascota: number;
+    id_fotografia: Fotografia;
+    id_mascota: Mascota;
 }
