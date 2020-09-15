@@ -1,0 +1,27 @@
+<table id="lista">
+    <tr>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Edad</th>
+        <th>Género</th>
+        <th>Tamaño</th>
+        <th>Pelaje</th>
+        <th>Vacunas</th>
+        <th>Esterilización</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let mascota of arregloMascotas">
+        <td>{{mascota.nombre}}</td>
+        <td>{{obtenerRazaMascota(mascota.id_raza.id)}}</td>
+        <td>{{mascota.edad}}</td>
+        <td>{{mascota.genero}}</td>
+        <td>{{mascota.tamano}}</td>
+        <td>{{mascota.pelaje}}</td>
+        <td>{{mascota.vacuna}}</td>
+        <td>{{mascota.esterilizacion}}</td>
+        <td>
+            <button>Editar</button>
+            <button>Eliminar</button>
+        </td>
+    </tr>
+</table>

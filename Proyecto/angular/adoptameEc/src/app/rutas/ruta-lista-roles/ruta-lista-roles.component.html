@@ -1,0 +1,13 @@
+<table id="lista">
+    <tr>
+        <th>Nombre</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let rol of arregloRoles">
+        <td>{{rol.nombre}}</td>
+        <td>
+            <button>Editar</button>
+            <button>Eliminar</button>
+        </td>
+    </tr>
+</table>

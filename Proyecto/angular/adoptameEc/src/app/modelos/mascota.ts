@@ -1,3 +1,5 @@
+import { Raza } from './raza';
+
 export class Mascota {
     id: number;
     nombre: string;
@@ -6,7 +8,7 @@ export class Mascota {
     tamano: string;
     descripcion: string;
     pelaje: string;
-    vacunas: string;
+    vacuna: string;
     esterilizacion: string;
-    idEspecie: number;
+    id_raza: Raza;
 }

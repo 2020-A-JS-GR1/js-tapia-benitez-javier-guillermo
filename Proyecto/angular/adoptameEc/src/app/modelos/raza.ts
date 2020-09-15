@@ -1,6 +1,7 @@
+import { Especie } from './especie';
 export class Raza {
     id: number;
     nombre: string;
     descripcion: string;
-    idEspecie: number;
+    id_especie: Especie;
 }

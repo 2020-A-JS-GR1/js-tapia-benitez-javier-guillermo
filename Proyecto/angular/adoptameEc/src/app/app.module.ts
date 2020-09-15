@@ -29,6 +29,20 @@ import { RutaRefugiosComponent } from './rutas/ruta-refugios/ruta-refugios.compo
 import { RutaRolesComponent } from './rutas/ruta-roles/ruta-roles.component';
 import { RutaRegistroComponent } from './rutas/ruta-registro/ruta-registro.component';
 import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
+import { RutaListaUsuariosComponent } from './rutas/ruta-lista-usuarios/ruta-lista-usuarios.component';
+import { RutaListaRolesUsuariosComponent } from './rutas/ruta-lista-roles-usuarios/ruta-lista-roles-usuarios.component';
+import { RutaListaDonacionesComponent } from './rutas/ruta-lista-donaciones/ruta-lista-donaciones.component';
+import { RutaListaTarjetasComponent } from './rutas/ruta-lista-tarjetas/ruta-lista-tarjetas.component';
+import { RutaListaMascotasComponent } from './rutas/ruta-lista-mascotas/ruta-lista-mascotas.component';
+import { RutaListaRefugiosMascotasComponent } from './rutas/ruta-lista-refugios-mascotas/ruta-lista-refugios-mascotas.component';
+import { RutaListaFotografiasMascotasComponent } from './rutas/ruta-lista-fotografias-mascotas/ruta-lista-fotografias-mascotas.component';
+import { RutaListaEspeciesComponent } from './rutas/ruta-lista-especies/ruta-lista-especies.component';
+import { RutaListaRazasComponent } from './rutas/ruta-lista-razas/ruta-lista-razas.component';
+import { RutaListaPeticionesComponent } from './rutas/ruta-lista-peticiones/ruta-lista-peticiones.component';
+import { RutaListaPeticionesPendientesComponent } from './rutas/ruta-lista-peticiones-pendientes/ruta-lista-peticiones-pendientes.component';
+import { RutaListaRefugiosComponent } from './rutas/ruta-lista-refugios/ruta-lista-refugios.component';
+import { RutaListaProvinciasComponent } from './rutas/ruta-lista-provincias/ruta-lista-provincias.component';
+import { RutaListaRolesComponent } from './rutas/ruta-lista-roles/ruta-lista-roles.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +57,21 @@ import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
     RutaRefugiosComponent,
     RutaRolesComponent,
     RutaRegistroComponent,
-    RutaLoginComponent
+    RutaLoginComponent,
+    RutaListaUsuariosComponent,
+    RutaListaRolesUsuariosComponent,
+    RutaListaDonacionesComponent,
+    RutaListaTarjetasComponent,
+    RutaListaMascotasComponent,
+    RutaListaRefugiosMascotasComponent,
+    RutaListaFotografiasMascotasComponent,
+    RutaListaEspeciesComponent,
+    RutaListaRazasComponent,
+    RutaListaPeticionesComponent,
+    RutaListaPeticionesPendientesComponent,
+    RutaListaRefugiosComponent,
+    RutaListaProvinciasComponent,
+    RutaListaRolesComponent
   ],
   imports: [
     BrowserModule,

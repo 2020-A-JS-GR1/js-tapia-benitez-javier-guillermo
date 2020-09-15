@@ -1,0 +1,16 @@
+<table id="lista">
+    <tr>
+        <th>Numero</th>
+        <th>Fecha de Caducidad</th>
+        <th>Propietario</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let tarjeta of arregloTarjetas">
+        <td>{{tarjeta.numero}}</td>
+        <td>{{tarjeta.fechaCaducidad}}</td>
+        <td>{{obtenerPropietarioTarjeta(tarjeta.id_usuario.id)}}<td>
+            <button>Editar</button>
+            <button>Eliminar</button>
+        </td>
+    </tr>
+</table>
