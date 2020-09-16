@@ -1,3 +1,4 @@
+import { Refugio } from './../../modelos/refugio';
 import { HttpClient } from '@angular/common/http';
 import { Global } from './../global';
 import { Injectable } from '@angular/core';
@@ -12,5 +13,17 @@ export class RefugioService {
 
   getRefugios() {
     return this._httpClient.get(this.url + '/Refugio');
+  }
+
+  getRefugio(idRefugio: number) {
+    return this._httpClient.get(this.url + '/Refugio/' + idRefugio);
+  }
+
+  createRefugio(refugio: Refugio) {
+    return this._httpClient.post(this.url + '/Refugio', refugio);
+  }
+
+  deleteRefugio(idRefugio: number) {
+    return this._httpClient.delete(this.url + '/Refugio/' + idRefugio);
   }
 }

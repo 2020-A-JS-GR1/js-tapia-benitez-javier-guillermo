@@ -1,3 +1,4 @@
+import { Especie } from './../../modelos/especie';
 import { HttpClient } from '@angular/common/http';
 import { Global } from './../global';
 import { Injectable } from '@angular/core';
@@ -12,5 +13,17 @@ export class EspecieService {
 
   getEspecies() {
     return this._httpClient.get(this.url + '/Especie');
+  }
+
+  getEspecie(idEspecie: number) {
+    return this._httpClient.get(this.url + '/Especie/' + idEspecie);
+  }
+
+  createEspecie(especie: Especie) {
+    return this._httpClient.post(this.url + '/Especie', especie);
+  }
+
+  deleteEspecie(idEspecie: number) {
+    return this._httpClient.delete(this.url + '/Especie/' + idEspecie);
   }
 }
