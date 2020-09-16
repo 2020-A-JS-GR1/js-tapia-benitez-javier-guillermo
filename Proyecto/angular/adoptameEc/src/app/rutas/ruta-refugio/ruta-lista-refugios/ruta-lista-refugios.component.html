@@ -1,0 +1,17 @@
+<table id="lista">
+    <tr>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Provincia</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let refugio of arregloRefugios">
+        <td>{{refugio.nombre}}</td>
+        <td>{{refugio.direccion}}</td>
+        <td>{{obtenerProvinciaRefugio(refugio.id_provincia.id)}}</td>
+        <td>
+            <button>Editar</button>
+            <button type="button" (click)="eliminarRefugio(refugio.id)">Eliminar</button>
+        </td>
+    </tr>
+</table>

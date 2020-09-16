@@ -1,3 +1,17 @@
+import { RutaListaFotografiasMascotasComponent } from './rutas/ruta-fotografia-mascota/ruta-lista-fotografias-mascotas/ruta-lista-fotografias-mascotas.component';
+import { RutaListaDonacionesComponent } from './rutas/ruta-donacion/ruta-lista-donaciones/ruta-lista-donaciones.component';
+import { RutaListaEspeciesComponent } from './rutas/ruta-especie/ruta-lista-especies/ruta-lista-especies.component';
+import { RutaListaMascotasComponent } from './rutas/ruta-mascota/ruta-lista-mascotas/ruta-lista-mascotas.component';
+import { RutaListaPeticionesPendientesComponent } from './rutas/ruta-adopcion/ruta-lista-peticiones-pendientes/ruta-lista-peticiones-pendientes.component';
+import { RutaListaPeticionesComponent } from './rutas/ruta-adopcion/ruta-lista-peticiones/ruta-lista-peticiones.component';
+import { RutaListaProvinciasComponent } from './rutas/ruta-provincia/ruta-lista-provincias/ruta-lista-provincias.component';
+import { RutaListaRazasComponent } from './rutas/ruta-raza/ruta-lista-razas/ruta-lista-razas.component';
+import { RutaListaRefugiosComponent } from './rutas/ruta-refugio/ruta-lista-refugios/ruta-lista-refugios.component';
+import { RutaListaRefugiosMascotasComponent } from './rutas/ruta-refugio-mascota/ruta-lista-refugios-mascotas/ruta-lista-refugios-mascotas.component';
+import { RutaListaRolesUsuariosComponent } from './rutas/ruta-rol-usuario/ruta-lista-roles-usuarios/ruta-lista-roles-usuarios.component';
+import { RutaListaRolesComponent } from './rutas/ruta-rol/ruta-lista-roles/ruta-lista-roles.component';
+import { RutaListaUsuariosComponent } from './rutas/ruta-usuario/ruta-lista-usuarios/ruta-lista-usuarios.component';
+import { RutaListaTarjetasComponent } from './rutas/ruta-tarjeta/ruta-lista-tarjetas/ruta-lista-tarjetas.component';
 import { AdopcionService } from './servicios/http/adopcion.service';
 import { DonacionService } from './servicios/http/donacion.service';
 import { EspecieService } from './servicios/http/especie.service';
@@ -11,8 +25,8 @@ import { RefugioService } from './servicios/http/refugio.service';
 import { RolUsuarioService } from './servicios/http/rol-usuario.service';
 import { RolService } from './servicios/http/rol.service';
 import { TarjetaService } from './servicios/http/tarjeta.service';
-import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from './servicios/http/usuario.service';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -29,20 +43,6 @@ import { RutaRefugiosComponent } from './rutas/ruta-refugios/ruta-refugios.compo
 import { RutaRolesComponent } from './rutas/ruta-roles/ruta-roles.component';
 import { RutaRegistroComponent } from './rutas/ruta-registro/ruta-registro.component';
 import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
-import { RutaListaUsuariosComponent } from './rutas/ruta-lista-usuarios/ruta-lista-usuarios.component';
-import { RutaListaRolesUsuariosComponent } from './rutas/ruta-lista-roles-usuarios/ruta-lista-roles-usuarios.component';
-import { RutaListaDonacionesComponent } from './rutas/ruta-lista-donaciones/ruta-lista-donaciones.component';
-import { RutaListaTarjetasComponent } from './rutas/ruta-lista-tarjetas/ruta-lista-tarjetas.component';
-import { RutaListaMascotasComponent } from './rutas/ruta-lista-mascotas/ruta-lista-mascotas.component';
-import { RutaListaRefugiosMascotasComponent } from './rutas/ruta-lista-refugios-mascotas/ruta-lista-refugios-mascotas.component';
-import { RutaListaFotografiasMascotasComponent } from './rutas/ruta-lista-fotografias-mascotas/ruta-lista-fotografias-mascotas.component';
-import { RutaListaEspeciesComponent } from './rutas/ruta-lista-especies/ruta-lista-especies.component';
-import { RutaListaRazasComponent } from './rutas/ruta-lista-razas/ruta-lista-razas.component';
-import { RutaListaPeticionesComponent } from './rutas/ruta-lista-peticiones/ruta-lista-peticiones.component';
-import { RutaListaPeticionesPendientesComponent } from './rutas/ruta-lista-peticiones-pendientes/ruta-lista-peticiones-pendientes.component';
-import { RutaListaRefugiosComponent } from './rutas/ruta-lista-refugios/ruta-lista-refugios.component';
-import { RutaListaProvinciasComponent } from './rutas/ruta-lista-provincias/ruta-lista-provincias.component';
-import { RutaListaRolesComponent } from './rutas/ruta-lista-roles/ruta-lista-roles.component';
 
 @NgModule({
   declarations: [

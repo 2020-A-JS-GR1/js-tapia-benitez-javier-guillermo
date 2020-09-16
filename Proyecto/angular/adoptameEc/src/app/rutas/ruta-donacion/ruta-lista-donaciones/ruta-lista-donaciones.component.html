@@ -1,0 +1,21 @@
+<table id="lista">
+    <tr>
+        <th>Mascota</th>
+        <th>Usuario</th>
+        <th>Tarjeta</th>
+        <th>Valor</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let donacion of arregloDonaciones">
+        <td>{{obtenerMascotaDonacion(donacion.id_mascota.id)}}</td>
+        <td>{{obtenerUsuarioTarjetaDonacion(donacion.id_tarjeta.id)}}</td>
+        <td>{{obtenerTarjetaDonacion(donacion.id_tarjeta.id)}}</td>
+        <td>${{donacion.valor}}</td>
+        <td>{{donacion.fecha}}</td>
+        <td>
+            <button>Editar</button>
+            <button type="button" (click)="eliminarDonacion(donacion.id)">Eliminar</button>
+        </td>
+    </tr>
+</table>
