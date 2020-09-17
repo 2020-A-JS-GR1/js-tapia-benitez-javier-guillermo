@@ -9,5 +9,5 @@ export class Usuario {
     perros: number;
     gatos: number;
     ninos: number;
-    id_provincia: Provincia;
+    id_provincia?: Provincia | number;
 }

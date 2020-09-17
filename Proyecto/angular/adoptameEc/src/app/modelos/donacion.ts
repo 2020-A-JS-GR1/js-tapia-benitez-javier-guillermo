@@ -5,6 +5,6 @@ export class Donacion {
     id: number;
     valor: number;
     fecha: string;
-    id_tarjeta: Tarjeta;
-    id_mascota: Mascota;
+    id_tarjeta: number | Tarjeta;
+    id_mascota: number | Mascota;
 }

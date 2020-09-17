@@ -1,5 +1,5 @@
 <div class="fondo" style="background: #223c75;" [style]="backgroundColor">
-    <div id="paginas" *ngFor="let ruta of rutas">
-        <a [routerLink]="[ruta.ruta]" id="link">{{ruta.etiqueta}}</a>
+    <div class="paginas" *ngFor="let ruta of rutas">
+        <a class="link" [routerLink]="[ruta.ruta]">{{ruta.etiqueta}}</a>
     </div>
 </div>

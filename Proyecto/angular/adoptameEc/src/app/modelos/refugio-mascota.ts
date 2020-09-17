@@ -3,6 +3,6 @@ import { Refugio } from 'src/app/modelos/refugio';
 
 export class RefugioMascota {
     id: number;
-    id_refugio: Refugio;
-    id_mascota: Mascota;
+    id_refugio: number | Refugio;
+    id_mascota: number | Mascota;
 }

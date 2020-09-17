@@ -17,9 +17,9 @@ module.exports = {
     },
     // RELACIONES
     // Fotografia -> FotografiaMascota
-    mascotas: {
-      collection: 'FotografiaMascota',
-      via: 'id_fotografia',
+    id_mascota: {
+      model: 'Mascota',
+      required: true,
     }
   },
 

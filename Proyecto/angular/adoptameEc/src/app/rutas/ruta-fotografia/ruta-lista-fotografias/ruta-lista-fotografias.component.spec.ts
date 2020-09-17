@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RutaListaFotografiasMascotasComponent } from './ruta-lista-fotografias-mascotas.component';
+import { RutaListaFotografiasComponent } from './ruta-lista-fotografias.component';
 
 describe('RutaListaFotografiasMascotasComponent', () => {
-  let component: RutaListaFotografiasMascotasComponent;
-  let fixture: ComponentFixture<RutaListaFotografiasMascotasComponent>;
+  let component: RutaListaFotografiasComponent;
+  let fixture: ComponentFixture<RutaListaFotografiasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RutaListaFotografiasMascotasComponent ]
+      declarations: [ RutaListaFotografiasComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RutaListaFotografiasMascotasComponent);
+    fixture = TestBed.createComponent(RutaListaFotografiasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

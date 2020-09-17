@@ -1,0 +1,17 @@
+<table id="lista">
+    <tr>
+        <th>Mascota</th>
+        <th>Fotografia</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let fotografia of arregloFotografias">
+        <td>{{obtenerMascotaFotografia(fotografia.id_mascota.id)}}</td>
+        <td>
+            <img [src]="fotografia.url" id="fotografia">
+        </td>
+        <td>
+            <button>Editar</button>
+            <button type="button" (click)="eliminarFotografia(fotografia.id)">Eliminar</button>
+        </td>
+    </tr>
+</table>

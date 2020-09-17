@@ -5,5 +5,5 @@ export class Tarjeta {
     numero: string;
     fechaCaducidad: string;
     cvv: string;
-    id_usuario: Usuario;
+    id_usuario: number | Usuario;
 }

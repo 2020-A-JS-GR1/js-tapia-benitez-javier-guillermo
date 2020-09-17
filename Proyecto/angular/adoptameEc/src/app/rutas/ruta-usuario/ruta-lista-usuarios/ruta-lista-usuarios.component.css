@@ -1,3 +1,10 @@
-#lista{
-    width: 100%;
+.lista {
+  width: 100%;
+}
+.buscador {
+  margin: 10px 30px 0px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }

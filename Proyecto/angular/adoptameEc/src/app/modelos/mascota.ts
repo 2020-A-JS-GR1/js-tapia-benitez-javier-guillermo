@@ -10,5 +10,5 @@ export class Mascota {
     pelaje: string;
     vacuna: string;
     esterilizacion: string;
-    id_raza: Raza;
+    id_raza: number | Raza;
 }

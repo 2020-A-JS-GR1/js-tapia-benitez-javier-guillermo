@@ -1,3 +1,5 @@
+import { RutaEditarUsuarioComponent } from './rutas/ruta-usuario/ruta-editar-usuario/ruta-editar-usuario.component';
+import { RutaCrearUsuarioComponent } from './rutas/ruta-usuario/ruta-crear-usuario/ruta-crear-usuario.component';
 import { RutaListaRolesComponent } from './rutas/ruta-rol/ruta-lista-roles/ruta-lista-roles.component';
 import { RutaListaProvinciasComponent } from './rutas/ruta-provincia/ruta-lista-provincias/ruta-lista-provincias.component';
 import { RutaListaRefugiosComponent } from './rutas/ruta-refugio/ruta-lista-refugios/ruta-lista-refugios.component';
@@ -5,7 +7,7 @@ import { RutaListaPeticionesPendientesComponent } from './rutas/ruta-adopcion/ru
 import { RutaListaPeticionesComponent } from './rutas/ruta-adopcion/ruta-lista-peticiones/ruta-lista-peticiones.component';
 import { RutaListaRazasComponent } from './rutas/ruta-raza/ruta-lista-razas/ruta-lista-razas.component';
 import { RutaListaEspeciesComponent } from './rutas/ruta-especie/ruta-lista-especies/ruta-lista-especies.component';
-import { RutaListaFotografiasMascotasComponent } from './rutas/ruta-fotografia-mascota/ruta-lista-fotografias-mascotas/ruta-lista-fotografias-mascotas.component';
+import { RutaListaFotografiasComponent } from './rutas/ruta-fotografia/ruta-lista-fotografias/ruta-lista-fotografias.component';
 import { RutaListaRefugiosMascotasComponent } from './rutas/ruta-refugio-mascota/ruta-lista-refugios-mascotas/ruta-lista-refugios-mascotas.component';
 import { RutaListaMascotasComponent } from './rutas/ruta-mascota/ruta-lista-mascotas/ruta-lista-mascotas.component';
 import { RutaListaTarjetasComponent } from './rutas/ruta-tarjeta/ruta-lista-tarjetas/ruta-lista-tarjetas.component';
@@ -45,6 +47,14 @@ const routes: Routes = [
         path: 'lista-usuarios'
       },
       {
+        component: RutaCrearUsuarioComponent,
+        path: 'crear-usuario'
+      },
+      {
+        component: RutaEditarUsuarioComponent,
+        path: 'editar-usuario/:id'
+      },
+      {
         component: RutaListaRolesUsuariosComponent,
         path: 'lista-roles-usuarios'
       },
@@ -76,8 +86,8 @@ const routes: Routes = [
         path: 'lista-refugios-mascotas'
       },
       {
-        component: RutaListaFotografiasMascotasComponent,
-        path: 'lista-fotografias-mascotas'
+        component: RutaListaFotografiasComponent,
+        path: 'lista-fotografias'
       },
       {
         component: RutaListaEspeciesComponent,
