@@ -31,7 +31,7 @@ module.exports = {
       type: 'string',
       required: true,
       columnName: 'contrasena_usuario',
-      custom: function(value) {
+      custom: function (value) {
         return _.isString(value) && value.length >= 8 && value.match(/[a-z]/i) && value.match(/[0-9]/);
       },
     },

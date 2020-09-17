@@ -1,9 +1,9 @@
-<div id="cabecera">
-    <div id="logo">
-        <img id="logo-img" [src]="urlLogo">
+<div class="cabecera">
+    <div class="logo">
+        <img class="logo-img" [src]="urlLogo">
     </div>
-    <div id="botones">
-        <button id="boton" *ngIf="!sesion" (click)="irARegistro()">Registrarse</button>
-        <button id="boton" (click)="irALogin()">{{!sesion ? 'Iniciar Sesion' : 'Cerrar Sesion'}}</button>
+    <div class="botones">
+        <button class="boton" *ngIf="!sesion" (click)="irARegistro()">Registrarse</button>
+        <button class="boton" (click)="irALogin()">{{!sesion ? 'Iniciar Sesion' : 'Cerrar Sesion'}}</button>
     </div>
 </div>

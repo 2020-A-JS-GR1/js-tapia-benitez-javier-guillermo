@@ -17,7 +17,7 @@ export class RutaMascotasComponent implements OnInit {
       etiqueta: 'Refugios de Mascotas'
     },
     {
-      ruta: 'lista-fotografias-mascotas',
+      ruta: 'lista-fotografias',
       etiqueta: 'Fotografias de Mascotas'
     },
     {

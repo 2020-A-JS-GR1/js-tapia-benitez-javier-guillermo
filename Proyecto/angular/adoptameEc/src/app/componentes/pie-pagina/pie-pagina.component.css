@@ -1,4 +1,4 @@
-#contenedor {
+.contenedor {
   background: #3864c2;
   display: flex;
 }
@@ -6,58 +6,58 @@
   float: left;
   width: 33.33%;
 }
-#izquierda {
+.izquierda {
   padding: 30px 0px;
 }
-#logo-img {
+.logo-img {
   width: 200px;
   height: 80px;
   margin: 0px 50px;
 }
-#contacto {
+.contacto {
   margin: 0px 60px;
 }
-#info {
+.info {
   font-family: "Spectral", serif;
   font-size: 14px;
   color: #ffffff;
 }
-#centro {
+.centro {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#pie-img {
+.pie-img {
   width: 180px;
   height: 180px;
   border-radius: 100px;
 }
-#derecha {
+.derecha {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-#map-site {
+.map-site {
   margin: 0px 60px;
   text-align: right;
 }
-#title {
+.title {
   font-family: "Spectral SC", serif;
   font-weight: bold;
   font-size: 20px;
   color: #223c75;
   margin: 5px 0px;
 }
-#site-map-list {
+.site-map-list {
   list-style: none;
 }
-#link {
+.link {
   font-family: "Spectral", serif;
   font-size: 14px;
   text-decoration: none;
   color: #ffffff;
 }
-#contenedor-pie {
+.contenedor-pie {
   background: #223c75;
   display: flex;
 }
@@ -65,15 +65,16 @@
   float: left;
   width: 50%;
 }
-#copyright {
+.copyright {
+  padding: 10px;
   margin: 5px 30px;
 }
-#social-networks {
+.social-networks {
   display: flex;
   justify-content: flex-end;
   margin: 15px 30px;
 }
-#icono {
+.icono {
   width: 30px;
   height: 30px;
   margin: 0px 15px;

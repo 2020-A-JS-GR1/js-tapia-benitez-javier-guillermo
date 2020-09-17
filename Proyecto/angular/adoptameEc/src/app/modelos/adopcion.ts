@@ -6,6 +6,6 @@ export class Adopcion {
     estado: string;
     calificacion: number;
     fecha: string;
-    id_usuario: Usuario;
-    id_mascota: Mascota;
+    id_usuario: number | Usuario;
+    id_mascota: number | Mascota;
 }

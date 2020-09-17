@@ -3,10 +3,10 @@
   display: flex;
   justify-content: center;
 }
-#paginas {
+.paginas {
   padding: 20px;
 }
-#link {
+.link {
   margin: 0px 30px;
   font-family: "Spectral SC", serif;
   font-size: 14px;

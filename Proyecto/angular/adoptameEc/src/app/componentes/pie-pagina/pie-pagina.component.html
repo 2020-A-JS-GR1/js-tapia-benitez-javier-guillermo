@@ -1,49 +1,49 @@
-<div id="contenedor">
-    <div id="izquierda" class="columna">
+<div class="contenedor">
+    <div class="izquierda columna">
         <div>
-            <img id="logo-img" [src]="urlLogo">
+            <img class="logo-img" [src]="urlLogo">
         </div>
-        <div id="contacto">
-            <p id="info">info@adoptame.ec</p>
-            <p id="info">adopcion@adoptame.ec</p>
-            <p id="info">+593-983002348</p>
-            <p id="info">(02)2649394</p>
-            <p id="info">Ecuador</p>
+        <div class="contacto">
+            <p class="info">info@adoptame.ec</p>
+            <p class="info">adopcion@adoptame.ec</p>
+            <p class="info">+593-983002348</p>
+            <p class="info">(02)2649394</p>
+            <p class="info">Ecuador</p>
         </div>
     </div>
-    <div id="centro" class="columna">
-        <img id="pie-img" [src]="urlPieImagen">
+    <div class="centro columna">
+        <img class="pie-img" [src]="urlPieImagen">
     </div>
-    <div id="derecha" class="columna">
-        <div id="map-site">
-            <p id="title">Menu Principal</p>
-            <ul id="site-map-list" *ngFor="let ruta of rutas">
+    <div class="derecha columna">
+        <div class="map-site">
+            <p class="title">Menu Principal</p>
+            <ul class="site-map-list" *ngFor="let ruta of rutas">
                 <li>
-                    <a [routerLink]="[ruta.ruta]" id="link">{{ruta.etiqueta}}</a>
+                    <a class="link" [routerLink]="[ruta.ruta]">{{ruta.etiqueta}}</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<div id="contenedor-pie">
-    <div id="copyright" class="columna-pie">
-        <p id="info">©2020 AdoptameEc.com</p>
+<div class="contenedor-pie">
+    <div class="copyright columna-pie">
+        <p class="info">©2020 AdoptameEc.com</p>
     </div>
-    <div id="social-networks" class="columna-pie">
+    <div class="social-networks columna-pie">
         <a [href]="urlInstagramPage" target="_blank">
-            <img [src]="urlInstagram" id="icono">
+            <img class="icono" [src]="urlInstagram">
         </a>
         <a [href]="urlTwitterPage" target="_blank">
-            <img [src]="urlTwitter" id="icono">
+            <img class="icono" [src]="urlTwitter">
         </a>
         <a [href]="urlFacebookPage" target="_blank">
-            <img [src]="urlFacebook" id="icono">
+            <img class="icono" [src]="urlFacebook">
         </a>
         <a [href]="urlYoutubePage" target="_blank">
-            <img [src]="urlYoutube" id="icono">
+            <img class="icono" [src]="urlYoutube">
         </a>
         <a [href]="urlGithubPage" target="_blank">
-            <img [src]="urlGithub" id="icono">
+            <img class="icono" [src]="urlGithub">
         </a>
     </div>
 </div>

@@ -75,7 +75,7 @@ module.exports = {
     },
     // Mascota -> FotografiaMascota
     fotografias: {
-      collection: 'FotografiaMascota',
+      collection: 'Fotografia',
       via: 'id_mascota',
     },
     // Mascota <- Raza

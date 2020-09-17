@@ -1,21 +1,47 @@
-<table id="lista">
-    <tr>
-        <th>Nombre</th>
-        <th>Correo electronico</th>
-        <th>Provincia</th>
-        <th># Mascotas</th>
-        <th># Niños</th>
-        <th>Acciones</th>
-    </tr>
-    <tr *ngFor="let usuario of arregloUsuarios">
-        <td>{{usuario.nombre}} {{usuario.apellido}}</td>
-        <td>{{usuario.email}}</td>
-        <td>{{obtenerProvinciaUsuario(usuario.id_provincia.id)}}</td>
-        <td>{{usuario.perros + usuario.gatos}}</td>
-        <td>{{usuario.ninos}}</td>
-        <td>
-            <button>Editar</button>
-            <button type="button" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
-        </td>
-    </tr>
-</table>
+<!-- <div>
+    <button type="button" [routerLink]="['/usuarios', 'crear-usuario']">Crear</button>
+</div> -->
+<div class="buscador">
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="filtrarUsuario($event.target.value)" placeholder="Ej. Javier">
+    </mat-form-field>
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="lista" matSort>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+            <td mat-cell *matCellDef="let usuario"> {{usuario.nombre}} {{usuario.apellido}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.email}}</td>
+        </ng-container>
+        <ng-container matColumnDef="provincia">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
+            <td mat-cell *matCellDef="let usuario">{{obtenerProvinciaUsuario(usuario.id_provincia)}}</td>
+        </ng-container>
+        <ng-container matColumnDef="mascotas">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header># Mascotas</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.perros + usuario.gatos}}</td>
+        </ng-container>
+        <ng-container matColumnDef="ninos">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header># Niños</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.ninos}}</td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+            <td mat-cell *matCellDef="let usuario">
+                <button type="button" [routerLink]="['/usuarios', 'editar-usuario', usuario.id]">Editar</button>
+                <button type="button" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="6">No existen registros</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

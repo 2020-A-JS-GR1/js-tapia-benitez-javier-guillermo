@@ -1,21 +1,21 @@
-#cabecera {
+.cabecera {
   background: #ffffff;
 }
-#logo {
+.logo {
   position: relative;
   left: 90px;
 }
-#logo-img {
+.logo-img {
   width: 200px;
   height: 80px;
   margin: 10px 0px;
 }
-#botones {
+.botones {
   position: absolute;
   right: 30px;
   top: 30px;
 }
-#boton {
+.boton {
   margin: 5px;
   background: #223c75;
   border-radius: 35px;
