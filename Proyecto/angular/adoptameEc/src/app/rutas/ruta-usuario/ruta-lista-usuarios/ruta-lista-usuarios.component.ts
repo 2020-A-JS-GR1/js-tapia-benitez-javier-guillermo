@@ -62,6 +62,10 @@ export class RutaListaUsuariosComponent implements OnInit {
     return provincia?.nombre;
   }
 
+  obtenerMascotasUsuario(perros: number, gatos: number): number {
+    return perros + gatos;
+  }
+
   filtrarUsuario(busqueda: string) {
     this.dataSource.filter = busqueda.trim().toLowerCase();
   }

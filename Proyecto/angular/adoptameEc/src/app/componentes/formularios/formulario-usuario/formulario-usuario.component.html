@@ -1,1 +1,31 @@
-<p>formulario-usuario works!</p>
+<form #formularioUsuario="ngForm" (ngSubmit)="crearUsuario(formularioUsuario)">
+    <div>
+        <label for="nombreUsuario">Nombre</label>
+        <input id="nombreUsuario" type="text" name="nombre" [(ngModel)]="nombreFormulario" required minlength="3"
+            #nombreCampo="ngModel">
+    </div>
+    <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+        <p *ngIf="nombreCampo.errors.required">Campo Requerido</p>
+        <p *ngIf="nombreCampo.errors.minlength">Longitud minima 3</p>
+    </div>
+    <div>
+        <label for="apellidoUsuario">Apellido</label>
+        <input id="apellidoUsuario" type="text" name="apellido" [(ngModel)]="apellidoFormulario" required minlength="3"
+            #apellidoCampo="ngModel">
+    </div>
+    <div *ngIf="apellidoCampo.touched && apellidoCampo.errors">
+        <p *ngIf="apellidoCampo.errors.required">Campo requerido</p>
+        <p *ngIf="apellidoCampo.errors.minlength">Longitud minima 3</p>
+    </div>
+    <div>
+        <label for="emailUsuario">Correo electrónico</label>
+        <input id="emailUsuario" type="text" name="email" [(ngModel)]="emailFormulario" required email
+            #emailCampo="ngModel">
+    </div>
+    <div *ngIf="emailCampo.touched && emailCampo.errors">
+        <p *ngIf="emailCampo.errors.required">Campo requerido</p>
+        <p *ngIf="emailCampo.errors.email">Correo electrónico no valido</p>
+    </div>
+    <button type="reset">Cancelar</button>
+    <button type="submit" [disabled]="!formularioUsuario.form.valid">Aceptar</button>
+</form>
