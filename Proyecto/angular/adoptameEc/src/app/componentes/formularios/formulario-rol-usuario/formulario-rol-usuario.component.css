@@ -46,9 +46,9 @@ label {
   font-family: "Spectral", serif;
   font-size: 14px;
 }
-input {
+select {
   margin-top: 4px;
-  width: 200px;
+  width: 208px;
   font-family: "Spectral", serif;
 }
 .boton {

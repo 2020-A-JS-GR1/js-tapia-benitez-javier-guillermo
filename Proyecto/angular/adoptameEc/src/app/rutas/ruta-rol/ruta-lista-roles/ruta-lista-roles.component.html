@@ -1,13 +1,30 @@
-<table id="lista">
-    <tr>
-        <th>Nombre</th>
-        <th>Acciones</th>
-    </tr>
-    <tr *ngFor="let rol of arregloRoles">
-        <td>{{rol.nombre}}</td>
-        <td>
-            <button>Editar</button>
-            <button type="button" (click)="eliminarRol(rol.id)">Eliminar</button>
-        </td>
-    </tr>
-</table>
+<div class="buscador">
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="filtrarRol($event.target.value)" placeholder="Ej. Administrador">
+    </mat-form-field>
+    <button class="boton crear" type="button" [routerLink]="['/roles', 'crear-rol']">Crear</button>
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="lista" matSort>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+            <td mat-cell *matCellDef="let rol"> {{rol.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+            <td mat-cell *matCellDef="let rol">
+                <button class="boton editar" type="button"
+                    [routerLink]="['/roles', 'editar-rol', rol.id]">Editar</button>
+                <button class="boton eliminar" type="button" (click)="eliminarRol(rol.id)">Eliminar</button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="2">No existen registros</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

@@ -9,7 +9,7 @@ export class Usuario {
         public perros: number,
         public gatos: number,
         public ninos: number,
-        public id_provincia?: Provincia | number | any,
+        public id_provincia: Provincia | number | any,
         public id?: number
     ) { }
 }

@@ -20,6 +20,7 @@ export class FormularioUsuarioComponent implements OnInit {
 
   arregloProvincias: Provincia[] = [];
   confirmacion: boolean = true;
+  seleccion: boolean = true;
 
   nombreFormulario: string;
   apellidoFormulario: string;
@@ -38,6 +39,7 @@ export class FormularioUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.provinciaIdFormulario = 0;
+
     const observableProvincias = this._provinciaService.getProvincias();
     observableProvincias
       .subscribe(
@@ -78,6 +80,14 @@ export class FormularioUsuarioComponent implements OnInit {
         }
       );
     this.confirmarContrasena();
+  }
+
+  seleccionarOpcionProvincia() {
+    if (Number(this.provinciaIdFormulario) != 0) {
+      this.seleccion = false;
+    } else {
+      this.seleccion = true;
+    }
   }
 
   confirmarContrasena() {

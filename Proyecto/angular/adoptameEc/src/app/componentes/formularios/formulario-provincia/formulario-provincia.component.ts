@@ -19,7 +19,7 @@ export class FormularioProvinciaComponent implements OnInit {
   nombreFormulario: string;
 
   constructor(
-    private readonly _provinciaService: ProvinciaService,
+    private readonly _provinciaService: ProvinciaService
   ) { }
 
   ngOnInit(): void {

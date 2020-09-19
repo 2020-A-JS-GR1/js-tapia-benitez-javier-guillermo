@@ -4,7 +4,10 @@ import { RolUsuarioService } from './../../../servicios/http/rol-usuario.service
 import { Usuario } from './../../../modelos/usuario';
 import { Rol } from './../../../modelos/rol';
 import { RolUsuario } from './../../../modelos/rol-usuario';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-roles-usuarios',
@@ -13,9 +16,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaRolesUsuariosComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['nombre', 'email', "rol", "acciones"];
+
   arregloRolesUsuarios: RolUsuario[] = [];
   arregloRoles: Rol[] = [];
   arregloUsuarios: Usuario[] = [];
+
+  dataSource = new MatTableDataSource<RolUsuario>();
 
   constructor(
     private readonly _rolUsuarioService: RolUsuarioService,
@@ -29,6 +39,7 @@ export class RutaListaRolesUsuariosComponent implements OnInit {
       .subscribe(
         (rolesUsuarios: RolUsuario[]) => {
           this.arregloRolesUsuarios = rolesUsuarios;
+          this.dataSource.data = this.arregloRolesUsuarios;
         },
         error => {
           console.error('Error obteniendo roles de usuario', error);
@@ -56,6 +67,9 @@ export class RutaListaRolesUsuariosComponent implements OnInit {
           console.error('Error obteniendo roles', error);
         }
       );
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   obtenerUsuarioRol(id: number): string {
@@ -63,9 +77,18 @@ export class RutaListaRolesUsuariosComponent implements OnInit {
     return usuario?.nombre + ' ' + usuario?.apellido;
   }
 
+  obtenerEmailUsuario(id: number): string {
+    const usuario = this.arregloUsuarios.find(usuario => usuario.id === id);
+    return usuario?.email;
+  }
+
   obtenerRolUsuario(id: number): string {
     const rol = this.arregloRoles.find(rol => rol.id === id);
     return rol?.nombre;
+  }
+
+  filtrarRolUsuario(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
   eliminarRolUsuario(idRolUsuario: number) {
@@ -75,6 +98,7 @@ export class RutaListaRolesUsuariosComponent implements OnInit {
         () => {
           const indice = this.arregloRolesUsuarios.findIndex(rolUsuario => rolUsuario.id === idRolUsuario);
           this.arregloRolesUsuarios.splice(indice, 1);
+          this.dataSource.data = this.arregloRolesUsuarios;
         },
         error => {
           console.error('Error eliminando rol de usuario', error);

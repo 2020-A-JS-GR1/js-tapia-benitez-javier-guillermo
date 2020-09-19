@@ -1,15 +1,15 @@
 <div class="contenedor">
     <div class="cabecera">
-        <h1 class="titulo">Registrar Provincia</h1>
+        <h1 class="titulo">Registrar Rol</h1>
     </div>
     <div class="formulario">
-        <form #formularioProvincia="ngForm" (ngSubmit)="enviarFormulario(formularioProvincia)">
+        <form #formularioRol="ngForm" (ngSubmit)="enviarFormulario(formularioRol)">
             <div>
-                <p class="subtitulo">Datos de la Provincia</p>
+                <p class="subtitulo">Datos del Rol</p>
             </div>
             <div>
-                <label for="nombreProvincia">Nombre</label>
-                <input id="nombreProvincia" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                <label for="nombreRol">Nombre</label>
+                <input id="nombreRol" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
                     minlength="3" #nombreCampo="ngModel">
             </div>
             <div *ngIf="nombreCampo.touched && nombreCampo.errors">
@@ -17,7 +17,7 @@
                 <p class="error" *ngIf="nombreCampo.errors.minlength">* Longitud minima 3</p>
             </div>
             <button class="boton eliminar" type="reset">Cancelar</button>
-            <button class="boton" type="submit" [disabled]="!formularioProvincia.form.valid">Aceptar</button>
+            <button class="boton" type="submit" [disabled]="!formularioRol.form.valid">Aceptar</button>
         </form>
     </div>
 </div>

@@ -36,12 +36,15 @@
             </div>
             <div>
                 <label for="provinciaUsuario">Provincia</label>
-                <select id="ProvinciaUsuario" name="id_provincia" [(ngModel)]="provinciaIdFormulario" required
-                    #provinciaCampo="ngModel">
+                <select id="ProvinciaUsuario" name="id_provincia" [(ngModel)]="provinciaIdFormulario"
+                    (change)="seleccionarOpcionProvincia()" #provinciaCampo="ngModel">
                     <option [ngValue]="0" selected>Seleccione una Provincia</option>
                     <option *ngFor="let provincia of arregloProvincias" [ngValue]="provincia.id">{{provincia.nombre}}
                     </option>
                 </select>
+            </div>
+            <div *ngIf="provinciaCampo.touched && seleccion">
+                <p class="error" *ngIf="seleccion">* Seleccione una opcion</p>
             </div>
             <div>
                 <label for="contrasenaUsuario">Contraseña</label>
@@ -59,7 +62,7 @@
             <div>
                 <label for="contrasenaConfirmacionUsuario">Confirmar Contraseña</label>
                 <input id="contrasenaConfirmacionUsuario" type="password" [(ngModel)]="contrasenaConfirmacionFormulario"
-                    [ngModelOptions]="{standalone: true}" (blur)="confirmarContrasena()" required
+                    [ngModelOptions]="{standalone: true}" (change)="confirmarContrasena()" required
                     #contrasenaConfirmacionCampo="ngModel">
             </div>
             <div *ngIf="contrasenaConfirmacionCampo.touched && (contrasenaConfirmacionCampo.errors || confirmacion)">
@@ -74,33 +77,30 @@
             <div>
                 <label class="etiqueta-numero" for="perrosUsuario">Perros</label>
                 <input class="numero" id="perrosUsuario" type="number" name="perros" [(ngModel)]="perrosFormulario"
-                    required min="0" value="0" #perrosCampo="ngModel">
+                    min="0" value="0" #perrosCampo="ngModel">
             </div>
             <div *ngIf="perrosCampo.touched && perrosCampo.errors">
-                <p class="error" *ngIf="perrosCampo.errors.required">* Campo requerido</p>
                 <p class="error" *ngIf="perrosCampo.errors.min">* Cantidad minima es 0</p>
             </div>
             <div>
                 <label class="etiqueta-numero" for="gatosUsuario">Gatos</label>
-                <input class="numero" id="gatosUsuario" type="number" name="gatos" [(ngModel)]="gatosFormulario"
-                    required min="0" value="0" #gatosCampo="ngModel">
+                <input class="numero" id="gatosUsuario" type="number" name="gatos" [(ngModel)]="gatosFormulario" min="0"
+                    value="0" #gatosCampo="ngModel">
             </div>
             <div *ngIf="gatosCampo.touched && gatosCampo.errors">
-                <p class="error" *ngIf="gatosCampo.errors.required">* Campo requerido</p>
                 <p class="error" *ngIf="gatosCampo.errors.min">* Cantidad minima es 0</p>
             </div>
             <div>
                 <label class="etiqueta-numero" for="ninosUsuario">Niños</label>
-                <input class="numero" id="ninosUsuario" type="number" name="ninos" [(ngModel)]="ninosFormulario"
-                    required min="0" value="0" #ninosCampo="ngModel">
+                <input class="numero" id="ninosUsuario" type="number" name="ninos" [(ngModel)]="ninosFormulario" min="0"
+                    value="0" #ninosCampo="ngModel">
             </div>
             <div *ngIf="ninosCampo.touched && ninosCampo.errors">
-                <p class="error" *ngIf="ninosCampo.errors.required">* Campo requerido</p>
                 <p class="error" *ngIf="ninosCampo.errors.min">* Cantidad minima es 0</p>
             </div>
             <button class="boton eliminar" type="reset">Cancelar</button>
             <button class="boton" type="submit"
-                [disabled]="!formularioUsuario.form.valid || confirmacion">Aceptar</button>
+                [disabled]="!formularioUsuario.form.valid || confirmacion || seleccion">Aceptar</button>
         </form>
     </div>
 </div>
