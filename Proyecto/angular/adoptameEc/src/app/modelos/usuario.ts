@@ -1,13 +1,15 @@
 import { Provincia } from './provincia';
 
 export class Usuario {
-    id: number;
-    nombre: string;
-    apellido: string;
-    email: string;
-    contrasena: string;
-    perros: number;
-    gatos: number;
-    ninos: number;
-    id_provincia?: Provincia | number;
+    constructor(
+        public nombre: string,
+        public apellido: string,
+        public email: string,
+        public contrasena: string,
+        public perros: number,
+        public gatos: number,
+        public ninos: number,
+        public id_provincia?: Provincia | number | any,
+        public id?: number
+    ) { }
 }

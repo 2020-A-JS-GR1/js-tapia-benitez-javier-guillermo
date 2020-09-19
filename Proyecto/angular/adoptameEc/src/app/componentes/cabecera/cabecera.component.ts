@@ -10,7 +10,7 @@ export class CabeceraComponent implements OnInit {
 
   @Input()
   sesion: boolean;
-  
+
   urlLogo = '../../../assets/img/Logo.png';
 
   constructor(

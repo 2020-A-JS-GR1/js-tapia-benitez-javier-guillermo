@@ -59,6 +59,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { RutaCrearProvinciaComponent } from './rutas/ruta-provincia/ruta-crear-provincia/ruta-crear-provincia.component';
+import { RutaEditarProvinciaComponent } from './rutas/ruta-provincia/ruta-editar-provincia/ruta-editar-provincia.component';
+import { FormularioProvinciaComponent } from './componentes/formularios/formulario-provincia/formulario-provincia.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +93,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RutaListaRolesComponent,
     RutaCrearUsuarioComponent,
     RutaEditarUsuarioComponent,
-    FormularioUsuarioComponent
+    FormularioUsuarioComponent,
+    RutaCrearProvinciaComponent,
+    RutaEditarProvinciaComponent,
+    FormularioProvinciaComponent
   ],
   imports: [
     BrowserModule,

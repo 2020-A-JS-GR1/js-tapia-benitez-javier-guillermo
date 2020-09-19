@@ -1,31 +1,106 @@
-<form #formularioUsuario="ngForm" (ngSubmit)="crearUsuario(formularioUsuario)">
-    <div>
-        <label for="nombreUsuario">Nombre</label>
-        <input id="nombreUsuario" type="text" name="nombre" [(ngModel)]="nombreFormulario" required minlength="3"
-            #nombreCampo="ngModel">
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Usuario</h1>
     </div>
-    <div *ngIf="nombreCampo.touched && nombreCampo.errors">
-        <p *ngIf="nombreCampo.errors.required">Campo Requerido</p>
-        <p *ngIf="nombreCampo.errors.minlength">Longitud minima 3</p>
+    <div class="formulario">
+        <form #formularioUsuario="ngForm" (ngSubmit)="enviarFormulario(formularioUsuario)">
+            <div>
+                <p class="subtitulo">Datos Personales</p>
+            </div>
+            <div>
+                <label for="nombreUsuario">Nombre</label>
+                <input id="nombreUsuario" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    minlength="3" #nombreCampo="ngModel">
+            </div>
+            <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p class="error" *ngIf="nombreCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="nombreCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="apellidoUsuario">Apellido</label>
+                <input id="apellidoUsuario" type="text" name="apellido" [(ngModel)]="apellidoFormulario" required
+                    minlength="3" #apellidoCampo="ngModel">
+            </div>
+            <div *ngIf="apellidoCampo.touched && apellidoCampo.errors">
+                <p class="error" *ngIf="apellidoCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="apellidoCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="emailUsuario">Correo electrónico</label>
+                <input id="emailUsuario" type="email" name="email" [(ngModel)]="emailFormulario" required email
+                    #emailCampo="ngModel">
+            </div>
+            <div *ngIf="emailCampo.touched && emailCampo.errors">
+                <p class="error" *ngIf="emailCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="emailCampo.errors.email">* Correo electrónico no valido</p>
+            </div>
+            <div>
+                <label for="provinciaUsuario">Provincia</label>
+                <select id="ProvinciaUsuario" name="id_provincia" [(ngModel)]="provinciaIdFormulario" required
+                    #provinciaCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione una Provincia</option>
+                    <option *ngFor="let provincia of arregloProvincias" [ngValue]="provincia.id">{{provincia.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <label for="contrasenaUsuario">Contraseña</label>
+                <input id="contrasenaUsuario" type="password" name="contrasena" [(ngModel)]="contrasenaFormulario"
+                    required minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                    #contrasenaCampo="ngModel">
+            </div>
+            <div *ngIf="contrasenaCampo.touched && contrasenaCampo.errors">
+                <p class="error" *ngIf="contrasenaCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="contrasenaCampo.errors.minlength">* Longitud minima 8</p>
+                <p class="error" *ngIf="contrasenaCampo.errors.pattern">* La contraseña debe tener al menos un numero,
+                    una mayuscula y minuscula
+                </p>
+            </div>
+            <div>
+                <label for="contrasenaConfirmacionUsuario">Confirmar Contraseña</label>
+                <input id="contrasenaConfirmacionUsuario" type="password" [(ngModel)]="contrasenaConfirmacionFormulario"
+                    [ngModelOptions]="{standalone: true}" (blur)="confirmarContrasena()" required
+                    #contrasenaConfirmacionCampo="ngModel">
+            </div>
+            <div *ngIf="contrasenaConfirmacionCampo.touched && (contrasenaConfirmacionCampo.errors || confirmacion)">
+                <div *ngIf="contrasenaConfirmacionCampo.errors">
+                    <p class="error" *ngIf="contrasenaConfirmacionCampo.errors.required">* Campo requerido</p>
+                </div>
+                <p class="error" *ngIf="confirmacion">* La contraseña no coincide</p>
+            </div>
+            <div>
+                <p class="subtitulo">¿Cuantos niños y mascotas tiene en casa?</p>
+            </div>
+            <div>
+                <label class="etiqueta-numero" for="perrosUsuario">Perros</label>
+                <input class="numero" id="perrosUsuario" type="number" name="perros" [(ngModel)]="perrosFormulario"
+                    required min="0" value="0" #perrosCampo="ngModel">
+            </div>
+            <div *ngIf="perrosCampo.touched && perrosCampo.errors">
+                <p class="error" *ngIf="perrosCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="perrosCampo.errors.min">* Cantidad minima es 0</p>
+            </div>
+            <div>
+                <label class="etiqueta-numero" for="gatosUsuario">Gatos</label>
+                <input class="numero" id="gatosUsuario" type="number" name="gatos" [(ngModel)]="gatosFormulario"
+                    required min="0" value="0" #gatosCampo="ngModel">
+            </div>
+            <div *ngIf="gatosCampo.touched && gatosCampo.errors">
+                <p class="error" *ngIf="gatosCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="gatosCampo.errors.min">* Cantidad minima es 0</p>
+            </div>
+            <div>
+                <label class="etiqueta-numero" for="ninosUsuario">Niños</label>
+                <input class="numero" id="ninosUsuario" type="number" name="ninos" [(ngModel)]="ninosFormulario"
+                    required min="0" value="0" #ninosCampo="ngModel">
+            </div>
+            <div *ngIf="ninosCampo.touched && ninosCampo.errors">
+                <p class="error" *ngIf="ninosCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="ninosCampo.errors.min">* Cantidad minima es 0</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit"
+                [disabled]="!formularioUsuario.form.valid || confirmacion">Aceptar</button>
+        </form>
     </div>
-    <div>
-        <label for="apellidoUsuario">Apellido</label>
-        <input id="apellidoUsuario" type="text" name="apellido" [(ngModel)]="apellidoFormulario" required minlength="3"
-            #apellidoCampo="ngModel">
-    </div>
-    <div *ngIf="apellidoCampo.touched && apellidoCampo.errors">
-        <p *ngIf="apellidoCampo.errors.required">Campo requerido</p>
-        <p *ngIf="apellidoCampo.errors.minlength">Longitud minima 3</p>
-    </div>
-    <div>
-        <label for="emailUsuario">Correo electrónico</label>
-        <input id="emailUsuario" type="text" name="email" [(ngModel)]="emailFormulario" required email
-            #emailCampo="ngModel">
-    </div>
-    <div *ngIf="emailCampo.touched && emailCampo.errors">
-        <p *ngIf="emailCampo.errors.required">Campo requerido</p>
-        <p *ngIf="emailCampo.errors.email">Correo electrónico no valido</p>
-    </div>
-    <button type="reset">Cancelar</button>
-    <button type="submit" [disabled]="!formularioUsuario.form.valid">Aceptar</button>
-</form>
+</div>
