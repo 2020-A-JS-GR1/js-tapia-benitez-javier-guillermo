@@ -1,3 +1,7 @@
+import { RutaEditarRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-editar-rol-usuario/ruta-editar-rol-usuario.component';
+import { RutaCrearRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-crear-rol-usuario/ruta-crear-rol-usuario.component';
+import { RutaEditarRolComponent } from './rutas/ruta-rol/ruta-editar-rol/ruta-editar-rol.component';
+import { RutaCrearRolComponent } from './rutas/ruta-rol/ruta-crear-rol/ruta-crear-rol.component';
 import { RutaEditarProvinciaComponent } from './rutas/ruta-provincia/ruta-editar-provincia/ruta-editar-provincia.component';
 import { RutaEditarUsuarioComponent } from './rutas/ruta-usuario/ruta-editar-usuario/ruta-editar-usuario.component';
 import { RutaCrearUsuarioComponent } from './rutas/ruta-usuario/ruta-crear-usuario/ruta-crear-usuario.component';
@@ -59,6 +63,14 @@ const routes: Routes = [
       {
         component: RutaListaRolesUsuariosComponent,
         path: 'lista-roles-usuarios'
+      },
+      {
+        component: RutaCrearRolUsuarioComponent,
+        path: 'crear-rol-usuario'
+      },
+      {
+        component: RutaEditarRolUsuarioComponent,
+        path: 'editar-rol-usuario/:id'
       },
       {
         component: RutaListaDonacionesComponent,
@@ -159,6 +171,14 @@ const routes: Routes = [
       {
         component: RutaListaRolesComponent,
         path: 'lista-roles'
+      },
+      {
+        component: RutaCrearRolComponent,
+        path: 'crear-rol'
+      },
+      {
+        component: RutaEditarRolComponent,
+        path: 'editar-rol/:id'
       },
       {
         path: '',

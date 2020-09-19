@@ -62,6 +62,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { RutaCrearProvinciaComponent } from './rutas/ruta-provincia/ruta-crear-provincia/ruta-crear-provincia.component';
 import { RutaEditarProvinciaComponent } from './rutas/ruta-provincia/ruta-editar-provincia/ruta-editar-provincia.component';
 import { FormularioProvinciaComponent } from './componentes/formularios/formulario-provincia/formulario-provincia.component';
+import { RutaCrearRolComponent } from './rutas/ruta-rol/ruta-crear-rol/ruta-crear-rol.component';
+import { RutaEditarRolComponent } from './rutas/ruta-rol/ruta-editar-rol/ruta-editar-rol.component';
+import { FormularioRolComponent } from './componentes/formularios/formulario-rol/formulario-rol.component';
+import { RutaCrearRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-crear-rol-usuario/ruta-crear-rol-usuario.component';
+import { RutaEditarRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-editar-rol-usuario/ruta-editar-rol-usuario.component';
+import { FormularioRolUsuarioComponent } from './componentes/formularios/formulario-rol-usuario/formulario-rol-usuario.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +102,13 @@ import { FormularioProvinciaComponent } from './componentes/formularios/formular
     FormularioUsuarioComponent,
     RutaCrearProvinciaComponent,
     RutaEditarProvinciaComponent,
-    FormularioProvinciaComponent
+    FormularioProvinciaComponent,
+    RutaCrearRolComponent,
+    RutaEditarRolComponent,
+    FormularioRolComponent,
+    RutaCrearRolUsuarioComponent,
+    RutaEditarRolUsuarioComponent,
+    FormularioRolUsuarioComponent
   ],
   imports: [
     BrowserModule,

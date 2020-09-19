@@ -1,9 +1,11 @@
 import { Usuario } from './usuario';
 
 export class Tarjeta {
-    id: number;
-    numero: string;
-    fechaCaducidad: string;
-    cvv: string;
-    id_usuario: number | Usuario;
+    constructor(
+        public numero: string,
+        public fechaCaducidad: string,
+        public cvv: string,
+        public id_usuario: number | Usuario | any,
+        public id?: number
+    ) { }
 }

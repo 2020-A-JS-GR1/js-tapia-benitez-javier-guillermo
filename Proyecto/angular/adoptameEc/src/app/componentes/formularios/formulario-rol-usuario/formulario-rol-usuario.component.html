@@ -1,0 +1,39 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Rol de Usuario</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioRolUsuario="ngForm" (ngSubmit)="enviarFormulario(formularioRolUsuario)">
+            <div>
+                <p class="subtitulo">Datos de Roles y Usuarios</p>
+            </div>
+            <div>
+                <label for="usuario">Usuario</label>
+                <select id="usuario" name="id_usuario" [(ngModel)]="usuarioIdFormulario"
+                    (change)="seleccionarOpcionUsuario()" #usuarioCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione un Usuario</option>
+                    <option *ngFor="let usuario of arregloUsuarios" [ngValue]="usuario.id">
+                        {{usuario.nombre}} {{usuario.apellido}} - {{usuario.email}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="usuarioCampo.touched && seleccionUsuario">
+                <p class="error" *ngIf="seleccionUsuario">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="rol">Rol</label>
+                <select id="rol" name="id_rol" [(ngModel)]="rolIdFormulario" (change)="selecionarOpcionRol()"
+                    #rolCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione un Rol</option>
+                    <option *ngFor="let rol of arregloRoles" [ngValue]="rol.id">{{rol.nombre}}</option>
+                </select>
+            </div>
+            <div *ngIf="rolCampo.touched && seleccionRol">
+                <p class="error" *ngIf="seleccionRol">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit"
+                [disabled]="!formularioRolUsuario.form.valid || seleccionUsuario || seleccionRol">Aceptar</button>
+        </form>
+    </div>
+</div>

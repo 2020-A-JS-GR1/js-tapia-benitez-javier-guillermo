@@ -26,4 +26,8 @@ export class RolService {
   deleteRol(idRol: number) {
     return this._httpClient.delete(this.url + '/Rol/' + idRol);
   }
+
+  updateRol(idRol: number, rol: Rol) {
+    return this._httpClient.put(this.url + '/Rol/' + idRol, rol);
+  }
 }

@@ -26,4 +26,8 @@ export class RolUsuarioService {
   deleteRolUsuario(idRolUsuario: number) {
     return this._httpClient.delete(this.url + '/RolUsuario/' + idRolUsuario);
   }
+
+  updateRolUsuario(idRolUsuario: number, rolUsuario: RolUsuario) {
+    return this._httpClient.put(this.url + '/RolUsuario/' + idRolUsuario, rolUsuario);
+  }
 }

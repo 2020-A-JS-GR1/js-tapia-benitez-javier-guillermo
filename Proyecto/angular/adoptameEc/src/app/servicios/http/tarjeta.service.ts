@@ -26,4 +26,8 @@ export class TarjetaService {
   deleteTarjeta(idTarjeta: number) {
     return this._httpClient.delete(this.url + '/Tarjeta/' + idTarjeta);
   }
+
+  updateTarjeta(idTarjeta: number, tarjeta: Tarjeta) {
+    return this._httpClient.put(this.url + '/Tarjeta/' + idTarjeta, tarjeta);
+  }
 }
