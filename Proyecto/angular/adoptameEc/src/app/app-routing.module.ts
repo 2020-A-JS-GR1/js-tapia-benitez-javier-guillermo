@@ -1,3 +1,4 @@
+import { RutaEditarProvinciaComponent } from './rutas/ruta-provincia/ruta-editar-provincia/ruta-editar-provincia.component';
 import { RutaEditarUsuarioComponent } from './rutas/ruta-usuario/ruta-editar-usuario/ruta-editar-usuario.component';
 import { RutaCrearUsuarioComponent } from './rutas/ruta-usuario/ruta-crear-usuario/ruta-crear-usuario.component';
 import { RutaListaRolesComponent } from './rutas/ruta-rol/ruta-lista-roles/ruta-lista-roles.component';
@@ -24,6 +25,7 @@ import { RutaRegistroComponent } from './rutas/ruta-registro/ruta-registro.compo
 import { RutaEstadisticasComponent } from './rutas/ruta-estadisticas/ruta-estadisticas.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RutaCrearProvinciaComponent } from './rutas/ruta-provincia/ruta-crear-provincia/ruta-crear-provincia.component';
 
 const routes: Routes = [
   {
@@ -134,6 +136,14 @@ const routes: Routes = [
       {
         component: RutaListaProvinciasComponent,
         path: 'lista-provincias'
+      },
+      {
+        component: RutaCrearProvinciaComponent,
+        path: 'crear-provincia'
+      },
+      {
+        component: RutaEditarProvinciaComponent,
+        path: 'editar-provincia/:id'
       },
       {
         path: '',

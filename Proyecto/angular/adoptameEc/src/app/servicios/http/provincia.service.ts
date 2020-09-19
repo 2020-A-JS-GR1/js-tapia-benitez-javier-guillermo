@@ -26,4 +26,8 @@ export class ProvinciaService {
   deleteProvincia(idProvincia: number) { 
     return this._httpClient.delete(this.url + '/Provincia/' + idProvincia);
   }
+
+  updateProvincia(idProvincia: number, provincia: Provincia) {
+    return this._httpClient.put(this.url + '/Provincia/' + idProvincia, provincia);
+  }
 }

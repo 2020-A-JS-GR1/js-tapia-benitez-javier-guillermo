@@ -1,7 +1,8 @@
+import { NgForm } from '@angular/forms';
 import { UsuarioService } from './../../../servicios/http/usuario.service';
 import { Usuario } from './../../../modelos/usuario';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ruta-editar-usuario',
@@ -10,11 +11,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class RutaEditarUsuarioComponent implements OnInit {
 
-  usuario: Usuario;
+  editadoUsuario: Usuario;
+  id: number
 
   constructor(
     private readonly _usuarioService: UsuarioService,
-    private readonly _activatedRoute: ActivatedRoute
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -22,19 +25,25 @@ export class RutaEditarUsuarioComponent implements OnInit {
     observableRutaUsuario
       .subscribe(
         (parametros: Params) => {
-          const id = Number(parametros.id);
-          const observableObtenerUsuario = this._usuarioService.getUsuario(id);
-          observableObtenerUsuario
-            .subscribe(
-              (usuario: Usuario) => {
-                this.usuario = usuario;
-              },
-              error => {
-                console.error('Error obteniendo usuario', error);
-              }
-            );
+          this.id = Number(parametros.id);
         }
       );
   }
 
+  actualizarUsuario(formulario: NgForm) {
+    this.editadoUsuario = formulario.form.value;
+    this.editadoUsuario.id_provincia = Number(this.editadoUsuario.id_provincia);
+    const observableActualizarUsuario = this._usuarioService.updateUsuario(this.id, this.editadoUsuario);
+    observableActualizarUsuario
+      .subscribe(
+        () => {
+          console.log('Usuario actualizado:', this.editadoUsuario);
+          const ruta = ['/usuarios', 'lista-usuarios'];
+          this._router.navigate(ruta);
+        },
+        error => {
+          console.error('Error obteniendo usuario', error);
+        }
+      );
+  }
 }
