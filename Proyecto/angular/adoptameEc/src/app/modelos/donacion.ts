@@ -2,9 +2,11 @@ import { Mascota } from './mascota';
 import { Tarjeta } from './tarjeta';
 
 export class Donacion {
-    id: number;
-    valor: number;
-    fecha: string;
-    id_tarjeta: number | Tarjeta;
-    id_mascota: number | Mascota;
+    constructor(
+        public valor: number,
+        public fecha: string,
+        public id_tarjeta: number | Tarjeta | any,
+        public id_mascota: number | Mascota | any,
+        public id?: number
+    ) { }
 }

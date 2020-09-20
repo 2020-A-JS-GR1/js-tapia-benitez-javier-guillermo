@@ -26,4 +26,8 @@ export class MascotaService {
   deleteMascota(idMascota: number) {
     return this._httpClient.delete(this.url + '/Mascota/' + idMascota);
   }
+
+  updateMascota(idMascota: number, mascota: Mascota) {
+    return this._httpClient.put(this.url + '/Mascota/' + idMascota, mascota);
+  }
 }

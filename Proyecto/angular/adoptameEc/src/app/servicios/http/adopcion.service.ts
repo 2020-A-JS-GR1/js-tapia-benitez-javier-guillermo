@@ -26,4 +26,8 @@ export class AdopcionService {
   deleteAdopcion(idAdopcion: number) {
     return this._httpClient.delete(this.url + '/Adopcion/' + idAdopcion);
   }
+
+  updateAdopcion(idAdopcion: number, adopcion: Adopcion) {
+    return this._httpClient.put(this.url + '/Adopcion/' + idAdopcion, adopcion);
+  }
 }

@@ -1,4 +1,6 @@
 export class Especie {
-    id: number;
-    nombre: string;
+    constructor(
+        public nombre: string,
+        public id?: number
+    ) { }
 }
