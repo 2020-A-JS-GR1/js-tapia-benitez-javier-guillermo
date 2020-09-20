@@ -1,7 +1,9 @@
 import { Mascota } from './mascota';
 
 export class Fotografia {
-    id: number;
-    url: string;
-    id_mascota: number | Mascota;
+    constructor(
+        public url: string,
+        public id_mascota: number | Mascota | any,
+        public id?: number
+    ) { }
 }

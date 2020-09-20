@@ -26,4 +26,8 @@ export class RefugioMascotaService {
   deleteRefugioMascota(idRefugioMascota: number) {
     return this._httpClient.delete(this.url + '/RefugioMascota/' + idRefugioMascota);
   }
+
+  updateRefugioMascota(idRefugioMascota: number, refugioMascota: RefugioMascota) {
+    return this._httpClient.put(this.url + '/RefugioMascota/' + idRefugioMascota, refugioMascota);
+  }
 }

@@ -26,4 +26,8 @@ export class FotografiaService {
   deleteFotografia(idFotografia: number) {
     return this._httpClient.delete(this.url + '/Fotografia/' + idFotografia);
   }
+
+  updateFotografia(idFotografia: number, fotografia: Fotografia) {
+    return this._httpClient.put(this.url + '/Fotografia/' + idFotografia, fotografia);
+  }
 }

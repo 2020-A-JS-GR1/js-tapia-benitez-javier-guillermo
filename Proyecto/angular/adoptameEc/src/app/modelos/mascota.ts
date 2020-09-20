@@ -1,14 +1,16 @@
 import { Raza } from './raza';
 
 export class Mascota {
-    id: number;
-    nombre: string;
-    edad: string;
-    genero: string;
-    tamano: string;
-    descripcion: string;
-    pelaje: string;
-    vacuna: string;
-    esterilizacion: string;
-    id_raza: number | Raza;
+    constructor(
+        public nombre: string,
+        public edad: string,
+        public genero: string,
+        public tamano: string,
+        public descripcion: string,
+        public pelaje: string,
+        public vacuna: string,
+        public esterilizacion: string,
+        public id_raza: number | Raza | any,
+        public id?: number
+    ) { }
 }

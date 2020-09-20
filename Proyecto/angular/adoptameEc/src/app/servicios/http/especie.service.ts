@@ -26,4 +26,8 @@ export class EspecieService {
   deleteEspecie(idEspecie: number) {
     return this._httpClient.delete(this.url + '/Especie/' + idEspecie);
   }
+
+  updateEspecie(idEspecie: number, especie: Especie) {
+    return this._httpClient.put(this.url + '/Especie/' + idEspecie, especie);
+  }
 }

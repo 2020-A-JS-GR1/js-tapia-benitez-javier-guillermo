@@ -26,4 +26,8 @@ export class RazaService {
   deleteRaza(idRaza: number) {
     return this._httpClient.delete(this.url + '/Raza/' + idRaza);
   }
+
+  updateRaza(idRaza: number, raza: Raza) {
+    return this._httpClient.put(this.url + '/Raza/' + idRaza, raza);
+  }
 }

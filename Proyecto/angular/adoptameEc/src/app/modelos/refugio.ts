@@ -1,7 +1,10 @@
 import { Provincia } from './provincia';
+
 export class Refugio {
-    id: number;
-    nombre: string;
-    direccion: string;
-    id_provincia: number | Provincia;
+    constructor(
+        public nombre: string,
+        public direccion: string,
+        public id_provincia: number | Provincia | any,
+        public id?: number
+    ) { }
 }

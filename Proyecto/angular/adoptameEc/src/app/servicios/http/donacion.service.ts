@@ -26,4 +26,8 @@ export class DonacionService {
   deleteDonacion(idDonacion: number) {
     return this._httpClient.delete(this.url + '/Donacion/' + idDonacion);
   }
+  
+  updateDonacion(idDonacion: number, donacion: Donacion) {
+    return this._httpClient.put(this.url + '/Donacion/' + idDonacion, donacion);
+  }
 }

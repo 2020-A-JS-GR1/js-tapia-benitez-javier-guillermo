@@ -2,10 +2,12 @@ import { Mascota } from './mascota';
 import { Usuario } from './usuario';
 
 export class Adopcion {
-    id: number;
-    estado: string;
-    calificacion: number;
-    fecha: string;
-    id_usuario: number | Usuario;
-    id_mascota: number | Mascota;
+    constructor(
+        public estado: string,
+        public calificacion: number,
+        public fecha: string,
+        public id_usuario: number | Usuario | any,
+        public id_mascota: number | Mascota | any,
+        public id?: number
+    ) { }
 }

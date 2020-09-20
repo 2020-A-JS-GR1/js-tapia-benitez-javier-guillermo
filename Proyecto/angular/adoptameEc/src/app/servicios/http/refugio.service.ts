@@ -26,4 +26,8 @@ export class RefugioService {
   deleteRefugio(idRefugio: number) {
     return this._httpClient.delete(this.url + '/Refugio/' + idRefugio);
   }
+
+  updateRefugio(idRefugio: number, refugio: Refugio) {
+    return this._httpClient.put(this.url + '/Refugio/' + idRefugio, refugio);
+  }
 }
