@@ -5,7 +5,7 @@ import { Usuario } from './../../../modelos/usuario';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit, ViewChild, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ruta-lista-usuarios',

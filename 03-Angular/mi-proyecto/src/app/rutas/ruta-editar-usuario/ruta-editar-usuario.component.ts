@@ -11,6 +11,8 @@ export class RutaEditarUsuarioComponent implements OnInit {
 
   usuario; 
 
+  mostrarFormulario: boolean = false;
+
   constructor(
     private readonly _usuarioService: UsuarioService,
     private readonly _activatedRoute: ActivatedRoute
@@ -27,6 +29,7 @@ export class RutaEditarUsuarioComponent implements OnInit {
         .subscribe(
           (usuario: any) => {
             this.usuario = usuario;
+            this.llenarFormularioConDatosDeUsuario();
           },
           error => {
             console.error(error);
@@ -36,4 +39,11 @@ export class RutaEditarUsuarioComponent implements OnInit {
     );
   }
 
+  llenarFormularioConDatosDeUsuario() {
+    this.mostrarFormulario = true;
+  }
+
+  editarUsuario(usuario) {
+    const ibsEditarUsuario = this._usuarioService.editar(usuario, this.usuario.id);
+  }
 }

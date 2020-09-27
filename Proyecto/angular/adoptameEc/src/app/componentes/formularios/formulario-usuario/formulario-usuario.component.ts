@@ -1,4 +1,3 @@
-import { UsuarioService } from './../../../servicios/http/usuario.service';
 import { Usuario } from './../../../modelos/usuario';
 import { Provincia } from './../../../modelos/provincia';
 import { ProvinciaService } from './../../../servicios/http/provincia.service';
@@ -13,10 +12,10 @@ import { NgForm } from '@angular/forms';
 export class FormularioUsuarioComponent implements OnInit {
 
   @Input()
-  idUsuarioEditar: number;
+  usuarioEditar: Usuario;
 
   @Output()
-  enviarFormularioEvent = new EventEmitter<NgForm>();
+  enviarFormularioEvent: EventEmitter<NgForm> = new EventEmitter<NgForm>();
 
   arregloProvincias: Provincia[] = [];
   confirmacion: boolean = true;
@@ -25,7 +24,7 @@ export class FormularioUsuarioComponent implements OnInit {
   nombreFormulario: string;
   apellidoFormulario: string;
   emailFormulario: string;
-  provinciaIdFormulario: number;
+  provinciaIdFormulario: number = 0;
   contrasenaFormulario: string;
   contrasenaConfirmacionFormulario: string;
   perrosFormulario: number = 0;
@@ -34,12 +33,9 @@ export class FormularioUsuarioComponent implements OnInit {
 
   constructor(
     private readonly _provinciaService: ProvinciaService,
-    private readonly _usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
-    this.provinciaIdFormulario = 0;
-
     const observableProvincias = this._provinciaService.getProvincias();
     observableProvincias
       .subscribe(
@@ -51,7 +47,7 @@ export class FormularioUsuarioComponent implements OnInit {
         }
       );
 
-    if (this.idUsuarioEditar) {
+    if (this.usuarioEditar) {
       this.llenarFormulario();
     }
   }
@@ -61,25 +57,18 @@ export class FormularioUsuarioComponent implements OnInit {
   }
 
   llenarFormulario() {
-    const observableObtenerUsuario = this._usuarioService.getUsuario(this.idUsuarioEditar);
-    observableObtenerUsuario
-      .subscribe(
-        (usuario: Usuario) => {
-          this.nombreFormulario = usuario.nombre;
-          this.apellidoFormulario = usuario.apellido;
-          this.emailFormulario = usuario.email;
-          this.provinciaIdFormulario = usuario.id_provincia.id;
-          this.contrasenaFormulario = usuario.contrasena;
-          this.contrasenaConfirmacionFormulario = usuario.contrasena;
-          this.perrosFormulario = usuario.perros;
-          this.gatosFormulario = usuario.gatos;
-          this.ninosFormulario = usuario.ninos;
-        },
-        error => {
-          console.error('Error obteniendo usuario', error);
-        }
-      );
+    this.nombreFormulario = this.usuarioEditar.nombre;
+    this.apellidoFormulario = this.usuarioEditar.apellido;
+    this.emailFormulario = this.usuarioEditar.email;
+    this.provinciaIdFormulario = this.usuarioEditar.id_provincia.id;
+    this.contrasenaFormulario = this.usuarioEditar.contrasena;
+    this.contrasenaConfirmacionFormulario = this.usuarioEditar.contrasena;
+    this.perrosFormulario = this.usuarioEditar.perros;
+    this.gatosFormulario = this.usuarioEditar.gatos;
+    this.ninosFormulario = this.usuarioEditar.ninos;
+
     this.confirmarContrasena();
+    this.seleccionarOpcionProvincia();
   }
 
   seleccionarOpcionProvincia() {

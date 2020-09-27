@@ -1,0 +1,63 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Tarjeta</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioTarjeta="ngForm" (ngSubmit)="enviarFormulario(formularioTarjeta)">
+            <div>
+                <p class="subtitulo">Datos de la tarjeta</p>
+            </div>
+            <div>
+                <label for="numeroTarjeta">Numero</label>
+                <input id="numeroTarjeta" type="text" name="numero" [(ngModel)]="numeroFormulario" required
+                    minlength="14" maxlength="16" #numeroCampo="ngModel">
+            </div>
+            <div *ngIf="numeroCampo.touched && numeroCampo.errors">
+                <p class="error" *ngIf="numeroCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="numeroCampo.errors.minlength">* Longitud minima 14</p>
+                <p class="error" *ngIf="numeroCampo.errors.maxlength">* Longitud maxima 16</p>
+            </div>
+            <div>
+                <label class="etiqueta-numero" for="caducidadTarjeta">Fecha de caducidad</label>
+                <input class="numero-dia" id="caducidadTarjeta" type="number" name="dia" [(ngModel)]="diaFormulario"
+                    required min="1" max="31" #diaCampo="ngModel">/
+                <input class="numero-anio" id="apellidoUsuario" type="number" name="anio" [(ngModel)]="anioFormulario"
+                    required min="1980" #anioCampo="ngModel">
+            </div>
+            <div *ngIf="diaCampo.touched && diaCampo.errors">
+                <p class="error" *ngIf="diaCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="diaCampo.errors.min">* Dia fuera de rango</p>
+                <p class="error" *ngIf="diaCampo.errors.max">* Dia fuera de rango</p>
+            </div>
+            <div *ngIf="anioCampo.touched && anioCampo.errors">
+                <p class="error" *ngIf="anioCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="anioCampo.errors.min">* Año fuera de rango</p>
+            </div>
+            <div>
+                <label for="cvvTarjeta">CVV</label>
+                <input class="numero-anio" id="cvvTarjeta" type="text" name="cvv" [(ngModel)]="cvvFormulario" required
+                    minlength="3" maxlength="4" #cvvCampo="ngModel">
+            </div>
+            <div *ngIf="cvvCampo.touched && cvvCampo.errors">
+                <p class="error" *ngIf="cvvCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="cvvCampo.errors.minlength">* Longitud minima 3</p>
+                <p class="error" *ngIf="cvvCampo.errors.maxlength">* Longitud maxima 4</p>
+            </div>
+            <div>
+                <label for="usuarioTarjeta">Propietario</label>
+                <select id="usuarioTarjeta" name="id_usuario" [(ngModel)]="usuarioIdFormulario"
+                    (change)="seleccionarOpcionUsuario()" #usuarioCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione un Usuario</option>
+                    <option *ngFor="let usuario of arregloUsuarios" [ngValue]="usuario.id">
+                        {{usuario.nombre}} {{usuario.apellido}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="usuarioCampo.touched && seleccion">
+                <p class="error" *ngIf="seleccion">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit" [disabled]="!formularioTarjeta.form.valid || seleccion">Aceptar</button>
+        </form>
+    </div>
+</div>

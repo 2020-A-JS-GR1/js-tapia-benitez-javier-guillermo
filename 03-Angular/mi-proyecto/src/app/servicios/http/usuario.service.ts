@@ -22,6 +22,10 @@ export class UsuarioService {
     return this._httpClient.post(this.url + '/Usuario', usuario);
   }
 
+  editar(usuario, id) {
+    return this._httpClient.put(this.url + '/Usuario/' + id, usuario);
+  }
+
   eliminar(idUsuario: number){
     return this._httpClient.delete(this.url + '/Usuario/' + idUsuario);
   }

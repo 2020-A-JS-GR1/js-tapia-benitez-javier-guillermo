@@ -12,7 +12,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class RutaEditarUsuarioComponent implements OnInit {
 
   editadoUsuario: Usuario;
-  id: number
+  id: number;
+  mostrarFormulario: boolean = false;
 
   constructor(
     private readonly _usuarioService: UsuarioService,
@@ -26,8 +27,23 @@ export class RutaEditarUsuarioComponent implements OnInit {
       .subscribe(
         (parametros: Params) => {
           this.id = Number(parametros.id);
+          const observableObtenerUsuario = this._usuarioService.getUsuario(this.id);
+          observableObtenerUsuario
+            .subscribe(
+              (usuario: Usuario) => {
+                this.editadoUsuario = usuario;
+                this.llenarFormularioUsuario();
+              },
+              error => {
+                console.error('Error obteniendo usuario', error);
+              }
+            );
         }
       );
+  }
+
+  llenarFormularioUsuario() {
+    this.mostrarFormulario = true;
   }
 
   actualizarUsuario(formulario: NgForm) {

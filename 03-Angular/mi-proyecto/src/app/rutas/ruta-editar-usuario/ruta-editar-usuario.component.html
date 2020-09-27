@@ -1,3 +1,8 @@
 <p>{{usuario?.nombre}}</p>
 <p>{{usuario?.cedula}}</p>
 <p>{{usuario?.id}}</p>
+
+<div *ngIf="mostrarFormulario">
+    <app-formulario-usuario [nombreInput]="usuario.nombre" [cedulaInput]="usuario.cedula"
+        [estadoCivilInput]="usuario.estadoCivil"></app-formulario-usuario>
+</div>
