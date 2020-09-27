@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CategoriaArmaCRUD"
+    }
+  },
+  "defaultProject": "CategoriaArmaCRUD",
+  "cli": {
+    "analytics": false
+  }
 }
