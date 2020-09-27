@@ -1,3 +1,5 @@
+import { RutaEditarTarjetaComponent } from './rutas/ruta-tarjeta/ruta-editar-tarjeta/ruta-editar-tarjeta.component';
+import { RutaCrearTarjetaComponent } from './rutas/ruta-tarjeta/ruta-crear-tarjeta/ruta-crear-tarjeta.component';
 import { RutaEditarRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-editar-rol-usuario/ruta-editar-rol-usuario.component';
 import { RutaCrearRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-crear-rol-usuario/ruta-crear-rol-usuario.component';
 import { RutaEditarRolComponent } from './rutas/ruta-rol/ruta-editar-rol/ruta-editar-rol.component';
@@ -79,6 +81,14 @@ const routes: Routes = [
       {
         component: RutaListaTarjetasComponent,
         path: 'lista-tarjetas'
+      },
+      {
+        component: RutaCrearTarjetaComponent,
+        path: 'crear-tarjeta'
+      },
+      {
+        component: RutaEditarTarjetaComponent,
+        path: 'editar-tarjeta/:id'
       },
       {
         path: '',

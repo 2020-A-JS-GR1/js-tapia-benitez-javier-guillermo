@@ -68,6 +68,9 @@ import { FormularioRolComponent } from './componentes/formularios/formulario-rol
 import { RutaCrearRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-crear-rol-usuario/ruta-crear-rol-usuario.component';
 import { RutaEditarRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-editar-rol-usuario/ruta-editar-rol-usuario.component';
 import { FormularioRolUsuarioComponent } from './componentes/formularios/formulario-rol-usuario/formulario-rol-usuario.component';
+import { RutaCrearTarjetaComponent } from './rutas/ruta-tarjeta/ruta-crear-tarjeta/ruta-crear-tarjeta.component';
+import { RutaEditarTarjetaComponent } from './rutas/ruta-tarjeta/ruta-editar-tarjeta/ruta-editar-tarjeta.component';
+import { FormularioTarjetaComponent } from './componentes/formularios/formulario-tarjeta/formulario-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +111,10 @@ import { FormularioRolUsuarioComponent } from './componentes/formularios/formula
     FormularioRolComponent,
     RutaCrearRolUsuarioComponent,
     RutaEditarRolUsuarioComponent,
-    FormularioRolUsuarioComponent
+    FormularioRolUsuarioComponent,
+    RutaCrearTarjetaComponent,
+    RutaEditarTarjetaComponent,
+    FormularioTarjetaComponent
   ],
   imports: [
     BrowserModule,

@@ -25,8 +25,8 @@ export class FormularioRolUsuarioComponent implements OnInit {
   seleccionUsuario: boolean = true;
   seleccionRol: boolean = true;
 
-  usuarioIdFormulario: number;
-  rolIdFormulario: number;
+  usuarioIdFormulario: number = 0;
+  rolIdFormulario: number = 0;
 
   constructor(
     private readonly _rolUsuarioService: RolUsuarioService,
@@ -35,9 +35,6 @@ export class FormularioRolUsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usuarioIdFormulario = 0;
-    this.rolIdFormulario = 0;
-
     const observableUsuarios = this._usuarioService.getUsuarios();
     observableUsuarios
       .subscribe(
@@ -81,6 +78,9 @@ export class FormularioRolUsuarioComponent implements OnInit {
           console.error('Error obteniendo rol de usuario', error);
         }
       );
+
+    this.seleccionarOpcionUsuario();
+    this.selecionarOpcionRol();
   }
 
   seleccionarOpcionUsuario() {
