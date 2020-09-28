@@ -1,0 +1,33 @@
+.cabecera {
+  background-color: black;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.logo {
+  width: 200px;
+  height: 80px;
+  margin: 10px;
+}
+.menu {
+  background-color: #39ff14;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.routes {
+  padding: 10px;
+}
+.link {
+  margin: 0px 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.cuerpo {
+  position: relative;
+  background-color: white;
+}

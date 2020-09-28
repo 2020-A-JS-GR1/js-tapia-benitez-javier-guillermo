@@ -1,0 +1,10 @@
+<div class="cabecera">
+    <img class="logo" [src]="urlLogo">
+</div>
+<div class="menu">
+    <div class="routes">
+        <a class="link" [routerLink]="['/lista-categoria']">Categorias</a>
+        <a class="link" [routerLink]="['/lista-arma']">Armas</a>
+    </div>
+</div>
+<router-outlet></router-outlet>

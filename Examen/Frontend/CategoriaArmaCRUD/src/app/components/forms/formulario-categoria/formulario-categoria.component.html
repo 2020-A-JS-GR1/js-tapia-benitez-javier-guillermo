@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="top">
+        <h1 class="title">Registrar Categoria</h1>
+    </div>
+    <div class="form">
+        <form #formularioCategoria="ngForm" (ngSubmit)="enviarFormulario(formularioCategoria)">
+            <div>
+                <p class="subtitle">Datos de la categoria</p>
+            </div>
+            <div>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    #nombreCampo="ngModel">
+            </div>
+            <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p class="error" *ngIf="nombreCampo.errors.required">* Campo Requerido</p>
+            </div>
+            <div>
+                <label for="descripcion">Descripcion</label>
+                <textarea name="descripcion" id="descripcion" cols="30" rows="10" [(ngModel)]="descripcionFormulario"
+                    required #descripcionCampo="ngModel"></textarea>
+            </div>
+            <div *ngIf="descripcionCampo.touched && descripcionCampo.errors">
+                <p class="error" *ngIf="descripcionCampo.errors.required">* Campo Requerido</p>
+            </div>
+            <div>
+                <label for="tipo">Tipo</label>
+                <select id="tipo" name="tipo" [(ngModel)]="tipoFormulario" (change)="seleccionarTipo()"
+                    #tipoCampo="ngModel">
+                    <option [ngValue]="'Default'" selected>Seleccione un Tipo</option>
+                    <option [ngValue]="'Primaria'">Primaria</option>
+                    <option [ngValue]="'Secundaria'">Secundaria</option>
+                </select>
+            </div>
+            <div *ngIf="tipoCampo.touched && seleccion">
+                <p class="error" *ngIf="seleccion">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit"
+                [disabled]="!formularioCategoria.form.valid || seleccion">Aceptar</button>
+        </form>
+    </div>
+</div>
