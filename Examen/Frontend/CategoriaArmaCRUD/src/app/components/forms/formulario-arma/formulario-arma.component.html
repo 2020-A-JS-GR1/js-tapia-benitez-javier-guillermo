@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="top">
+        <h1 class="title">Registrar Arma</h1>
+    </div>
+    <div class="form">
+        <form #formularioArma="ngForm" (ngSubmit)="enviarFormulario(formularioArma)">
+            <div>
+                <p class="subtitle">Datos del arma</p>
+            </div>
+            <div>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    #nombreCampo="ngModel">
+            </div>
+            <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p class="error" *ngIf="nombreCampo.errors.required">* Campo Requerido</p>
+            </div>
+            <div>
+                <label for="rpm">Cadencia</label>
+                <input id="rpm" type="number" name="rpm" [(ngModel)]="rpmFormulario" required min="0"
+                    #rpmCampo="ngModel">
+            </div>
+            <div *ngIf="rpmCampo.touched && rpmCampo.errors">
+                <p class="error" *ngIf="rpmCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="rpmCampo.errors.min">* Valor minimo 0</p>
+            </div>
+            <div>
+                <label for="capacidad">Capacidad del cargador</label>
+                <input id="capacidad" type="number" name="capacidad" [(ngModel)]="capacidadFormulario" required min="0"
+                    #capacidadCampo="ngModel">
+            </div>
+            <div *ngIf="capacidadCampo.touched && capacidadCampo.errors">
+                <p class="error" *ngIf="capacidadCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="capacidadCampo.errors.min">* Valor minimo 0</p>
+            </div>
+            <div>
+                <label for="imagen">Imagen</label>
+                <input id="imagen" type="text" name="imagen" [(ngModel)]="imagenFormulario" required
+                    #imagenCampo="ngModel">
+            </div>
+            <div *ngIf="!imagenCampo.errors">
+                <img [src]="locationImages + imagenFormulario">
+            </div>
+            <div *ngIf="imagenCampo.touched && imagenCampo.errors">
+                <p class="error" *ngIf="imagenCampo.errors.required">* Campo Requerido</p>
+            </div>
+            <div>
+                <label for="categoria">Categoria</label>
+                <select id="categoria" name="categoria" [(ngModel)]="categoriaFormulario"
+                    (change)="seleccionarCategoria()" #categoriaCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione una Categoria</option>
+                    <option *ngFor="let categoria of arregloCategorias" [ngValue]="categoria.id">{{categoria.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="categoriaCampo.touched && seleccion">
+                <p class="error" *ngIf="seleccion">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit" [disabled]="!formularioArma.form.valid || seleccion">Aceptar</button>
+        </form>
+    </div>
+</div>

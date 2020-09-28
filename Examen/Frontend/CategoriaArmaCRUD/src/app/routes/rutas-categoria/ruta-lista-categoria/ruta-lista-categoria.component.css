@@ -1,0 +1,46 @@
+.lista {
+  width: 100%;
+}
+.buscador {
+  margin: 0px 30px;
+  display: inline;
+}
+.portada {
+  width: 80px;
+  height: 120px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 90%;
+  padding: 10px 0px;
+}
+.mat-column-nombre {
+  width: 20%;
+}
+.mat-column-descripcion {
+  width: 45%;
+}
+.mat-column-acciones {
+  width: 8%;
+}
+.boton {
+  margin: 5px 5px;
+  background: #39ff14;
+  border-radius: 35px;
+  border: none;
+  outline: none;
+  padding: 5px 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  color: #ffffff;
+}
+.eliminar {
+  background: red;
+}
+.editar {
+  background: #39ff14;
+}
+.crear {
+  margin: 0px 7px;
+}

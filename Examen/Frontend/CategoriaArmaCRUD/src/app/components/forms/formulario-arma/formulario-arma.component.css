@@ -1,0 +1,87 @@
+.container {
+  margin: 20px 0px;
+}
+.top {
+  margin: 0px auto;
+  border: 1px solid #39ff14;
+  background-color: #39ff14;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  margin: 10px 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+.form {
+  margin: 0px auto;
+  border: 1px solid #39ff14;
+  background-color: white;
+  width: 50%;
+  text-align: center;
+}
+.subtitle {
+  margin-top: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+}
+.error {
+  margin-bottom: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  color: red;
+}
+label {
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+  margin-right: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+}
+input {
+  margin-top: 4px;
+  width: 200px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+input[type="number"] {
+  margin-top: 4px;
+  width: 100px;
+  margin-right: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+select {
+  margin-top: 4px;
+  width: 200px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+img {
+  margin-top: 10px;
+  margin-left: 160px;
+  width: 150px;
+}
+.boton {
+  margin: 20px 5px;
+  background: #39ff14;
+  border-radius: 35px;
+  border: none;
+  outline: none;
+  padding: 5px 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  color: #ffffff;
+}
+.boton[disabled] {
+  background-color: #455475;
+}
+.eliminar {
+  background: #ec4144;
+}
