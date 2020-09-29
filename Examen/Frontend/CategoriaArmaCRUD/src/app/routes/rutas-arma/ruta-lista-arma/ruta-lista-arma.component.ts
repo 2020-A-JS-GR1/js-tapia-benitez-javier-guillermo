@@ -61,15 +61,15 @@ export class RutaListaArmaComponent implements OnInit {
     this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
-  filtrarLista(categoria: number) {
-    if (categoria === 0) {
+  filtrarLista(categoria: string) {
+    if (categoria === 'Todas') {
       this.dataSource.data = this.arregloArmas;
     } else {
       this.dataSource.data = this.arregloArmas.filter(arma => arma.categoria.id === categoria);
     }
   }
 
-  eliminarArma(id: number) {
+  eliminarArma(id: string) {
     const observableEliminarArma = this._armaService.delete(id);
     observableEliminarArma
       .subscribe(

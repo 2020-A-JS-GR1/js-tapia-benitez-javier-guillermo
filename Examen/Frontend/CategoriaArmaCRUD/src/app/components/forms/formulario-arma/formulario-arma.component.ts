@@ -24,7 +24,7 @@ export class FormularioArmaComponent implements OnInit {
   rpmFormulario: number;
   capacidadFormulario: number;
   imagenFormulario: string;
-  categoriaFormulario: number;
+  categoriaFormulario: string;
 
   arregloCategorias: Categoria[] = [];
 
@@ -72,7 +72,7 @@ export class FormularioArmaComponent implements OnInit {
   }
 
   seleccionarCategoria() {
-    if (this.categoriaFormulario !== 0) {
+    if (this.categoriaFormulario !== 'Default') {
       this.seleccion = false;
     } else {
       this.seleccion = true;

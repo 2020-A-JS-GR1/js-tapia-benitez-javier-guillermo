@@ -5,6 +5,6 @@ export class Categoria {
         public tipo: 'Primaria' | 'Secundaria',
         public createdAt?: number,
         public updatedAt?: number,
-        public id?: number,
+        public id?: string,
     ) { }
 }

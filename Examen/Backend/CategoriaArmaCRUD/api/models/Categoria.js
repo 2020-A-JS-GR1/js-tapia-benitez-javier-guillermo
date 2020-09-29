@@ -28,6 +28,7 @@ module.exports = {
       via: 'categoria',
     }
   },
+  datastore: 'default',
 
 };
 

@@ -12,7 +12,7 @@ export class RutaEditarArmaComponent implements OnInit {
 
   mostrarFormulario: boolean = false;
 
-  id: number;
+  id: string;
   arma: Arma;
 
   constructor(
@@ -26,7 +26,7 @@ export class RutaEditarArmaComponent implements OnInit {
     observableRutaArma
       .subscribe(
         (parametros: Params) => {
-          this.id = Number(parametros.id);
+          this.id = String(parametros.id);
           const observableObtenerArma = this._armaService.getById(this.id);
           observableObtenerArma
             .subscribe(
