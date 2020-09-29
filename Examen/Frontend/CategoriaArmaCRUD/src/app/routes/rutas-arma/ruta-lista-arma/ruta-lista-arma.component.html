@@ -1,6 +1,6 @@
 <div>
     <div class="filtro">
-        <button class="boton" type="button" (click)="filtrarLista(0)">Todas</button>
+        <button class="boton" type="button" (click)="filtrarLista('Todas')">Todas</button>
         <button *ngFor="let categoria of arregloCategorias" class="boton" type="button"
             (click)="filtrarLista(categoria.id)">{{categoria.nombre}}</button>
     </div>

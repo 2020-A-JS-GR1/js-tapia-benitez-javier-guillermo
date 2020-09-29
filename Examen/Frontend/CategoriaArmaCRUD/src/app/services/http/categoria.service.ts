@@ -18,7 +18,7 @@ export class CategoriaService {
     return this._httpClient.get(this.url + '/Categoria');
   }
 
-  getById(id: number) {
+  getById(id: string) {
     return this._httpClient.get(this.url + '/Categoria/' + id);
   }
 
@@ -26,11 +26,11 @@ export class CategoriaService {
     return this._httpClient.post(this.url + '/Categoria', categoria);
   }
 
-  update(id: number, categoria: Categoria) {
+  update(id: string, categoria: Categoria) {
     return this._httpClient.put(this.url + '/Categoria/' + id, categoria);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     return this._httpClient.delete(this.url + '/Categoria/' + id);
   }
 }

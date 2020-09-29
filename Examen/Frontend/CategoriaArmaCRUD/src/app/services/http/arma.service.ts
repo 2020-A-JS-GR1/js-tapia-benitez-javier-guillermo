@@ -18,7 +18,7 @@ export class ArmaService {
     return this._httpClient.get(this.url + '/Arma');
   }
 
-  getById(id: number) {
+  getById(id: string) {
     return this._httpClient.get(this.url + '/Arma/' + id);
   }
 
@@ -26,11 +26,11 @@ export class ArmaService {
     return this._httpClient.post(this.url + '/Arma', arma);
   }
 
-  update(id: number, arma: Arma) {
+  update(id: string, arma: Arma) {
     return this._httpClient.put(this.url + '/Arma/' + id, arma);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     return this._httpClient.delete(this.url + '/Arma/' + id);
   }
 }

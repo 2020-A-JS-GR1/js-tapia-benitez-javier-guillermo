@@ -48,7 +48,7 @@
                 <label for="categoria">Categoria</label>
                 <select id="categoria" name="categoria" [(ngModel)]="categoriaFormulario"
                     (change)="seleccionarCategoria()" #categoriaCampo="ngModel">
-                    <option [ngValue]="0" selected>Seleccione una Categoria</option>
+                    <option [ngValue]="'Default'" selected>Seleccione una Categoria</option>
                     <option *ngFor="let categoria of arregloCategorias" [ngValue]="categoria.id">{{categoria.nombre}}
                     </option>
                 </select>

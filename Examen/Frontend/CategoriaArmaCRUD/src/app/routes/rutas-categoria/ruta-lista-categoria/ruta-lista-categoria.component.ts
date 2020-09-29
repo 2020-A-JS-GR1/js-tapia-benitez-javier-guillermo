@@ -46,7 +46,7 @@ export class RutaListaCategoriaComponent implements OnInit {
     this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
-  eliminarCategoria(id: number) {
+  eliminarCategoria(id: string) {
     const observableEliminarCategoria = this._categoriaService.delete(id);
     observableEliminarCategoria
       .subscribe(

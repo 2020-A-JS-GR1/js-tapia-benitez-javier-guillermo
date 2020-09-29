@@ -12,7 +12,7 @@ export class RutaEditarCategoriaComponent implements OnInit {
 
   mostrarFormulario: boolean = false;
 
-  id: number;
+  id: string;
   categoria: Categoria;
 
   constructor(
@@ -26,7 +26,7 @@ export class RutaEditarCategoriaComponent implements OnInit {
     observableRutaCategoria
       .subscribe(
         (parametros: Params) => {
-          this.id = Number(parametros.id);
+          this.id = String(parametros.id);
           const observableObtenerCategoria = this._categoriaService.getById(this.id);
           observableObtenerCategoria
             .subscribe(

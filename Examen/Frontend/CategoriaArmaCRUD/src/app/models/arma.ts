@@ -9,6 +9,6 @@ export class Arma {
         public categoria: number | Categoria | any,
         public createdAt?: number,
         public updatedAt?: number,
-        public id?: number,
+        public id?: string,
     ) { }
 }
