@@ -15,7 +15,7 @@ export class FormularioUsuarioComponent implements OnInit {
   usuarioEditar: Usuario;
 
   @Output()
-  enviarFormularioEvent: EventEmitter<NgForm> = new EventEmitter<NgForm>();
+  enviarFormularioEvent: EventEmitter<Usuario> = new EventEmitter<Usuario>();
 
   arregloProvincias: Provincia[] = [];
   confirmacion: boolean = true;
@@ -53,7 +53,18 @@ export class FormularioUsuarioComponent implements OnInit {
   }
 
   enviarFormulario(formulario: NgForm) {
-    this.enviarFormularioEvent.emit(formulario);
+    this.enviarFormularioEvent.emit(
+      new Usuario(
+        formulario.form.value.nombre,
+        formulario.form.value.apellido,
+        formulario.form.value.email,
+        formulario.form.value.contrasena,
+        formulario.form.value.perros,
+        formulario.form.value.gatos,
+        formulario.form.value.ninos,
+        formulario.form.value.id_provincia
+      )
+    );
   }
 
   llenarFormulario() {

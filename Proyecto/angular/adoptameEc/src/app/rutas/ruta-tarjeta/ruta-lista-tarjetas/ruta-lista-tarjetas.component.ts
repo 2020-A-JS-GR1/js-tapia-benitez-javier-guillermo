@@ -1,7 +1,5 @@
-import { UsuarioService } from './../../../servicios/http/usuario.service';
 import { TarjetaService } from './../../../servicios/http/tarjeta.service';
 import { Tarjeta } from './../../../modelos/tarjeta';
-import { Usuario } from './../../../modelos/usuario';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,13 +18,11 @@ export class RutaListaTarjetasComponent implements OnInit {
   columnas: string[] = ['numero', 'caducidad', 'cvv', "usuario", "acciones"];
 
   arregloTarjetas: Tarjeta[] = [];
-  arregloUsuarios: Usuario[] = [];
 
   dataSource = new MatTableDataSource<Tarjeta>();
 
   constructor(
-    private readonly _tarjetaService: TarjetaService,
-    private readonly _usuarioService: UsuarioService
+    private readonly _tarjetaService: TarjetaService
   ) { }
 
   ngOnInit(): void {
@@ -42,24 +38,8 @@ export class RutaListaTarjetasComponent implements OnInit {
         }
       );
 
-    const observableUsuarios = this._usuarioService.getUsuarios();
-    observableUsuarios
-      .subscribe(
-        (usuarios: Usuario[]) => {
-          this.arregloUsuarios = usuarios;
-        },
-        error => {
-          console.error('Error obteniendo usuarios', error);
-        }
-      );
-
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  obtenerPropietarioTarjeta(id: number): string {
-    const propietario = this.arregloUsuarios.find(usuario => usuario.id === id);
-    return propietario?.nombre + ' ' + propietario?.apellido;
   }
 
   filtrarTarjeta(busqueda: string) {

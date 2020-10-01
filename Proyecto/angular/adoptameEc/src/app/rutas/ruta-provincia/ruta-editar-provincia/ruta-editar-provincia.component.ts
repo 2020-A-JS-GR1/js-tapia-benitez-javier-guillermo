@@ -12,7 +12,9 @@ import { NgForm } from '@angular/forms';
 export class RutaEditarProvinciaComponent implements OnInit {
 
   editadoProvincia: Provincia;
-  id: number
+
+  id: number;
+  mostrarFormulario: boolean = false;
 
   constructor(
     private readonly _provinciaService: ProvinciaService,
@@ -26,22 +28,33 @@ export class RutaEditarProvinciaComponent implements OnInit {
       .subscribe(
         (parametros: Params) => {
           this.id = Number(parametros.id);
+          const observableObtenerProvincia = this._provinciaService.getProvincia(this.id);
+          observableObtenerProvincia
+            .subscribe(
+              (provincia: Provincia) => {
+                this.editadoProvincia = provincia;
+                this.llenarFormularioProvincia();
+              }
+            );
         }
       );
   }
 
-  actualizarProvincia(formulario: NgForm) {
-    this.editadoProvincia = formulario.form.value;
-    const observableActualizarProvincia = this._provinciaService.updateProvincia(this.id, this.editadoProvincia);
+  llenarFormularioProvincia() {
+    this.mostrarFormulario = true;
+  }
+
+  actualizarProvincia(provincia: Provincia) {
+    const observableActualizarProvincia = this._provinciaService.updateProvincia(this.id, provincia);
     observableActualizarProvincia
       .subscribe(
         () => {
-          console.log('Provincia actualizada: ', this.editadoProvincia);
+          console.log('Provincia actualizada: ', provincia);
           const ruta = ['/refugios', 'lista-provincias'];
           this._router.navigate(ruta);
         },
         error => {
-          console.error('Error obteniendo provincia', error);
+          console.error('Error actualizando provincia', error);
         }
       );
   }

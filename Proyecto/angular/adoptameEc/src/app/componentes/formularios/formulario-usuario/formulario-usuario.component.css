@@ -46,16 +46,14 @@ label {
   font-family: "Spectral", serif;
   font-size: 14px;
 }
-.etiqueta-numero {
-  width: 35px;
-}
 input {
   margin-top: 4px;
   width: 200px;
   font-family: "Spectral", serif;
 }
-.numero {
+input[type=number] {
   width: 40px;
+  margin-right: 160px;
   text-align: center;
 }
 select {

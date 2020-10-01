@@ -12,7 +12,9 @@ import { NgForm } from '@angular/forms';
 export class RutaEditarRolComponent implements OnInit {
 
   editadoRol: Rol;
+
   id: number;
+  mostrarFormulario: boolean = false;
 
   constructor(
     private readonly _rolService: RolService,
@@ -26,22 +28,36 @@ export class RutaEditarRolComponent implements OnInit {
       .subscribe(
         (parametros: Params) => {
           this.id = Number(parametros.id);
+          const observableObtenerRol = this._rolService.getRol(this.id);
+          observableObtenerRol
+            .subscribe(
+              (rol: Rol) => {
+                this.editadoRol = rol;
+                this.llenarFormularioRol();
+              },
+              error => {
+                console.error('Error obteniendo rol', error);
+              }
+            );
         }
       );
   }
 
-  actualizarRol(formulario: NgForm) {
-    this.editadoRol = formulario.form.value;
-    const observableActualizarRol = this._rolService.updateRol(this.id, this.editadoRol);
+  llenarFormularioRol() {
+    this.mostrarFormulario = true;
+  }
+
+  actualizarRol(rol: Rol) {
+    const observableActualizarRol = this._rolService.updateRol(this.id, rol);
     observableActualizarRol
       .subscribe(
         () => {
-          console.log('Rol actualizado: ', this.editadoRol);
+          console.log('Rol actualizado: ', rol);
           const ruta = ['/roles', 'lista-roles'];
           this._router.navigate(ruta);
         },
         error => {
-          console.error('Error obteniendo rol', error);
+          console.error('Error actualizando rol', error);
         }
       );
   }

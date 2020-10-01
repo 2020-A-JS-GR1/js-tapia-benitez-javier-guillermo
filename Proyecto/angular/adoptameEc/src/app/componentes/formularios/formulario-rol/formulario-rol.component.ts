@@ -1,5 +1,4 @@
 import { Rol } from './../../../modelos/rol';
-import { RolService } from './../../../servicios/http/rol.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -11,37 +10,30 @@ import { NgForm } from '@angular/forms';
 export class FormularioRolComponent implements OnInit {
 
   @Input()
-  idRolEditar: number;
+  rolEditar: Rol;
 
   @Output()
-  enviarFormularioEvent = new EventEmitter<NgForm>();
+  enviarFormularioEvent: EventEmitter<Rol> = new EventEmitter<Rol>();
 
   nombreFormulario: string;
 
-  constructor(
-    private readonly _rolService: RolService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if (this.idRolEditar) {
+    if (this.rolEditar) {
       this.llenarFormulario();
     }
   }
 
   enviarFormulario(formulario: NgForm) {
-    this.enviarFormularioEvent.emit(formulario);
+    this.enviarFormularioEvent.emit(
+      new Rol(
+        formulario.form.value.nombre
+      )
+    );
   }
 
   llenarFormulario() {
-    const observableObtenerRol = this._rolService.getRol(this.idRolEditar);
-    observableObtenerRol
-      .subscribe(
-        (rol: Rol) => {
-          this.nombreFormulario = rol.nombre;
-        },
-        error => {
-          console.error('Error obteniendo rol', error);
-        }
-      );
+    this.nombreFormulario = this.rolEditar.nombre;
   }
 }

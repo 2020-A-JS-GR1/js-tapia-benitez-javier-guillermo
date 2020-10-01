@@ -71,6 +71,19 @@ import { FormularioRolUsuarioComponent } from './componentes/formularios/formula
 import { RutaCrearTarjetaComponent } from './rutas/ruta-tarjeta/ruta-crear-tarjeta/ruta-crear-tarjeta.component';
 import { RutaEditarTarjetaComponent } from './rutas/ruta-tarjeta/ruta-editar-tarjeta/ruta-editar-tarjeta.component';
 import { FormularioTarjetaComponent } from './componentes/formularios/formulario-tarjeta/formulario-tarjeta.component';
+import { RutaInicioComponent } from './rutas/ruta-inicio/ruta-inicio.component';
+import { FormularioRefugioComponent } from './componentes/formularios/formulario-refugio/formulario-refugio.component';
+import { RutaCrearRefugioComponent } from './rutas/ruta-refugio/ruta-crear-refugio/ruta-crear-refugio.component';
+import { RutaEditarRefugioComponent } from './rutas/ruta-refugio/ruta-editar-refugio/ruta-editar-refugio.component';
+import { FormularioEspecieComponent } from './componentes/formularios/formulario-especie/formulario-especie.component';
+import { RutaCrearEspecieComponent } from './rutas/ruta-especie/ruta-crear-especie/ruta-crear-especie.component';
+import { RutaEditarEspecieComponent } from './rutas/ruta-especie/ruta-editar-especie/ruta-editar-especie.component';
+import { FormularioRazaComponent } from './componentes/formularios/formulario-raza/formulario-raza.component';
+import { RutaCrearRazaComponent } from './rutas/ruta-raza/ruta-crear-raza/ruta-crear-raza.component';
+import { RutaEditarRazaComponent } from './rutas/ruta-raza/ruta-editar-raza/ruta-editar-raza.component';
+import { FormularioMascotaComponent } from './componentes/formularios/formulario-mascota/formulario-mascota.component';
+import { RutaCrearMascotaComponent } from './rutas/ruta-mascota/ruta-crear-mascota/ruta-crear-mascota.component';
+import { RutaEditarMascotaComponent } from './rutas/ruta-mascota/ruta-editar-mascota/ruta-editar-mascota.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +127,20 @@ import { FormularioTarjetaComponent } from './componentes/formularios/formulario
     FormularioRolUsuarioComponent,
     RutaCrearTarjetaComponent,
     RutaEditarTarjetaComponent,
-    FormularioTarjetaComponent
+    FormularioTarjetaComponent,
+    RutaInicioComponent,
+    FormularioRefugioComponent,
+    RutaCrearRefugioComponent,
+    RutaEditarRefugioComponent,
+    FormularioEspecieComponent,
+    RutaCrearEspecieComponent,
+    RutaEditarEspecieComponent,
+    FormularioRazaComponent,
+    RutaCrearRazaComponent,
+    RutaEditarRazaComponent,
+    FormularioMascotaComponent,
+    RutaCrearMascotaComponent,
+    RutaEditarMascotaComponent
   ],
   imports: [
     BrowserModule,

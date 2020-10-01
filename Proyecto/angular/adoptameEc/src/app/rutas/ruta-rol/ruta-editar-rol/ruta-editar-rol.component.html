@@ -1,1 +1,3 @@
-<app-formulario-rol [idRolEditar]="id" (enviarFormularioEvent)="actualizarRol($event)"></app-formulario-rol>
+<div *ngIf="mostrarFormulario">
+    <app-formulario-rol [rolEditar]="editadoRol" (enviarFormularioEvent)="actualizarRol($event)"></app-formulario-rol>
+</div>

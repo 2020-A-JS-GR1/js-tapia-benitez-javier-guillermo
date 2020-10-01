@@ -11,8 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class RutaCrearRolUsuarioComponent implements OnInit {
 
-  nuevoRolUsuario: RolUsuario;
-
   constructor(
     private readonly _rolUsuarioService: RolUsuarioService,
     private readonly _router: Router
@@ -21,15 +19,12 @@ export class RutaCrearRolUsuarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearRolUsuario(formulario: NgForm) {
-    this.nuevoRolUsuario = formulario.form.value;
-    this.nuevoRolUsuario.id_usuario = Number(this.nuevoRolUsuario.id_usuario);
-    this.nuevoRolUsuario.id_rol = Number(this.nuevoRolUsuario.id_rol);
-    const observableCrearRolUsuario = this._rolUsuarioService.createRolUsuario(this.nuevoRolUsuario);
+  crearRolUsuario(rolUsuario: RolUsuario) {
+    const observableCrearRolUsuario = this._rolUsuarioService.createRolUsuario(rolUsuario);
     observableCrearRolUsuario
       .subscribe(
         () => {
-          console.log('Rol de usuario registrado: ', this.nuevoRolUsuario);
+          console.log('Rol de usuario registrado: ', rolUsuario);
           const ruta = ['/usuarios', 'lista-roles-usuarios'];
           this._router.navigate(ruta);
         },

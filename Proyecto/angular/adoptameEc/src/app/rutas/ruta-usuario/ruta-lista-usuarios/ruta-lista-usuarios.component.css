@@ -10,6 +10,9 @@
   width: 90%;
   padding: 10px 0px 0px;
 }
+.mat-column-acciones {
+  width: 15%;
+}
 .boton {
   margin: 0px 5px;
   background: #3864c2;

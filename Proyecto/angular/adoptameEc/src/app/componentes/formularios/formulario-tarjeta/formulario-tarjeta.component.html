@@ -35,7 +35,7 @@
             </div>
             <div>
                 <label for="cvvTarjeta">CVV</label>
-                <input class="numero-anio" id="cvvTarjeta" type="text" name="cvv" [(ngModel)]="cvvFormulario" required
+                <input class="cvv" id="cvvTarjeta" type="text" name="cvv" [(ngModel)]="cvvFormulario" required
                     minlength="3" maxlength="4" #cvvCampo="ngModel">
             </div>
             <div *ngIf="cvvCampo.touched && cvvCampo.errors">

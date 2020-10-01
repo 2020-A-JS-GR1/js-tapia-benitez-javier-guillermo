@@ -40,14 +40,11 @@
 }
 label {
   display: inline-block;
-  width: 100px;
+  width: 200px;
   text-align: right;
   margin-right: 15px;
   font-family: "Spectral", serif;
   font-size: 14px;
-}
-.etiqueta-numero{
-  width: 180px;
 }
 input {
   margin-top: 4px;
@@ -60,6 +57,12 @@ input {
 }
 .numero-anio {
   width: 60px;
+  margin-right: 82px;
+  text-align: center;
+}
+.cvv{
+  width: 60px;
+  margin-right: 140px;
   text-align: center;
 }
 select {

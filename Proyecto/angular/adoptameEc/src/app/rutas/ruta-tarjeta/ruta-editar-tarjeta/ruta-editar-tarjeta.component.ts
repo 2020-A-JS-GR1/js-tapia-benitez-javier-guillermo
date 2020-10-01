@@ -11,9 +11,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class RutaEditarTarjetaComponent implements OnInit {
 
-  editadoTarjeta: Tarjeta = new Tarjeta('', '', '', 0);
+  editadoTarjeta: Tarjeta;
+
   id: number;
-  fechaCaducidadNuevaTarjeta: string;
+  mostrarFormulario: boolean = false;
 
   constructor(
     private readonly _tarjetaService: TarjetaService,
@@ -27,31 +28,36 @@ export class RutaEditarTarjetaComponent implements OnInit {
       .subscribe(
         (parametros: Params) => {
           this.id = Number(parametros.id);
+          const observableObtenerTarjeta = this._tarjetaService.getTarjeta(this.id);
+          observableObtenerTarjeta
+            .subscribe(
+              (tarjeta: Tarjeta) => {
+                this.editadoTarjeta = tarjeta;
+                this.llenarFormularioTarjeta();
+              },
+              error => {
+                console.error('Error obteniendo tarjeta', error);
+              }
+            );
         }
       );
   }
 
-  actualizarTarjeta(formulario: NgForm) {
-    this.editadoTarjeta.numero = formulario.form.value.numero;
-    if (formulario.form.value.dia < 10) {
-      this.fechaCaducidadNuevaTarjeta = '0' + String(formulario.form.value.dia) + '/' + String(formulario.form.value.anio);
-    } else {
-      this.fechaCaducidadNuevaTarjeta = String(formulario.form.value.dia) + '/' + String(formulario.form.value.anio);
-    }
-    this.editadoTarjeta.fechaCaducidad = this.fechaCaducidadNuevaTarjeta;
-    this.editadoTarjeta.cvv = formulario.form.value.cvv;
-    this.editadoTarjeta.id_usuario = formulario.form.value.id_usuario;
+  llenarFormularioTarjeta() {
+    this.mostrarFormulario = true;
+  }
 
-    const observableActualizarTarjeta = this._tarjetaService.updateTarjeta(this.id, this.editadoTarjeta);
+  actualizarTarjeta(tarjeta: Tarjeta) {
+    const observableActualizarTarjeta = this._tarjetaService.updateTarjeta(this.id, tarjeta);
     observableActualizarTarjeta
       .subscribe(
         () => {
-          console.log('Tarjeta actualizada: ', this.editadoTarjeta);
+          console.log('Tarjeta actualizada: ', tarjeta);
           const ruta = ['/usuarios', 'lista-tarjetas'];
           this._router.navigate(ruta);
         },
         error => {
-          console.error('Error obteniendo tarjeta', error);
+          console.error('Error actualizando tarjeta', error);
         }
       );
   }

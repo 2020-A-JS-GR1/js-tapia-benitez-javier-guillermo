@@ -1,0 +1,44 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Refugio</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioRefugio="ngForm" (ngSubmit)="enviarFormulario(formularioRefugio)">
+            <div>
+                <p class="subtitulo">Datos del refugio</p>
+            </div>
+            <div>
+                <label for="nombreRefugio">Nombre</label>
+                <input id="nombreRefugio" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    minlength="3" #nombreCampo="ngModel">
+            </div>
+            <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p class="error" *ngIf="nombreCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="nombreCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="direccionRefugio">Direccion</label>
+                <textarea name="direccion" id="direccionRefugio" cols="30" rows="10" [(ngModel)]="direccionFormulario"
+                    required minlength="3" #direccionCampo="ngModel"></textarea>
+            </div>
+            <div *ngIf="direccionCampo.touched && direccionCampo.errors">
+                <p class="error" *ngIf="direccionCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="direccionCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="provinciaRefugio">Provincia</label>
+                <select id="ProvinciaRefugio" name="id_provincia" [(ngModel)]="provinciaIdFormulario"
+                    (change)="seleccionarOpcionProvincia()" #provinciaCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione una Provincia</option>
+                    <option *ngFor="let provincia of arregloProvincias" [ngValue]="provincia.id">{{provincia.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="provinciaCampo.touched && seleccion">
+                <p class="error" *ngIf="seleccion">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit" [disabled]="!formularioRefugio.form.valid || seleccion">Aceptar</button>
+        </form>
+    </div>
+</div>

@@ -22,15 +22,11 @@ export class RutaListaRolesUsuariosComponent implements OnInit {
   columnas: string[] = ['nombre', 'email', "rol", "acciones"];
 
   arregloRolesUsuarios: RolUsuario[] = [];
-  arregloRoles: Rol[] = [];
-  arregloUsuarios: Usuario[] = [];
 
   dataSource = new MatTableDataSource<RolUsuario>();
 
   constructor(
     private readonly _rolUsuarioService: RolUsuarioService,
-    private readonly _rolService: RolService,
-    private readonly _usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
@@ -46,45 +42,8 @@ export class RutaListaRolesUsuariosComponent implements OnInit {
         }
       );
 
-    const observableUsuarios = this._usuarioService.getUsuarios();
-    observableUsuarios
-      .subscribe(
-        (usuarios: Usuario[]) => {
-          this.arregloUsuarios = usuarios;
-        },
-        error => {
-          console.error('Error obteniendo usuarios', error);
-        }
-      );
-
-    const observableRoles = this._rolService.getRoles();
-    observableRoles
-      .subscribe(
-        (roles: Rol[]) => {
-          this.arregloRoles = roles;
-        },
-        error => {
-          console.error('Error obteniendo roles', error);
-        }
-      );
-
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  obtenerUsuarioRol(id: number): string {
-    const usuario = this.arregloUsuarios.find(usuario => usuario.id === id);
-    return usuario?.nombre + ' ' + usuario?.apellido;
-  }
-
-  obtenerEmailUsuario(id: number): string {
-    const usuario = this.arregloUsuarios.find(usuario => usuario.id === id);
-    return usuario?.email;
-  }
-
-  obtenerRolUsuario(id: number): string {
-    const rol = this.arregloRoles.find(rol => rol.id === id);
-    return rol?.nombre;
   }
 
   filtrarRolUsuario(busqueda: string) {

@@ -12,6 +12,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class RutaEditarUsuarioComponent implements OnInit {
 
   editadoUsuario: Usuario;
+
   id: number;
   mostrarFormulario: boolean = false;
 
@@ -46,19 +47,17 @@ export class RutaEditarUsuarioComponent implements OnInit {
     this.mostrarFormulario = true;
   }
 
-  actualizarUsuario(formulario: NgForm) {
-    this.editadoUsuario = formulario.form.value;
-    this.editadoUsuario.id_provincia = Number(this.editadoUsuario.id_provincia);
-    const observableActualizarUsuario = this._usuarioService.updateUsuario(this.id, this.editadoUsuario);
+  actualizarUsuario(usuario: Usuario) {
+    const observableActualizarUsuario = this._usuarioService.updateUsuario(this.id, usuario);
     observableActualizarUsuario
       .subscribe(
         () => {
-          console.log('Usuario actualizado:', this.editadoUsuario);
+          console.log('Usuario actualizado:', usuario);
           const ruta = ['/usuarios', 'lista-usuarios'];
           this._router.navigate(ruta);
         },
         error => {
-          console.error('Error obteniendo usuario', error);
+          console.error('Error actualizando usuario', error);
         }
       );
   }

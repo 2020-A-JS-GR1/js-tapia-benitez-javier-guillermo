@@ -1,8 +1,11 @@
+import { MatSort } from '@angular/material/sort';
 import { EspecieService } from './../../../servicios/http/especie.service';
 import { RazaService } from './../../../servicios/http/raza.service';
 import { Especie } from './../../../modelos/especie';
 import { Raza } from './../../../modelos/raza';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-razas',
@@ -11,12 +14,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaRazasComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['nombre', 'descripcion', 'especie', "acciones"];
+
   arregloRazas: Raza[] = [];
-  arregloEspecies: Especie[] = [];
+
+  dataSource = new MatTableDataSource<Raza>();
 
   constructor(
-    private readonly _razaService: RazaService,
-    private readonly _especieService: EspecieService
+    private readonly _razaService: RazaService
   ) { }
 
   ngOnInit(): void {
@@ -25,27 +33,19 @@ export class RutaListaRazasComponent implements OnInit {
       .subscribe(
         (razas: Raza[]) => {
           this.arregloRazas = razas;
+          this.dataSource.data = this.arregloRazas;
         },
         error => {
           console.error('Error obteniendo razas', error);
         }
       );
 
-    const observableEspecies = this._especieService.getEspecies();
-    observableEspecies
-      .subscribe(
-        (especies: Especie[]) => {
-          this.arregloEspecies = especies;
-        },
-        error => {
-          console.error('Error obteniendo especies', error);
-        }
-      );
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  obtenerEspecieRaza(id: number): string {
-    const especie = this.arregloEspecies.find(especie => especie.id === id);
-    return especie?.nombre;
+  filtrarRaza(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
   eliminarRaza(idRaza: number) {
@@ -55,6 +55,7 @@ export class RutaListaRazasComponent implements OnInit {
         () => {
           const indice = this.arregloRazas.findIndex(raza => raza.id === idRaza);
           this.arregloRazas.splice(indice, 1);
+          this.dataSource.data = this.arregloRazas;
         },
         error => {
           console.error('Error eliminando raza', error);

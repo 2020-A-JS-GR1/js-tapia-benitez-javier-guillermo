@@ -1,17 +1,38 @@
-<table id="lista">
-    <tr>
-        <th>Nombre</th>
-        <th>Direccion</th>
-        <th>Provincia</th>
-        <th>Acciones</th>
-    </tr>
-    <tr *ngFor="let refugio of arregloRefugios">
-        <td>{{refugio.nombre}}</td>
-        <td>{{refugio.direccion}}</td>
-        <td>{{obtenerProvinciaRefugio(refugio.id_provincia.id)}}</td>
-        <td>
-            <button>Editar</button>
-            <button type="button" (click)="eliminarRefugio(refugio.id)">Eliminar</button>
-        </td>
-    </tr>
-</table>
+<div class="buscador">
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="filtrarRefugio($event.target.value)" placeholder="Ej. Patitas callejeras">
+    </mat-form-field>
+    <button class="boton crear" type="button" [routerLink]="['/refugios', 'crear-refugio']">Crear</button>
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="lista" matSort>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+            <td mat-cell *matCellDef="let refugio">{{refugio.nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="direccion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Direccion</th>
+            <td mat-cell *matCellDef="let refugio">{{refugio.direccion}}</td>
+        </ng-container>
+        <ng-container matColumnDef="provincia">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
+            <td mat-cell *matCellDef="let refugio">{{refugio.id_provincia.nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+            <td mat-cell *matCellDef="let refugio">
+                <button class="boton editar" type="button"
+                    [routerLink]="['/refugios', 'editar-refugio', refugio.id]">Editar</button>
+                <button class="boton eliminar" type="button" (click)="eliminarRefugio(refugio.id)">Eliminar</button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No existen registros</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

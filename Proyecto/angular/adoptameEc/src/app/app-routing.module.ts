@@ -1,3 +1,12 @@
+import { RutaEditarMascotaComponent } from './rutas/ruta-mascota/ruta-editar-mascota/ruta-editar-mascota.component';
+import { RutaCrearMascotaComponent } from './rutas/ruta-mascota/ruta-crear-mascota/ruta-crear-mascota.component';
+import { RutaEditarRazaComponent } from './rutas/ruta-raza/ruta-editar-raza/ruta-editar-raza.component';
+import { RutaCrearRazaComponent } from './rutas/ruta-raza/ruta-crear-raza/ruta-crear-raza.component';
+import { RutaEditarEspecieComponent } from './rutas/ruta-especie/ruta-editar-especie/ruta-editar-especie.component';
+import { RutaCrearEspecieComponent } from './rutas/ruta-especie/ruta-crear-especie/ruta-crear-especie.component';
+import { RutaEditarRefugioComponent } from './rutas/ruta-refugio/ruta-editar-refugio/ruta-editar-refugio.component';
+import { RutaCrearRefugioComponent } from './rutas/ruta-refugio/ruta-crear-refugio/ruta-crear-refugio.component';
+import { RutaInicioComponent } from './rutas/ruta-inicio/ruta-inicio.component';
 import { RutaEditarTarjetaComponent } from './rutas/ruta-tarjeta/ruta-editar-tarjeta/ruta-editar-tarjeta.component';
 import { RutaCrearTarjetaComponent } from './rutas/ruta-tarjeta/ruta-crear-tarjeta/ruta-crear-tarjeta.component';
 import { RutaEditarRolUsuarioComponent } from './rutas/ruta-rol-usuario/ruta-editar-rol-usuario/ruta-editar-rol-usuario.component';
@@ -106,6 +115,14 @@ const routes: Routes = [
         path: 'lista-mascotas'
       },
       {
+        component: RutaCrearMascotaComponent,
+        path: 'crear-mascota'
+      },
+      {
+        component: RutaEditarMascotaComponent,
+        path: 'editar-mascota/:id'
+      },
+      {
         component: RutaListaRefugiosMascotasComponent,
         path: 'lista-refugios-mascotas'
       },
@@ -118,8 +135,24 @@ const routes: Routes = [
         path: 'lista-especies'
       },
       {
+        component: RutaCrearEspecieComponent,
+        path: 'crear-especie'
+      },
+      {
+        component: RutaEditarEspecieComponent,
+        path: 'editar-especie/:id'
+      },
+      {
         component: RutaListaRazasComponent,
         path: 'lista-razas'
+      },
+      {
+        component: RutaCrearRazaComponent,
+        path: 'crear-raza'
+      },
+      {
+        component: RutaEditarRazaComponent,
+        path: 'editar-raza/:id'
       },
       {
         path: '',
@@ -154,6 +187,14 @@ const routes: Routes = [
       {
         component: RutaListaRefugiosComponent,
         path: 'lista-refugios'
+      },
+      {
+        component: RutaCrearRefugioComponent,
+        path: 'crear-refugio'
+      },
+      {
+        component: RutaEditarRefugioComponent,
+        path: 'editar-refugio/:id'
       },
       {
         component: RutaListaProvinciasComponent,
@@ -196,6 +237,10 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    component: RutaInicioComponent,
+    path:  'inicio'
   },
   {
     path: '',

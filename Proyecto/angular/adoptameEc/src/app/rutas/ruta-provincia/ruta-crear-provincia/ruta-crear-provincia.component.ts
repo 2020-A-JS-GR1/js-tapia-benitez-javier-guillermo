@@ -11,8 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class RutaCrearProvinciaComponent implements OnInit {
 
-  nuevaProvincia: Provincia;
-
   constructor(
     private readonly _provinciaService: ProvinciaService,
     private readonly _router: Router
@@ -21,13 +19,12 @@ export class RutaCrearProvinciaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearProvincia(formulario: NgForm) {
-    this.nuevaProvincia = formulario.form.value;
-    const observableCrearProvincia = this._provinciaService.createProvincia(this.nuevaProvincia);
+  crearProvincia(provincia: Provincia) {
+    const observableCrearProvincia = this._provinciaService.createProvincia(provincia);
     observableCrearProvincia
       .subscribe(
         () => {
-          console.log('Provincia registrada: ', this.nuevaProvincia);
+          console.log('Provincia registrada: ', provincia);
           const ruta = ['/refugios', 'lista-provincias'];
           this._router.navigate(ruta);
         },

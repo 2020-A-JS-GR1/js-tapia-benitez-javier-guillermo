@@ -2,7 +2,10 @@ import { RazaService } from './../../../servicios/http/raza.service';
 import { MascotaService } from './../../../servicios/http/mascota.service';
 import { Raza } from './../../../modelos/raza';
 import { Mascota } from './../../../modelos/mascota';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-mascotas',
@@ -11,12 +14,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaMascotasComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['nombre', 'raza', 'edad', 'genero', 'tamano', 'pelaje', 'vacuna', 'esterilizacion', "acciones"];
+
   arregloMascotas: Mascota[] = [];
-  arregloRazas: Raza[] = [];
+
+  dataSource = new MatTableDataSource<Mascota>();
 
   constructor(
-    private readonly _mascotaService: MascotaService,
-    private readonly _razaService: RazaService
+    private readonly _mascotaService: MascotaService
   ) { }
 
   ngOnInit(): void {
@@ -25,27 +33,19 @@ export class RutaListaMascotasComponent implements OnInit {
       .subscribe(
         (mascotas: Mascota[]) => {
           this.arregloMascotas = mascotas;
+          this.dataSource.data = this.arregloMascotas;
         },
         error => {
           console.error('Error obteniendo mascotas', error);
         }
       );
 
-    const observableRazas = this._razaService.getRazas();
-    observableRazas
-      .subscribe(
-        (razas: Raza[]) => {
-          this.arregloRazas = razas;
-        },
-        error => {
-          console.error('Error obteniendo razas', error);
-        }
-      );
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  obtenerRazaMascota(id: number): string {
-    const raza = this.arregloRazas.find(raza => raza.id === id);
-    return raza?.nombre;
+  filtrarMascota(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
   eliminarMascota(idMascota: number) {
@@ -55,6 +55,7 @@ export class RutaListaMascotasComponent implements OnInit {
         () => {
           const indice = this.arregloMascotas.findIndex(mascota => mascota.id === idMascota);
           this.arregloMascotas.splice(indice, 1);
+          this.dataSource.data = this.arregloMascotas;
         },
         error => {
           console.error('Error eliminando mascota', error);
