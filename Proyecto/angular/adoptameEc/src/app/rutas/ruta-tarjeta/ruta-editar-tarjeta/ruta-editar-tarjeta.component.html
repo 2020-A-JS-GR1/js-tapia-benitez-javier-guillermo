@@ -1,1 +1,4 @@
-<app-formulario-tarjeta [idTarjetaEditar]="id" (enviarFormularioEvent)="actualizarTarjeta($event)"></app-formulario-tarjeta>
+<div *ngIf="mostrarFormulario">
+    <app-formulario-tarjeta [tarjetaEditar]="editadoTarjeta" (enviarFormularioEvent)="actualizarTarjeta($event)">
+    </app-formulario-tarjeta>
+</div>

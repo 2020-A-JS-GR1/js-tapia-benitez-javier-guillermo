@@ -13,10 +13,10 @@ import { UsuarioService } from 'src/app/servicios/http/usuario.service';
 export class FormularioTarjetaComponent implements OnInit {
 
   @Input()
-  idTarjetaEditar: number;
+  tarjetaEditar: Tarjeta;
 
   @Output()
-  enviarFormularioEvent = new EventEmitter<NgForm>();
+  enviarFormularioEvent: EventEmitter<Tarjeta> = new EventEmitter<Tarjeta>();
 
   arregloUsuarios: Usuario[] = [];
   seleccion: boolean = true;
@@ -26,10 +26,10 @@ export class FormularioTarjetaComponent implements OnInit {
   anioFormulario: number;
   cvvFormulario: string;
   usuarioIdFormulario: number = 0;
+  fechaCaducidadNuevaTarjeta: string;
 
   constructor(
-    private readonly _usuarioService: UsuarioService,
-    private readonly _tarjetaService: TarjetaService
+    private readonly _usuarioService: UsuarioService
   ) { }
 
   ngOnInit(): void {
@@ -44,30 +44,34 @@ export class FormularioTarjetaComponent implements OnInit {
         }
       );
 
-    if (this.idTarjetaEditar) {
+    if (this.tarjetaEditar) {
       this.llenarFormulario();
     }
   }
 
   enviarFormulario(formulario: NgForm) {
-    this.enviarFormularioEvent.emit(formulario);
+    if (formulario.form.value.dia < 10) {
+      this.fechaCaducidadNuevaTarjeta = '0' + String(formulario.form.value.dia) + '/' + String(formulario.form.value.anio);
+    } else {
+      this.fechaCaducidadNuevaTarjeta = String(formulario.form.value.dia) + '/' + String(formulario.form.value.anio);
+    }
+
+    this.enviarFormularioEvent.emit(
+      new Tarjeta(
+        formulario.form.value.numero,
+        this.fechaCaducidadNuevaTarjeta,
+        formulario.form.value.cvv,
+        formulario.form.value.id_usuario
+      )
+    );
   }
 
   llenarFormulario() {
-    const observableObtenerTarjeta = this._tarjetaService.getTarjeta(this.idTarjetaEditar);
-    observableObtenerTarjeta
-      .subscribe(
-        (tarjeta: Tarjeta) => {
-          this.numeroFormulario = tarjeta.numero;
-          this.diaFormulario = Number(tarjeta.fechaCaducidad.substr(0, 2));
-          this.anioFormulario = Number(tarjeta.fechaCaducidad.substr(3));
-          this.cvvFormulario = tarjeta.cvv;
-          this.usuarioIdFormulario = tarjeta.id_usuario.id;
-        },
-        error => {
-          console.error('Error obteniendo tarjeta', error);
-        }
-      );
+    this.numeroFormulario = this.tarjetaEditar.numero;
+    this.diaFormulario = Number(this.tarjetaEditar.fechaCaducidad.substr(0, 2));
+    this.anioFormulario = Number(this.tarjetaEditar.fechaCaducidad.substr(3));
+    this.cvvFormulario = this.tarjetaEditar.cvv;
+    this.usuarioIdFormulario = this.tarjetaEditar.id_usuario.id;
 
     this.seleccionarOpcionUsuario();
   }

@@ -12,7 +12,9 @@ import { NgForm } from '@angular/forms';
 export class RutaEditarRolUsuarioComponent implements OnInit {
 
   editadoRolUsuario: RolUsuario;
+
   id: number;
+  mostrarFormulario: boolean = false;
 
   constructor(
     private readonly _rolUsuarioService: RolUsuarioService,
@@ -26,19 +28,31 @@ export class RutaEditarRolUsuarioComponent implements OnInit {
       .subscribe(
         (parametros: Params) => {
           this.id = Number(parametros.id);
+          const observableObtenerRolUsuario = this._rolUsuarioService.getRolUsuario(this.id);
+          observableObtenerRolUsuario
+            .subscribe(
+              (rolUsuario: RolUsuario) => {
+                this.editadoRolUsuario = rolUsuario;
+                this.llenarFormularioRolUsuario();
+              },
+              error => {
+                console.error('Error obteniendo rol de usuario', error);
+              }
+            );
         }
       );
   }
 
-  actualizarRolUsuario(formulario: NgForm) {
-    this.editadoRolUsuario = formulario.form.value;
-    this.editadoRolUsuario.id_usuario = Number(this.editadoRolUsuario.id_usuario);
-    this.editadoRolUsuario.id_rol = Number(this.editadoRolUsuario.id_rol);
-    const observableActualizarRolUsuario = this._rolUsuarioService.updateRolUsuario(this.id, this.editadoRolUsuario);
+  llenarFormularioRolUsuario() {
+    this.mostrarFormulario = true;
+  }
+
+  actualizarRolUsuario(rolUsuario: RolUsuario) {
+    const observableActualizarRolUsuario = this._rolUsuarioService.updateRolUsuario(this.id, rolUsuario);
     observableActualizarRolUsuario
       .subscribe(
         () => {
-          console.log('Rol de usuario actualizado:', this.editadoRolUsuario);
+          console.log('Rol de usuario actualizado:', rolUsuario);
           const ruta = ['/usuarios', 'lista-roles-usuarios'];
           this._router.navigate(ruta);
         },

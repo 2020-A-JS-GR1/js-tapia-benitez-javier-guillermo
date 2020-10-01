@@ -1,0 +1,44 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Raza</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioRaza="ngForm" (ngSubmit)="enviarFormulario(formularioRaza)">
+            <div>
+                <p class="subtitulo">Datos de la raza</p>
+            </div>
+            <div>
+                <label for="nombreRaza">Nombre</label>
+                <input id="nombreRaza" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    minlength="3" #nombreCampo="ngModel">
+            </div>
+            <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p class="error" *ngIf="nombreCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="nombreCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="descripcionRaza">Descripcion</label>
+                <textarea name="descripcion" id="descripcionRaza" cols="30" rows="10" [(ngModel)]="descripcionFormulario"
+                    required minlength="3" #descripcionCampo="ngModel"></textarea>
+            </div>
+            <div *ngIf="descripcionCampo.touched && descripcionCampo.errors">
+                <p class="error" *ngIf="descripcionCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="descripcionCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="especieRaza">Especie</label>
+                <select id="especieRaza" name="id_especie" [(ngModel)]="especieIdFormulario"
+                    (change)="seleccionarOpcionEspecie()" #especieCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione una Especie</option>
+                    <option *ngFor="let especie of arregloEspecies" [ngValue]="especie.id">{{especie.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="especieCampo.touched && seleccion">
+                <p class="error" *ngIf="seleccion">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit" [disabled]="!formularioRaza.form.valid || seleccion">Aceptar</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Mascota</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioMascota="ngForm" (ngSubmit)="enviarFormulario(formularioMascota)">
+            <div>
+                <p class="subtitulo">Datos de la mascota</p>
+            </div>
+            <div>
+                <label for="nombreMascota">Nombre</label>
+                <input id="nombreMascota" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    minlength="3" #nombreCampo="ngModel">
+            </div>
+            <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p class="error" *ngIf="nombreCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="nombreCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="descripcionMascota">Descripcion</label>
+                <textarea name="descripcion" id="descripcionMascota" cols="30" rows="10"
+                    [(ngModel)]="descripcionFormulario" required minlength="3" #descripcionCampo="ngModel"></textarea>
+            </div>
+            <div *ngIf="descripcionCampo.touched && descripcionCampo.errors">
+                <p class="error" *ngIf="descripcionCampo.errors.required">* Campo requerido</p>
+                <p class="error" *ngIf="descripcionCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="edadMascota">Edad</label>
+                <select id="edadMascota" name="edad" [(ngModel)]="edadFormulario" (change)="seleccionarOpcionEdad()"
+                    #edadCampo="ngModel">
+                    <option [ngValue]="'Default'" selected>Seleccione una Opcion</option>
+                    <option [ngValue]="'Cachorro'">Cachorro</option>
+                    <option [ngValue]="'Joven'">Joven</option>
+                    <option [ngValue]="'Adulto'">Adulto</option>
+                    <option [ngValue]="'Viejo'">Viejo</option>
+                </select>
+            </div>
+            <div *ngIf="edadCampo.touched && seleccionEdad">
+                <p class="error" *ngIf="seleccionEdad">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="generoMascota">Genero</label>
+                <select id="generoMascota" name="genero" [(ngModel)]="generoFormulario"
+                    (change)="seleccionarOpcionGenero()" #generoCampo="ngModel">
+                    <option [ngValue]="'Default'" selected>Seleccione una Opcion</option>
+                    <option [ngValue]="'Macho'">Macho</option>
+                    <option [ngValue]="'Hembra'">Hembra</option>
+                </select>
+            </div>
+            <div *ngIf="generoCampo.touched && seleccionGenero">
+                <p class="error" *ngIf="seleccionGenero">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="tamanoMascota">Tamaño</label>
+                <select id="tamanoMascota" name="tamano" [(ngModel)]="tamanoFormulario"
+                    (change)="seleccionarOpcionTamano()" #tamanoCampo="ngModel">
+                    <option [ngValue]="'Default'" selected>Seleccione una Opcion</option>
+                    <option [ngValue]="'Pequeña'">Pequeña</option>
+                    <option [ngValue]="'Mediana'">Mediana</option>
+                    <option [ngValue]="'Grande'">Grande</option>
+                </select>
+            </div>
+            <div *ngIf="tamanoCampo.touched && seleccionTamano">
+                <p class="error" *ngIf="seleccionTamano">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="pelajeMascota">Pelaje</label>
+                <select id="pelajeMascota" name="pelaje" [(ngModel)]="pelajeFormulario"
+                    (change)="seleccionarOpcionPelaje()" #pelajeCampo="ngModel">
+                    <option [ngValue]="'Default'" selected>Seleccione una Opcion</option>
+                    <option [ngValue]="'Sin pelaje'">Sin pelaje</option>
+                    <option [ngValue]="'Corto'">Corto</option>
+                    <option [ngValue]="'Largo'">Largo</option>
+                </select>
+            </div>
+            <div *ngIf="pelajeCampo.touched && seleccionPelaje">
+                <p class="error" *ngIf="seleccionPelaje">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="vacunaMascota">Vacunas</label>
+                <select id="vacunaMascota" name="vacuna" [(ngModel)]="vacunaFormulario"
+                    (change)="seleccionarOpcionVacuna()" #vacunaCampo="ngModel">
+                    <option [ngValue]="'Default'" selected>Seleccione una Opcion</option>
+                    <option [ngValue]="'Si'">Al dia</option>
+                    <option [ngValue]="'No'">No</option>
+                </select>
+            </div>
+            <div *ngIf="vacunaCampo.touched && seleccionVacuna">
+                <p class="error" *ngIf="seleccionVacuna">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="esterilizacionMascota">Esterilización</label>
+                <select id="esterilizacionMascota" name="esterilizacion" [(ngModel)]="esterilizacionFormulario"
+                    (change)="seleccionarOpcionEsterilizacion()" #esterilizacionCampo="ngModel">
+                    <option [ngValue]="'Default'" selected>Seleccione una Opcion</option>
+                    <option [ngValue]="'Si'">Si</option>
+                    <option [ngValue]="'No'">No</option>
+                </select>
+            </div>
+            <div *ngIf="esterilizacionCampo.touched && seleccionEsterilizacion">
+                <p class="error" *ngIf="seleccionEsterilizacion">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="razaMascota">Raza</label>
+                <select id="razaMascota" name="id_raza" [(ngModel)]="razaIdFormulario"
+                    (change)="seleccionarOpcionRaza()" #razaCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione una Raza</option>
+                    <option *ngFor="let raza of arregloRazas" [ngValue]="raza.id">{{raza.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="razaCampo.touched && seleccionRaza">
+                <p class="error" *ngIf="seleccionRaza">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit"
+                [disabled]="!formularioMascota.form.valid || seleccionEdad || seleccionGenero || seleccionTamano || seleccionPelaje || seleccionVacuna || seleccionEsterilizacion || seleccionRaza">Aceptar</button>
+        </form>
+    </div>
+</div>

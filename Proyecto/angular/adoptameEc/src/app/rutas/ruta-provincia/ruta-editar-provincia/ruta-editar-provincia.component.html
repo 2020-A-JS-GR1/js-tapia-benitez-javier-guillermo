@@ -1,1 +1,4 @@
-<app-formulario-provincia [idProvinciaEditar]="id" (enviarFormularioEvent)="actualizarProvincia($event)"></app-formulario-provincia>
+<div *ngIf="mostrarFormulario">
+    <app-formulario-provincia [provinciaEditar]="editadoProvincia"
+        (enviarFormularioEvent)="actualizarProvincia($event)"></app-formulario-provincia>
+</div>

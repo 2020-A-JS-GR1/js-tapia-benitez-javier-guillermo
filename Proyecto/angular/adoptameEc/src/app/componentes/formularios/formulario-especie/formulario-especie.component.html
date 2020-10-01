@@ -1,0 +1,23 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Especie</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioEspecie="ngForm" (ngSubmit)="enviarFormulario(formularioEspecie)">
+            <div>
+                <p class="subtitulo">Datos de la especie</p>
+            </div>
+            <div>
+                <label for="nombreEspecie">Nombre</label>
+                <input id="nombreEspecie" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    minlength="3" #nombreCampo="ngModel">
+            </div>
+            <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p class="error" *ngIf="nombreCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="nombreCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit" [disabled]="!formularioEspecie.form.valid">Aceptar</button>
+        </form>
+    </div>
+</div>

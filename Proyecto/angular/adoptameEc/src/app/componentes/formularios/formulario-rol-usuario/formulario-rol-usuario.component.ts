@@ -4,7 +4,6 @@ import { Rol } from './../../../modelos/rol';
 import { Usuario } from './../../../modelos/usuario';
 import { NgForm } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RolUsuarioService } from 'src/app/servicios/http/rol-usuario.service';
 import { RolUsuario } from 'src/app/modelos/rol-usuario';
 
 @Component({
@@ -15,13 +14,14 @@ import { RolUsuario } from 'src/app/modelos/rol-usuario';
 export class FormularioRolUsuarioComponent implements OnInit {
 
   @Input()
-  idRolUsuarioEditar: number;
+  rolUsuarioEditar: RolUsuario;
 
   @Output()
-  enviarFormularioEvent = new EventEmitter<NgForm>();
+  enviarFormularioEvent: EventEmitter<RolUsuario> = new EventEmitter<RolUsuario>();
 
   arregloUsuarios: Usuario[] = [];
   arregloRoles: Rol[] = [];
+
   seleccionUsuario: boolean = true;
   seleccionRol: boolean = true;
 
@@ -29,7 +29,6 @@ export class FormularioRolUsuarioComponent implements OnInit {
   rolIdFormulario: number = 0;
 
   constructor(
-    private readonly _rolUsuarioService: RolUsuarioService,
     private readonly _rolService: RolService,
     private readonly _usuarioService: UsuarioService
   ) { }
@@ -57,27 +56,23 @@ export class FormularioRolUsuarioComponent implements OnInit {
         }
       );
 
-    if (this.idRolUsuarioEditar) {
+    if (this.rolUsuarioEditar) {
       this.llenarFormulario();
     }
   }
 
   enviarFormulario(formulario: NgForm) {
-    this.enviarFormularioEvent.emit(formulario);
+    this.enviarFormularioEvent.emit(
+      new RolUsuario(
+        formulario.form.value.id_usuario,
+        formulario.form.value.id_rol
+      )
+    );
   }
 
   llenarFormulario() {
-    const observableObtenerRolUsuario = this._rolUsuarioService.getRolUsuario(this.idRolUsuarioEditar);
-    observableObtenerRolUsuario
-      .subscribe(
-        (rolUsuario: RolUsuario) => {
-          this.usuarioIdFormulario = rolUsuario.id_usuario.id;
-          this.rolIdFormulario = rolUsuario.id_rol.id;
-        },
-        error => {
-          console.error('Error obteniendo rol de usuario', error);
-        }
-      );
+    this.usuarioIdFormulario = this.rolUsuarioEditar.id_usuario.id;
+    this.rolIdFormulario = this.rolUsuarioEditar.id_rol.id;
 
     this.seleccionarOpcionUsuario();
     this.selecionarOpcionRol();

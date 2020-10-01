@@ -11,9 +11,6 @@ import { Router } from '@angular/router';
 })
 export class RutaCrearTarjetaComponent implements OnInit {
 
-  nuevaTarjeta: Tarjeta = new Tarjeta('', '', '', 0);
-  fechaCaducidadNuevaTarjeta: string;
-
   constructor(
     private readonly _tarjetaService: TarjetaService,
     private readonly _router: Router
@@ -22,22 +19,12 @@ export class RutaCrearTarjetaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearTarjeta(formulario: NgForm){
-    this.nuevaTarjeta.numero = formulario.form.value.numero;
-    if (formulario.form.value.dia < 10) {
-      this.fechaCaducidadNuevaTarjeta = '0' + String(formulario.form.value.dia) + '/' + String(formulario.form.value.anio);
-    } else {
-      this.fechaCaducidadNuevaTarjeta = String(formulario.form.value.dia) + '/' + String(formulario.form.value.anio);
-    }
-    this.nuevaTarjeta.fechaCaducidad = this.fechaCaducidadNuevaTarjeta;
-    this.nuevaTarjeta.cvv = formulario.form.value.cvv;
-    this.nuevaTarjeta.id_usuario = formulario.form.value.id_usuario; 
-
-    const observableCrearTarjeta = this._tarjetaService.createTarjeta(this.nuevaTarjeta);
+  crearTarjeta(tarjeta: Tarjeta){
+    const observableCrearTarjeta = this._tarjetaService.createTarjeta(tarjeta);
     observableCrearTarjeta
       .subscribe(
         () => {
-          console.log('Tarjeta registrada: ', this.nuevaTarjeta);
+          console.log('Tarjeta registrada: ', tarjeta);
           const ruta = ['/usuarios', 'lista-tarjetas'];
           this._router.navigate(ruta);
         },

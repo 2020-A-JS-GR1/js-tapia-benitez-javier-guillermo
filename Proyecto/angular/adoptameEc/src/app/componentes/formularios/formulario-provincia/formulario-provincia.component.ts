@@ -11,37 +11,30 @@ import { ProvinciaService } from 'src/app/servicios/http/provincia.service';
 export class FormularioProvinciaComponent implements OnInit {
 
   @Input()
-  idProvinciaEditar: number;
+  provinciaEditar: Provincia;
 
   @Output()
-  enviarFormularioEvent = new EventEmitter<NgForm>();
+  enviarFormularioEvent: EventEmitter<Provincia> = new EventEmitter<Provincia>();
 
   nombreFormulario: string;
 
-  constructor(
-    private readonly _provinciaService: ProvinciaService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if (this.idProvinciaEditar) {
+    if (this.provinciaEditar) {
       this.llenarFormulario();
     }
   }
 
   enviarFormulario(formulario: NgForm) {
-    this.enviarFormularioEvent.emit(formulario);
+    this.enviarFormularioEvent.emit(
+      new Provincia(
+        formulario.form.value.nombre
+      )
+    );
   }
 
   llenarFormulario() {
-    const observableObtenerProvincia = this._provinciaService.getProvincia(this.idProvinciaEditar);
-    observableObtenerProvincia
-      .subscribe(
-        (provincia: Provincia) => {
-          this.nombreFormulario = provincia.nombre;
-        },
-        error => {
-          console.error('Error obteniendo provincia', error);
-        }
-      );
+    this.nombreFormulario = this.provinciaEditar.nombre;
   }
 }

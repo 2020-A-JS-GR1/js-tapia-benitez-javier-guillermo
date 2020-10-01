@@ -1,6 +1,4 @@
-import { ProvinciaService } from './../../../servicios/http/provincia.service';
 import { UsuarioService } from './../../../servicios/http/usuario.service';
-import { Provincia } from './../../../modelos/provincia';
 import { Usuario } from './../../../modelos/usuario';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,13 +18,11 @@ export class RutaListaUsuariosComponent implements OnInit {
   columnas: string[] = ['nombre', 'email', 'provincia', "mascotas", "ninos", "acciones"];
 
   arregloUsuarios: Usuario[] = [];
-  arregloProvincias: Provincia[] = [];
 
   dataSource = new MatTableDataSource<Usuario>();
 
   constructor(
     private readonly _usuarioService: UsuarioService,
-    private readonly _provinciaService: ProvinciaService
   ) { }
 
   ngOnInit(): void {
@@ -42,28 +38,8 @@ export class RutaListaUsuariosComponent implements OnInit {
         }
       );
 
-    const observableProvincias = this._provinciaService.getProvincias();
-    observableProvincias
-      .subscribe(
-        (provincias: Provincia[]) => {
-          this.arregloProvincias = provincias;
-        },
-        error => {
-          console.error('Error obteniendo provincias', error);
-        }
-      );
-
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  obtenerProvinciaUsuario(id: Provincia): string {
-    const provincia = this.arregloProvincias.find(provincia => provincia.id === id.id);
-    return provincia?.nombre;
-  }
-
-  obtenerMascotasUsuario(perros: number, gatos: number): number {
-    return perros + gatos;
   }
 
   filtrarUsuario(busqueda: string) {

@@ -1,8 +1,9 @@
-import { ProvinciaService } from './../../../servicios/http/provincia.service';
+import { MatPaginator } from '@angular/material/paginator';
 import { RefugioService } from './../../../servicios/http/refugio.service';
-import { Provincia } from './../../../modelos/provincia';
 import { Refugio } from './../../../modelos/refugio';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-refugios',
@@ -11,12 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaRefugiosComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['nombre', 'direccion', 'provincia', "acciones"];
+
   arregloRefugios: Refugio[] = [];
-  arregloProvincias: Provincia[] = [];
+
+  dataSource = new MatTableDataSource<Refugio>();
 
   constructor(
-    private readonly _refugioService: RefugioService,
-    private readonly _provinciaService: ProvinciaService
+    private readonly _refugioService: RefugioService
   ) { }
 
   ngOnInit(): void {
@@ -25,27 +31,19 @@ export class RutaListaRefugiosComponent implements OnInit {
       .subscribe(
         (refugios: Refugio[]) => {
           this.arregloRefugios = refugios;
+          this.dataSource.data = this.arregloRefugios;
         },
         error => {
           console.error('Error obteniendo refugios', error);
         }
       );
 
-    const observableProvincias = this._provinciaService.getProvincias();
-    observableProvincias
-      .subscribe(
-        (provincias: Provincia[]) => {
-          this.arregloProvincias = provincias;
-        },
-        error => {
-          console.error('Error obteniendo provincias', error);
-        }
-      );
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  obtenerProvinciaRefugio(id: number): string {
-    const provincia = this.arregloProvincias.find(provincia => provincia.id === id);
-    return provincia?.nombre;
+  filtrarRefugio(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
   eliminarRefugio(idRefugio: number) {
@@ -55,6 +53,7 @@ export class RutaListaRefugiosComponent implements OnInit {
         () => {
           const indice = this.arregloRefugios.findIndex(refugio => refugio.id === idRefugio);
           this.arregloRefugios.splice(indice, 1);
+          this.dataSource.data = this.arregloRefugios;
         },
         error => {
           console.error('Error eliminando refugio', error);

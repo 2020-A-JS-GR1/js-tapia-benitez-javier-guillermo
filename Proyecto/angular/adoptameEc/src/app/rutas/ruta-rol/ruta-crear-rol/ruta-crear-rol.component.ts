@@ -11,8 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class RutaCrearRolComponent implements OnInit {
 
-  nuevoRol: Rol;
-
   constructor(
     private readonly _rolService: RolService,
     private readonly _router: Router
@@ -21,13 +19,12 @@ export class RutaCrearRolComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearRol(formulario: NgForm) {
-    this.nuevoRol = formulario.form.value;
-    const observableCrearRol = this._rolService.createRol(this.nuevoRol);
+  crearRol(rol: Rol) {
+    const observableCrearRol = this._rolService.createRol(rol);
     observableCrearRol
       .subscribe(
         () => {
-          console.log('Rol registrado: ', this.nuevoRol);
+          console.log('Rol registrado: ', rol);
           const ruta = ['/roles', 'lista-roles'];
           this._router.navigate(ruta);
         },
