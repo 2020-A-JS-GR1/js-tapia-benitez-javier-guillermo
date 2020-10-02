@@ -63,7 +63,7 @@ export class RutaListaDonacionesComponent implements OnInit {
   }
 
   convertirFecha(fecha: number): string {
-    const fechaDonacion: Date = new Date(fecha * 1000);
+    const fechaDonacion: Date = new Date(fecha);
     return fechaDonacion.toUTCString();
   }
 

@@ -5,10 +5,11 @@
                 <mat-card-header>
                     <mat-card-title>{{mascota.nombre}}</mat-card-title>
                     <mat-card-subtitle>
-                        {{mascota.id_raza.nombre}} - {{mascota.genero}} - {{mascota.edad}} - {{mascota.tamano}} -
-                        {{mascota.pelaje}}
+                        {{mascota.id_raza.nombre}} - {{mascota.genero}} - {{mascota.edad}}
+                        <br> 
+                        Tamaño: {{mascota.tamano}} - Pelaje: {{mascota.pelaje}}
                         <br>
-                        {{mascota.vacuna}} - {{mascota.esterilizacion}}
+                        Vacunas: {{mascota.vacuna}} - Esterilizado: {{mascota.esterilizacion}}
                     </mat-card-subtitle>
                 </mat-card-header>
                 <img mat-card-image [src]="obtenerFotografia(mascota?.id)">

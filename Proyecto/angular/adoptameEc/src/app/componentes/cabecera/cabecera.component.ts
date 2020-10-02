@@ -35,7 +35,7 @@ export class CabeceraComponent implements OnInit {
       this._sesionService.cambiarSesion(false);
       this._sesionService.cambiarSesionUsuario(0);
       this._sesionService.cambiarRol(false);
-      const rutaInicio = ['/inicio'];
+      const rutaInicio = ['/adoptar'];
       this._router.navigate(rutaInicio);
     } else {
       const rutaLogin = ['/login'];

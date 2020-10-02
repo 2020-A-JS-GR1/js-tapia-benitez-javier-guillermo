@@ -30,7 +30,7 @@ export class RutaRegistroComponent implements OnInit {
           const observableAsignarRol = this._rolUsuarioService.createRolUsuario(
             new RolUsuario(
               usuarioNew.id,
-              4
+              6
             )
           );
           observableAsignarRol

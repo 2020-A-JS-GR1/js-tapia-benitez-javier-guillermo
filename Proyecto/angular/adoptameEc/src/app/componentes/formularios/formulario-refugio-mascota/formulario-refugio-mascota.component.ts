@@ -64,8 +64,8 @@ export class FormularioRefugioMascotaComponent implements OnInit {
   enviarFormulario(formulario: NgForm) {
     this.enviarFormularioEvent.emit(
       new RefugioMascota(
-        formulario.form.value.id_mascota,
-        formulario.form.value.id_refugio
+        formulario.form.value.id_refugio,
+        formulario.form.value.id_mascota
       )
     );
   }
