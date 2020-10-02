@@ -1,12 +1,11 @@
 import { UsuarioService } from './../../../servicios/http/usuario.service';
-import { MascotaService } from './../../../servicios/http/mascota.service';
-import { TarjetaService } from './../../../servicios/http/tarjeta.service';
 import { DonacionService } from './../../../servicios/http/donacion.service';
 import { Usuario } from './../../../modelos/usuario';
-import { Mascota } from './../../../modelos/mascota';
-import { Tarjeta } from './../../../modelos/tarjeta';
 import { Donacion } from './../../../modelos/donacion';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-donaciones',
@@ -15,15 +14,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaDonacionesComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['usuario', 'mascota', 'valor', 'fecha'];
+
   arregloDonaciones: Donacion[] = [];
-  arregloTarjetas: Tarjeta[] = [];
-  arregloMascotas: Mascota[] = [];
   arregloUsuarios: Usuario[] = [];
+
+  dataSource = new MatTableDataSource<Donacion>();
 
   constructor(
     private readonly _donacionService: DonacionService,
-    private readonly _tarjetaService: TarjetaService,
-    private readonly _mascotaService: MascotaService,
     private readonly _usuarioService: UsuarioService
   ) { }
 
@@ -33,31 +35,10 @@ export class RutaListaDonacionesComponent implements OnInit {
       .subscribe(
         (donaciones: Donacion[]) => {
           this.arregloDonaciones = donaciones;
+          this.dataSource.data = this.arregloDonaciones;
         },
         error => {
           console.error('Error obteniendo donaciones', error);
-        }
-      );
-
-    const observableTarjetas = this._tarjetaService.getTarjetas();
-    observableTarjetas
-      .subscribe(
-        (tarjetas: Tarjeta[]) => {
-          this.arregloTarjetas = tarjetas;
-        },
-        error => {
-          console.error('Error obteniendo tarjetas', error);
-        }
-      );
-
-    const observableMascotas = this._mascotaService.getMascotas();
-    observableMascotas
-      .subscribe(
-        (mascotas: Mascota[]) => {
-          this.arregloMascotas = mascotas;
-        },
-        error => {
-          console.error('Error obteniendo mascotas', error);
         }
       );
 
@@ -71,35 +52,22 @@ export class RutaListaDonacionesComponent implements OnInit {
           console.error('Error obteniendo usuarios', error);
         }
       );
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  obtenerMascotaDonacion(id: number): string {
-    const mascota = this.arregloMascotas.find(mascota => mascota.id === id);
-    return mascota?.nombre;
+  obtenerUsuarioDonacion(id: number): string {
+    const usuario = this.arregloUsuarios.find(usuario => usuario.id === id);
+    return usuario?.nombre + ' ' + usuario?.apellido;
   }
 
-  obtenerUsuarioTarjetaDonacion(id: number): string {
-    const tarjeta = this.arregloTarjetas.find(tarjeta => tarjeta.id === id);
-    const usuario = this.arregloUsuarios.find(usuario => usuario.id === tarjeta.id);
-    return usuario?.nombre + ' ' +usuario?.apellido;
+  convertirFecha(fecha: number): string {
+    const fechaDonacion: Date = new Date(fecha * 1000);
+    return fechaDonacion.toUTCString();
   }
 
-  obtenerTarjetaDonacion(id: number): string {
-    const tarjeta = this.arregloTarjetas.find(tarjeta => tarjeta.id === id);
-    return tarjeta?.numero;
-  }
-
-  eliminarDonacion(idDonacion: number) {
-    const observableEliminarDonacion = this._donacionService.deleteDonacion(idDonacion);
-    observableEliminarDonacion
-      .subscribe(
-        () => {
-          const indice = this.arregloDonaciones.findIndex(donacion => donacion.id === idDonacion);
-          this.arregloDonaciones.splice(indice, 1);
-        },
-        error => {
-          console.error('Error eliminando donacion', error);
-        }
-      );
+  filtrarDonacion(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 }

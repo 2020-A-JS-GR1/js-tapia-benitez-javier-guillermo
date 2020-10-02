@@ -1,3 +1,12 @@
-#lista {
+.lista {
   width: 100%;
+}
+.buscador {
+  margin: 0px 30px;
+  display: inline;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 90%;
+  padding: 10px 0px 0px;
 }

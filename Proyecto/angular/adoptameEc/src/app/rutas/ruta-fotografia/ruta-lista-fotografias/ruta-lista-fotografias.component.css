@@ -1,7 +1,39 @@
-#lista{
-    width: 100%;
+.lista {
+  width: 100%;
 }
-#fotografia{
-    width: 100px;
-    height: 100px;
+.buscador {
+  margin: 0px 30px;
+  display: inline;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 90%;
+  padding: 10px 0px 0px;
+}
+img {
+  height: 250px;
+}
+.mat-column-acciones {
+  width: 15%;
+}
+.boton {
+  margin: 0px 5px;
+  background: #3864c2;
+  border-radius: 35px;
+  border: none;
+  outline: none;
+  padding: 5px 20px;
+  font-family: "Spectral SC", serif;
+  font-size: 12px;
+  text-align: center;
+  color: #ffffff;
+}
+.eliminar {
+  background: red;
+}
+.editar {
+  background: green;
+}
+.crear {
+  margin: 0px 7px;
 }

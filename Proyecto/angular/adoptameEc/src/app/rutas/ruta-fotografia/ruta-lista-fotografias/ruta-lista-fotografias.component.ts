@@ -2,7 +2,10 @@ import { MascotaService } from '../../../servicios/http/mascota.service';
 import { FotografiaService } from '../../../servicios/http/fotografia.service';
 import { Mascota } from '../../../modelos/mascota';
 import { Fotografia } from '../../../modelos/fotografia';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-fotografias',
@@ -11,12 +14,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaFotografiasComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['imagen', 'mascota', "acciones"];
+
   arregloFotografias: Fotografia[] = [];
-  arregloMascotas: Mascota[] = [];
+
+  dataSource = new MatTableDataSource<Fotografia>();
 
   constructor(
-    private readonly _fotografiaService: FotografiaService,
-    private readonly _mascotaService: MascotaService
+    private readonly _fotografiaService: FotografiaService
   ) { }
 
   ngOnInit(): void {
@@ -25,27 +33,19 @@ export class RutaListaFotografiasComponent implements OnInit {
       .subscribe(
         (fotografias: Fotografia[]) => {
           this.arregloFotografias = fotografias;
+          this.dataSource.data = this.arregloFotografias;
         },
         error => {
           console.error('Error obteniendo fotografias', error);
         }
       );
 
-    const observableMascotas = this._mascotaService.getMascotas();
-    observableMascotas
-      .subscribe(
-        (mascotas: Mascota[]) => {
-          this.arregloMascotas = mascotas;
-        },
-        error => {
-          console.error('Error obteniendo mascotas', error);
-        }
-      );
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  obtenerMascotaFotografia(id: number): string {
-    const mascota = this.arregloMascotas.find(mascota => mascota.id === id);
-    return mascota?.nombre;
+  filtrarFotografia(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
   eliminarFotografia(idFotografia: number) {
@@ -55,6 +55,7 @@ export class RutaListaFotografiasComponent implements OnInit {
         () => {
           const indice = this.arregloFotografias.findIndex(fotografia => fotografia.id === idFotografia);
           this.arregloFotografias.splice(indice, 1);
+          this.dataSource.data = this.arregloFotografias;
         },
         error => {
           console.error('Error eliminando fotografia', error);

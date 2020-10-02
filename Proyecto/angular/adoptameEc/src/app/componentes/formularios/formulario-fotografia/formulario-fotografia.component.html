@@ -1,0 +1,38 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Imagen de Mascota</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioFotografia="ngForm" (ngSubmit)="enviarFormulario(formularioFotografia)">
+            <div>
+                <p class="subtitulo">Datos de imagen</p>
+            </div>
+            <div>
+                <label for="urlFotografia">URL</label>
+                <input id="urlFotografia" type="text" name="url" [(ngModel)]="urlFormulario" required
+                    minlength="3" #urlCampo="ngModel">
+            </div>
+            <div *ngIf="urlFormulario && !urlCampo.errors">
+                <img [src]="locationUrl + urlFormulario">
+            </div>
+            <div *ngIf="urlCampo.touched && urlCampo.errors">
+                <p class="error" *ngIf="urlCampo.errors.required">* Campo Requerido</p>
+                <p class="error" *ngIf="urlCampo.errors.minlength">* Longitud minima 3</p>
+            </div>
+            <div>
+                <label for="mascotaFotografia">Mascota</label>
+                <select id="mascotaFotografia" name="id_mascota" [(ngModel)]="mascotaIdFormulario"
+                    (change)="seleccionarOpcionMascota()" #mascotaCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione una Mascota</option>
+                    <option *ngFor="let mascota of arregloMascotas" [ngValue]="mascota.id">{{mascota.nombre}} - {{mascota.id_raza.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="mascotaCampo.touched && seleccion">
+                <p class="error" *ngIf="seleccion">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit" [disabled]="!formularioFotografia.form.valid || seleccion">Aceptar</button>
+        </form>
+    </div>
+</div>
