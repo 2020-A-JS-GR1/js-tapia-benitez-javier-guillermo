@@ -78,16 +78,16 @@ export class RutaListaPeticionesPendientesComponent implements OnInit {
               (adopcionAprovada: Adopcion) => {
                 console.log('Solicitud aprovada', adopcionAprovada);
                 this.obtenerPeticiones();
-                const observableBorrarMascota = this._mascotaService.deleteMascota(adopcionAprovada.id_mascota.id);
-                observableBorrarMascota
-                  .subscribe(
-                    () => {
-                      console.log('Mascota adoptada Felicidades');
-                    },
-                    error => {
-                      console.error('Error al adoptar mascota', error);
-                    }
-                  );
+                // const observableBorrarMascota = this._mascotaService.deleteMascota(adopcionAprovada.id_mascota.id);
+                // observableBorrarMascota
+                //   .subscribe(
+                //     () => {
+                //       console.log('Mascota adoptada Felicidades');
+                //     },
+                //     error => {
+                //       console.error('Error al adoptar mascota', error);
+                //     }
+                //   );
               },
               error => {
                 console.error('Error aprovando adopcion', error);

@@ -19,7 +19,7 @@ export class RutaListaRefugiosMascotasComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  columnas: string[] = ['refugio', 'direccion', "mascota", "acciones"];
+  columnas: string[] = ['refugio', 'direccion', 'mascota', "acciones"];
 
   arregloRefugiosMascotas: RefugioMascota[] = [];
 

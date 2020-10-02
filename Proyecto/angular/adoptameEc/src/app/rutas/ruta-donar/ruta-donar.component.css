@@ -13,3 +13,13 @@
   text-align: center;
   color: #ffffff;
 }
+.boton[disabled] {
+  background-color: #455475;
+}
+.tarjeta{
+  margin: 10px 10px;
+}
+img{
+  width: 437px;
+  height: 600px;
+}

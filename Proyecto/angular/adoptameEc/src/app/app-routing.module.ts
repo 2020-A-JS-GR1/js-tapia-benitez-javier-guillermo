@@ -284,7 +284,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/inicio',
+    redirectTo: '/adoptar',
     pathMatch: 'full'
   }
 ];

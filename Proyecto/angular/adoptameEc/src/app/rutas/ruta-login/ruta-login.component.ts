@@ -35,7 +35,7 @@ export class RutaLoginComponent implements OnInit {
         const rutaAdministrador = ['estadisticas'];
         this._router.navigate(rutaAdministrador);
       } else {
-        const rutaUsuario = ['inicio'];
+        const rutaUsuario = ['adoptar'];
         this._router.navigate(rutaUsuario);
       } 
   }
