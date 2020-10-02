@@ -1,3 +1,4 @@
+import { SesionService } from './servicios/sesion.service';
 import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { TopMenuComponent } from './componentes/top-menu/top-menu.component';
 import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.component';
@@ -50,6 +51,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -84,6 +87,17 @@ import { RutaEditarRazaComponent } from './rutas/ruta-raza/ruta-editar-raza/ruta
 import { FormularioMascotaComponent } from './componentes/formularios/formulario-mascota/formulario-mascota.component';
 import { RutaCrearMascotaComponent } from './rutas/ruta-mascota/ruta-crear-mascota/ruta-crear-mascota.component';
 import { RutaEditarMascotaComponent } from './rutas/ruta-mascota/ruta-editar-mascota/ruta-editar-mascota.component';
+import { FormularioFotografiaComponent } from './componentes/formularios/formulario-fotografia/formulario-fotografia.component';
+import { RutaCrearFotografiaComponent } from './rutas/ruta-fotografia/ruta-crear-fotografia/ruta-crear-fotografia.component';
+import { RutaEditarFotografiaComponent } from './rutas/ruta-fotografia/ruta-editar-fotografia/ruta-editar-fotografia.component';
+import { FormularioRefugioMascotaComponent } from './componentes/formularios/formulario-refugio-mascota/formulario-refugio-mascota.component';
+import { RutaCrearRefugioMascotaComponent } from './rutas/ruta-refugio-mascota/ruta-crear-refugio-mascota/ruta-crear-refugio-mascota.component';
+import { RutaEditarRefugioMascotaComponent } from './rutas/ruta-refugio-mascota/ruta-editar-refugio-mascota/ruta-editar-refugio-mascota.component';
+import { FormularioLoginComponent } from './componentes/formularios/formulario-login/formulario-login.component';
+import { RutaNosotrosComponent } from './rutas/ruta-nosotros/ruta-nosotros.component';
+import { RutaAdoptarComponent } from './rutas/ruta-adoptar/ruta-adoptar.component';
+import { RutaDonarComponent } from './rutas/ruta-donar/ruta-donar.component';
+import { RutaContactoComponent } from './rutas/ruta-contacto/ruta-contacto.component';
 
 @NgModule({
   declarations: [
@@ -140,7 +154,18 @@ import { RutaEditarMascotaComponent } from './rutas/ruta-mascota/ruta-editar-mas
     RutaEditarRazaComponent,
     FormularioMascotaComponent,
     RutaCrearMascotaComponent,
-    RutaEditarMascotaComponent
+    RutaEditarMascotaComponent,
+    FormularioFotografiaComponent,
+    RutaCrearFotografiaComponent,
+    RutaEditarFotografiaComponent,
+    FormularioRefugioMascotaComponent,
+    RutaCrearRefugioMascotaComponent,
+    RutaEditarRefugioMascotaComponent,
+    FormularioLoginComponent,
+    RutaNosotrosComponent,
+    RutaAdoptarComponent,
+    RutaDonarComponent,
+    RutaContactoComponent
   ],
   imports: [
     BrowserModule,
@@ -153,6 +178,8 @@ import { RutaEditarMascotaComponent } from './rutas/ruta-mascota/ruta-editar-mas
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatGridListModule,
+    MatCardModule,
   ],
   providers: [
     AdopcionService,
@@ -168,6 +195,7 @@ import { RutaEditarMascotaComponent } from './rutas/ruta-mascota/ruta-editar-mas
     RolService,
     TarjetaService,
     UsuarioService,
+    SesionService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-<app-cabecera [sesion]="false"></app-cabecera>
+<app-cabecera [rol]="rol" [sesion]="sesion"></app-cabecera>
 <app-top-menu [rutas]="rol ? administrador : cliente" [backgroundColor]="color"></app-top-menu>
 <router-outlet></router-outlet>
 <app-pie-pagina [rutas]="rol ? administrador : cliente"></app-pie-pagina>

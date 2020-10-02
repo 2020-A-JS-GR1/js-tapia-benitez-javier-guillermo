@@ -23,7 +23,7 @@ module.exports = {
       max: 10,
     },
     fecha: {
-      type: 'string',
+      type: 'number',
       required: true,
       columnName: 'fecha_adopcion',
     },

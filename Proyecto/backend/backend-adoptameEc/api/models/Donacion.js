@@ -17,7 +17,7 @@ module.exports = {
       max: 100,
     },
     fecha: {
-      type: 'string',
+      type: 'number',
       required: true,
       columnName: 'fecha_donacion',
     },

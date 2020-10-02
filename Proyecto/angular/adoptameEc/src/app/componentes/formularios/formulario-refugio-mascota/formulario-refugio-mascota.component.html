@@ -1,0 +1,41 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Mascota en refugio</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioRefugioMascota="ngForm" (ngSubmit)="enviarFormulario(formularioRefugioMascota)">
+            <div>
+                <p class="subtitulo">Datos de Refugios y Mascotas</p>
+            </div>
+            <div>
+                <label for="refugio">Refugio</label>
+                <select id="refugio" name="id_refugio" [(ngModel)]="refugioIdFormulario"
+                    (change)="seleccionarOpcionRefugio()" #refugioCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione un Refugio</option>
+                    <option *ngFor="let refugio of arregloRefugios" [ngValue]="refugio.id">
+                        {{refugio.nombre}} - {{refugio.id_provincia.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="refugioCampo.touched && seleccionRefugio">
+                <p class="error" *ngIf="seleccionRefugio">* Seleccione una opcion</p>
+            </div>
+            <div>
+                <label for="mascota">Mascota</label>
+                <select id="mascota" name="id_mascota" [(ngModel)]="mascotaIdFormulario"
+                    (change)="seleccionarOpcionMascota()" #mascotaCampo="ngModel">
+                    <option [ngValue]="0" selected>Seleccione una Mascota</option>
+                    <option *ngFor="let mascota of arregloMascotas" [ngValue]="mascota.id">
+                        {{mascota.nombre}} - {{mascota.id_raza.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div *ngIf="mascotaCampo.touched && seleccionMascota">
+                <p class="error" *ngIf="seleccionMascota">* Seleccione una opcion</p>
+            </div>
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit"
+                [disabled]="!formularioRefugioMascota.form.valid || seleccionRefugio || seleccionMascota">Aceptar</button>
+        </form>
+    </div>
+</div>

@@ -1,3 +1,11 @@
+import { RutaContactoComponent } from './rutas/ruta-contacto/ruta-contacto.component';
+import { RutaDonarComponent } from './rutas/ruta-donar/ruta-donar.component';
+import { RutaAdoptarComponent } from './rutas/ruta-adoptar/ruta-adoptar.component';
+import { RutaNosotrosComponent } from './rutas/ruta-nosotros/ruta-nosotros.component';
+import { RutaEditarRefugioMascotaComponent } from './rutas/ruta-refugio-mascota/ruta-editar-refugio-mascota/ruta-editar-refugio-mascota.component';
+import { RutaCrearRefugioMascotaComponent } from './rutas/ruta-refugio-mascota/ruta-crear-refugio-mascota/ruta-crear-refugio-mascota.component';
+import { RutaEditarFotografiaComponent } from './rutas/ruta-fotografia/ruta-editar-fotografia/ruta-editar-fotografia.component';
+import { RutaCrearFotografiaComponent } from './rutas/ruta-fotografia/ruta-crear-fotografia/ruta-crear-fotografia.component';
 import { RutaEditarMascotaComponent } from './rutas/ruta-mascota/ruta-editar-mascota/ruta-editar-mascota.component';
 import { RutaCrearMascotaComponent } from './rutas/ruta-mascota/ruta-crear-mascota/ruta-crear-mascota.component';
 import { RutaEditarRazaComponent } from './rutas/ruta-raza/ruta-editar-raza/ruta-editar-raza.component';
@@ -127,8 +135,24 @@ const routes: Routes = [
         path: 'lista-refugios-mascotas'
       },
       {
+        component: RutaCrearRefugioMascotaComponent,
+        path: 'crear-refugio-mascota'
+      },
+      {
+        component: RutaEditarRefugioMascotaComponent,
+        path: 'editar-refugio-mascota/:id'
+      },
+      {
         component: RutaListaFotografiasComponent,
         path: 'lista-fotografias'
+      },
+      {
+        component: RutaCrearFotografiaComponent,
+        path: 'crear-fotografia'
+      },
+      {
+        component: RutaEditarFotografiaComponent,
+        path: 'editar-fotografia/:id'
       },
       {
         component: RutaListaEspeciesComponent,
@@ -243,8 +267,24 @@ const routes: Routes = [
     path:  'inicio'
   },
   {
+    component: RutaNosotrosComponent,
+    path: 'nosotros'
+  },
+  {
+    component: RutaAdoptarComponent,
+    path: 'adoptar'
+  },
+  {
+    component: RutaDonarComponent,
+    path: 'donar'
+  },
+  {
+    component: RutaContactoComponent,
+    path: 'contacto'
+  },
+  {
     path: '',
-    redirectTo: '/estadisticas',
+    redirectTo: '/inicio',
     pathMatch: 'full'
   }
 ];

@@ -1,0 +1,39 @@
+<div>
+    <div>
+        <label for="tarjeta">Tarjeta</label>
+        <select id="tarjeta" name="tarjeta" [(ngModel)]="tarjetaDonacion" #tarjetaCampo="ngModel">
+            <option [ngValue]="0" selected>Seleccione una Tarjeta</option>
+            <option *ngFor="let tarjeta of arregloTarjetas" [ngValue]="tarjeta.id">{{tarjeta.numero}}
+            </option>
+        </select>
+    </div>
+    <mat-grid-list cols="3" rowHeight="3:5">
+        <mat-grid-tile *ngFor="let mascota of arregloMascotas">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>{{mascota.nombre}}</mat-card-title>
+                    <mat-card-subtitle>
+                        {{mascota.id_raza.nombre}} - {{mascota.genero}} - {{mascota.edad}} - {{mascota.tamano}} -
+                        {{mascota.pelaje}}
+                        <br>
+                        {{mascota.vacuna}} - {{mascota.esterilizacion}}
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image [src]="obtenerFotografia(mascota?.id)">
+                <mat-card-content>
+                    <p>{{mascota.descripcion}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <select id="valor" name="valor" [(ngModel)]="valorDonacion" #valorCampo="ngModel">
+                        <option [ngValue]="0" selected>Seleccione un Cantidad</option>
+                        <option [ngValue]="5" selected>$5</option>
+                        <option [ngValue]="10" selected>$10</option>
+                        <option [ngValue]="20" selected>$20</option>
+                        <option [ngValue]="30" selected>$30</option>
+                    </select>
+                    <button class="boton" mat-button (click)="crearDonar(mascota.id)">Adoptar</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

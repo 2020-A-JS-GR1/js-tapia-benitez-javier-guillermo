@@ -1,10 +1,9 @@
-import { MascotaService } from './../../../servicios/http/mascota.service';
-import { UsuarioService } from './../../../servicios/http/usuario.service';
+import { MatSort } from '@angular/material/sort';
 import { AdopcionService } from './../../../servicios/http/adopcion.service';
-import { Mascota } from './../../../modelos/mascota';
-import { Usuario } from './../../../modelos/usuario';
 import { Adopcion } from './../../../modelos/adopcion';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-peticiones',
@@ -13,14 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaPeticionesComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['usuario', 'mascota', 'calificacion', 'fecha', 'estado'];
+
   arregloAdopciones: Adopcion[] = [];
-  arregloUsuarios: Usuario[] = [];
-  arregloMascotas: Mascota[] = [];
+
+  dataSource = new MatTableDataSource<Adopcion>();
 
   constructor(
-    private readonly _adopcionService: AdopcionService,
-    private readonly _usuarioService: UsuarioService,
-    private readonly _mascotaService: MascotaService
+    private readonly _adopcionService: AdopcionService
   ) { }
 
   ngOnInit(): void {
@@ -29,56 +31,23 @@ export class RutaListaPeticionesComponent implements OnInit {
       .subscribe(
         (adopciones: Adopcion[]) => {
           this.arregloAdopciones = adopciones;
+          this.dataSource.data = this.arregloAdopciones;
         },
         error => {
           console.error('Error obteniendo adopciones', error);
         }
       );
 
-    const observableMascotas = this._mascotaService.getMascotas();
-    observableMascotas
-      .subscribe(
-        (mascotas: Mascota[]) => {
-          this.arregloMascotas = mascotas;
-        },
-        error => {
-          console.error('Error obteniendo mascotas', error);
-        }
-      );
-
-    const observableUsuarios = this._usuarioService.getUsuarios();
-    observableUsuarios
-      .subscribe(
-        (usuarios: Usuario[]) => {
-          this.arregloUsuarios = usuarios;
-        },
-        error => {
-          console.error('Error obteniendo usuarios', error);
-        }
-      );
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  obtenerUsuarioAdopcion(id: number): string {
-    const usuario = this.arregloUsuarios.find(usuario => usuario.id === id);
-    return usuario?.nombre + ' ' + usuario?.apellido;
+  convertirFecha(fecha: number): string {
+    const fechaDonacion: Date = new Date(fecha);
+    return fechaDonacion.toUTCString();
   }
 
-  obtenerMascotaAdopcion(id: number): string {
-    const mascota = this.arregloMascotas.find(mascota => mascota.id === id);
-    return mascota?.nombre;
-  }
-
-  eliminarAdopcion(idAdopcion: number) {
-    const observableEliminarAdopcion = this._adopcionService.deleteAdopcion(idAdopcion);
-    observableEliminarAdopcion
-      .subscribe(
-        () => {
-          const indice = this.arregloAdopciones.findIndex(adopcion => adopcion.id === idAdopcion);
-          this.arregloAdopciones.splice(indice, 1);
-        },
-        error => {
-          console.error('Error eliminando peticion de adopcion', error);
-        }
-      );
+  filtrarAdopcion(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 }

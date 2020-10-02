@@ -13,7 +13,6 @@ module.exports = {
       type: 'string',
       required: true,
       columnName: 'url_fotografia',
-      isURL: true,
     },
     // RELACIONES
     // Fotografia -> FotografiaMascota

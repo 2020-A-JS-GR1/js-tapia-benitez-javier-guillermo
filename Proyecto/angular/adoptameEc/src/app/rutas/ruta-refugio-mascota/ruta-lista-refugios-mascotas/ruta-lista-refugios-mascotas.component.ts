@@ -4,7 +4,10 @@ import { RefugioMascotaService } from './../../../servicios/http/refugio-mascota
 import { Mascota } from './../../../modelos/mascota';
 import { Refugio } from './../../../modelos/refugio';
 import { RefugioMascota } from './../../../modelos/refugio-mascota';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ruta-lista-refugios-mascotas',
@@ -13,14 +16,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaListaRefugiosMascotasComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  columnas: string[] = ['refugio', 'direccion', "mascota", "acciones"];
+
   arregloRefugiosMascotas: RefugioMascota[] = [];
-  arregloRefugios: Refugio[] = [];
-  arregloMascotas: Mascota[] = [];
+
+  dataSource = new MatTableDataSource<RefugioMascota>();
 
   constructor(
     private readonly _refugioMascotaService: RefugioMascotaService,
-    private readonly _refugioService: RefugioService,
-    private readonly _mascotaService: MascotaService
   ) { }
 
   ngOnInit(): void {
@@ -29,43 +35,19 @@ export class RutaListaRefugiosMascotasComponent implements OnInit {
       .subscribe(
         (refugiosMascotas: RefugioMascota[]) => {
           this.arregloRefugiosMascotas = refugiosMascotas;
+          this.dataSource.data = this.arregloRefugiosMascotas;
         },
         error => {
           console.error('Error obteniendo mascotas en refugios', error);
         }
       );
 
-    const observableRefugios = this._refugioService.getRefugios();
-    observableRefugios
-      .subscribe(
-        (refugios: Refugio[]) => {
-          this.arregloRefugios = refugios;
-        },
-        error => {
-          console.error('Error obteniendo refugios', error);
-        }
-      );
-
-    const observableMascotas = this._mascotaService.getMascotas();
-    observableMascotas
-      .subscribe(
-        (mascotas: Mascota[]) => {
-          this.arregloMascotas = mascotas;
-        },
-        error => {
-          console.error('Error obteniendo mascotas', error);
-        }
-      );
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  obtenerMascotaRefugio(id: number): string {
-    const mascota = this.arregloMascotas.find(mascota => mascota.id === id);
-    return mascota?.nombre;
-  }
-
-  obtenerRefugioMascota(id: number): string {
-    const refugio = this.arregloRefugios.find(refugio => refugio.id === id);
-    return refugio?.nombre;
+  filtrarRefugioMascota(busqueda: string) {
+    this.dataSource.filter = busqueda.trim().toLowerCase();
   }
 
   eliminarRefugioMascota(idRefugioMascota: number) {
@@ -75,6 +57,7 @@ export class RutaListaRefugiosMascotasComponent implements OnInit {
         () => {
           const indice = this.arregloRefugiosMascotas.findIndex(refugioMascota => refugioMascota.id === idRefugioMascota);
           this.arregloRefugiosMascotas.splice(indice, 1);
+          this.dataSource.data = this.arregloRefugiosMascotas;
         },
         error => {
           console.error('Error eliminando mascota del refugio', error);
